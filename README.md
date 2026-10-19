@@ -43,6 +43,11 @@ public/img/               원본 사이트 사진(서브 본문 사진은 통이
 `../tools/extract_photos.py`(사진 자르기) → `../tools/fix_photos.py`(빠진 사진 보충) → `../tools/renewal_assets.py`(이 프로젝트로 복사, 번호 배지 지움).
 검증: `../renew-verify/shoot.js`(PC·모바일 캡처·오류 점검), `../renew-verify/interact.js`(동작 점검).
 
+## 배포 (Railway, 2026-10-19~)
+- GitHub `hamudo271/haeun-nuri` main → Railway 가 `npm run build` 뒤 `npm start` 실행.
+- `npm start` = `serve` 로 `out/` 정적 파일을 `$PORT` 에서 내보낸다(`next start` 는 정적 내보내기에서 동작하지 않음). 폴더 목록 숨김·끝 슬래시는 `public/serve.json`.
+- 아직 Cloudflare 전용인 것: 관리자(`/admin`)·유튜브·전문칼럼(`functions/`, D1)은 Railway 에서 동작하지 않는다(화면 틀만 보임). CMS 이전 예정.
+
 ## 배포 (Cloudflare Pages)
 - 주소: https://haeun-nuri-renewal.pages.dev (프로젝트 `haeun-nuri-renewal`, 2026-10-03, 검색 차단)
 - 다시 올리기(스테이징): `npm run deploy:staging` — 빌드 뒤 `scripts/write-headers.mjs` 가 `out/_headers`(전 페이지 noindex + 캐시)를 쓴다.

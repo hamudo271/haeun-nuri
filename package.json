@@ -8,13 +8,17 @@
     "build:staging": "next build && node scripts/write-headers.mjs",
     "build:prod": "NEXT_PUBLIC_SITE_ENV=production next build && NEXT_PUBLIC_SITE_ENV=production node scripts/write-headers.mjs",
     "deploy:staging": "npm run build:staging && npx wrangler pages deploy out --project-name haeun-nuri-renewal --branch main --commit-dirty=true",
-    "start": "next start",
+    "start": "serve out --no-clipboard -l tcp://0.0.0.0:${PORT:-3000}",
     "lint": "eslint"
+  },
+  "engines": {
+    "node": ">=20.9"
   },
   "dependencies": {
     "next": "16.3.8",
     "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react-dom": "19.2.8",
+    "serve": "14.2.4"
   },
   "devDependencies": {
     "@types/node": "^20",
