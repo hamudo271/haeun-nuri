@@ -1,0 +1,388 @@
+/* =========================================================================
+   메인 첫 화면 v2 (2026-10-18)
+   레퍼런스: 파시아의원 fasciabylyhn.com #visual (메디컬디자인 포트폴리오)
+   - 사진 막이 가운데서 좌우로 열림: clip-path inset(0 50%) → inset(0), 1.1s cubic-bezier(.76,0,.24,1)
+   - 사진 전체가 1.25 → 1 로 천천히 가라앉음: 21.8s cubic-bezier(.16,1,.3,1)
+   - 글: 흐림 6px + 좌(-80px)·아래(+80px)·우(+80px)에서 모임, 2s, 지연 0.9/1.2/1.5s
+   - 설명·버튼: 흐림 6px + 아래 80px 에서 1.6s (파시아 main01 .maintxt)
+   - 한글 세리프 NotoSerifKR, 가운데 정렬
+   기존 원고·사진·진료시간 띠(HeroSlides)는 그대로. 클래스는 hv- 접두어.
+   ========================================================================= */
+.hv {
+  --hv-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --hv-curtain: cubic-bezier(0.76, 0, 0.24, 1);
+  --hv-beige: #d9c6ab;
+  --kserif: var(--font-kserif), 'Noto Serif KR', 'Nanum Myeongjo', serif;
+}
+.hv em,
+.hv b,
+.hv i {
+  font-style: normal;
+  font-size: inherit;
+}
+
+/* 사진 막: 가운데서 열리고, 그다음 천천히 제자리로 */
+.hv .hero-slides {
+  clip-path: inset(0 50%);
+  animation: hvOpen 1.1s var(--hv-curtain) 0.15s both, hvSettle 21.8s var(--hv-ease) 0.15s both;
+}
+@keyframes hvOpen {
+  to {
+    clip-path: inset(0 0);
+  }
+}
+@keyframes hvSettle {
+  from {
+    transform: scale(1.25);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* 글이 가운데 오므로 가운데를 고르게 어둡게(파시아는 검정 위 영상 50%) */
+.hv .hero-slides::after {
+  background: radial-gradient(ellipse 62% 58% at 50% 50%, rgba(22, 15, 10, 0.42) 0%, rgba(22, 15, 10, 0.12) 100%),
+    linear-gradient(180deg, rgba(20, 14, 10, 0.5) 0%, rgba(20, 14, 10, 0.18) 24%, rgba(20, 14, 10, 0.18) 66%, rgba(20, 14, 10, 0.62) 100%),
+    rgba(26, 18, 12, 0.12);
+}
+
+.hv-in {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: var(--hd);
+  padding-bottom: 92px;
+}
+
+/* 영문 이름: 파시아 워드마크처럼 넓은 자간 + 위로 흐르는 세로선 */
+.hv-en {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin: 0 0 26px;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  padding-left: 0.32em; /* 자간 때문에 생기는 오른쪽 쏠림 보정 */
+  color: var(--hv-beige);
+  animation: hvFade 1.6s var(--hv-ease) 0.7s both;
+}
+.hv-cue {
+  display: block;
+  width: 1px;
+  height: 54px;
+  background: linear-gradient(180deg, transparent, currentColor);
+  animation: hvCue 2.4s ease-in-out infinite;
+}
+@keyframes hvCue {
+  0% {
+    opacity: 0.2;
+    transform: scaleY(0.4);
+    transform-origin: center top;
+  }
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: center top;
+  }
+  100% {
+    opacity: 0.2;
+    transform: scaleY(0.4);
+    transform-origin: center top;
+  }
+}
+
+.hv-kicker {
+  margin: 0 0 14px;
+  font-family: var(--kserif);
+  font-size: clamp(19px, 1.6vw, 24px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.86);
+}
+.hv-title {
+  margin: 0;
+  font-family: var(--kserif);
+  font-size: clamp(34px, 3.9vw, 58px);
+  line-height: 1.36;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-shadow: 0 2px 28px rgba(0, 0, 0, 0.22);
+  word-break: keep-all;
+}
+.hv-title em {
+  color: #e2c597;
+}
+
+/* 낱말 덩어리: 좌·아래·우에서 흐림이 걷히며 모인다 */
+.hv-w {
+  display: block;
+  opacity: 0;
+  filter: blur(6px);
+  animation: hvGather 2s var(--hv-ease) both;
+}
+.hv-w1 {
+  transform: translateX(-80px);
+  animation-delay: 0.9s;
+}
+.hv-w2 {
+  transform: translateY(80px);
+  animation-delay: 1.2s;
+}
+.hv-w3 {
+  transform: translateX(80px);
+  animation-delay: 1.5s;
+}
+@keyframes hvGather {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(0, 0);
+  }
+}
+
+.hv-text {
+  margin: 30px 0 0;
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+  animation: hvRise 1.6s var(--hv-ease) 1.9s both;
+}
+.hv-cta {
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  animation: hvRise 1.6s var(--hv-ease) 2.1s both;
+}
+.hv-cta .btn-gold:hover {
+  background: #fff;
+  color: var(--deep);
+}
+@keyframes hvRise {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(80px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+@keyframes hvFade {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+/* =========================================================================
+   v2.1 (2026-10-19) 꾸밈
+   - 글 뒤 아치 창: 금색 이중선, 꼭대기 마름모, 안쪽 흐림+어둡게(복잡한 접수대 사진에서 글을 띄움)
+     위에서 아래로 열림(clip-path), 바닥은 마스크로 사라짐
+   - 첫 줄 양옆 금색 짧은 선, 금색 낱말에 한 번 지나가는 빛
+   - 아주 옅은 필름 입자
+   ========================================================================= */
+.hv-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hv-copy > :not(.hv-arch) {
+  position: relative;
+  z-index: 1;
+}
+.hv-arch {
+  --aw: clamp(660px, 60vw, 880px);
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: -58px;
+  bottom: -96px;
+  width: var(--aw);
+  margin-left: calc(var(--aw) / -2);
+  pointer-events: none;
+  border: 1px solid rgba(226, 197, 151, 0.62);
+  border-bottom: 0;
+  border-radius: calc(var(--aw) / 2) calc(var(--aw) / 2) 0 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 72%, transparent 100%);
+  clip-path: inset(0 0 100% 0);
+  animation: hvArch 2.2s var(--hv-curtain) 0.8s both;
+}
+.hv-arch::before,
+.hv-arch::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+}
+/* 안쪽: 사진을 살짝 흐리고 어둡게 */
+.hv-arch::before {
+  inset: 0;
+  background: radial-gradient(ellipse 72% 62% at 50% 44%, rgba(24, 16, 11, 0.6), rgba(24, 16, 11, 0.36) 100%);
+  -webkit-backdrop-filter: blur(7px) saturate(0.85);
+  backdrop-filter: blur(7px) saturate(0.85);
+}
+/* 안쪽 두 번째 선 */
+.hv-arch::after {
+  inset: 12px 12px 0;
+  border: 1px solid rgba(226, 197, 151, 0.26);
+  border-bottom: 0;
+  border-radius: calc(var(--aw) / 2 - 12px) calc(var(--aw) / 2 - 12px) 0 0;
+}
+.hv-arch i {
+  position: absolute;
+  z-index: 1;
+  top: -5px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin-left: -5px;
+  border: 1px solid #e2c597;
+  background: #2b2019;
+  transform: rotate(45deg);
+}
+@keyframes hvArch {
+  to {
+    clip-path: inset(-10px -10px 0 -10px);
+  }
+}
+/* 아치 꼭대기 마름모에서 세로선이 이어지도록 */
+.hv-en {
+  margin-top: 4px;
+}
+
+.hv-kicker .hv-w1 {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+.hv-kicker .hv-w1::before,
+.hv-kicker .hv-w1::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: rgba(226, 197, 151, 0.7);
+}
+
+.hv-title em {
+  background: linear-gradient(100deg, #e2c597 0%, #e2c597 42%, #fff4df 50%, #e2c597 58%, #e2c597 100%);
+  background-size: 260% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: hvShine 2.6s ease-in-out 3s both;
+}
+@keyframes hvShine {
+  to {
+    background-position: 0 0;
+  }
+}
+
+.hv-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* 진료시간 띠는 글이 다 모인 뒤 */
+.hv .hero-info.hero-up {
+  animation-delay: 2.3s !important;
+}
+
+@media (max-width: 1023px) and (min-width: 641px) {
+  .hv-in {
+    padding-bottom: 150px;
+  }
+}
+@media (max-width: 640px) {
+  .hv .hero-slides::after {
+    background: linear-gradient(0deg, rgba(22, 15, 10, 0.92) 0%, rgba(22, 15, 10, 0.7) 44%, rgba(22, 15, 10, 0.22) 72%, rgba(22, 15, 10, 0.34) 100%);
+  }
+  .hv-in {
+    justify-content: flex-end;
+    padding-bottom: 282px;
+  }
+  .hv-en {
+    gap: 12px;
+    margin-bottom: 16px;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    padding-left: 0.2em;
+  }
+  .hv-cue {
+    height: 34px;
+  }
+  .hv-kicker {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .hv-title {
+    font-size: clamp(23px, 6.6vw, 29px);
+    line-height: 1.42;
+    letter-spacing: -0.04em;
+  }
+  .hv-w1 {
+    transform: translateX(-40px);
+  }
+  .hv-w2 {
+    transform: translateY(40px);
+  }
+  .hv-w3 {
+    transform: translateX(40px);
+  }
+  .hv-text {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .hv-cta {
+    display: none;
+  }
+  .hv-arch {
+    display: none;
+  }
+  .hv-kicker .hv-w1 {
+    gap: 12px;
+  }
+  .hv-kicker .hv-w1::before,
+  .hv-kicker .hv-w1::after {
+    width: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hv .hero-slides,
+  .hv-en,
+  .hv-cue,
+  .hv-w,
+  .hv-text,
+  .hv-cta,
+  .hv-arch,
+  .hv-title em {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}

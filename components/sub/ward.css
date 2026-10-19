@@ -1,0 +1,436 @@
+/* =========================================================================
+   입원실 안내(hospital/page01) — 원본 통이미지(1920px 시안)를 HTML/CSS 로 옮김
+   기준: 가운데 1300px(원본 x 310~1609). --u = 시안 1px 이 화면에서 차지하는 크기
+   1023px 이하: 모바일 750 시안(--m) 좌표를 그대로 씀
+   색(원본에서 측정): 베이지 띠·초승달·버튼 #bd9c71 · 띠 위 글자 #c2a67f · 갈색 박스 #7f5942→#584a41
+        박스 소제목 #ffd396 · 제목/본문 #1c1c1c · 큰 번호 #efeae4 · 회색 띠 #f9f9f9 · 배너 바탕 #3f342e
+   ========================================================================= */
+.s-wd {
+  --u: min(1px, calc((100vw - 48px) / 1300));
+  --beige: #bd9c71;
+  color: #1c1c1c;
+  overflow-x: clip;
+  word-break: keep-all;
+  letter-spacing: -0.03em;
+}
+.s-wd :where(p, h2, ul, figure) {
+  margin: 0;
+  padding: 0;
+}
+.s-wd ul {
+  list-style: none;
+}
+.s-wd em {
+  font-style: normal;
+}
+.s-wd img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.s-wd-in {
+  position: relative;
+  width: calc(1300 * var(--u));
+  height: 100%;
+  margin: 0 auto;
+}
+.s-wd-ln {
+  display: block;
+}
+
+/* ---------------------------------------------------------------- 맨 위 */
+.s-wd-intro {
+  position: relative;
+  height: calc(647 * var(--u));
+  isolation: isolate;
+}
+.s-wd-intro::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: calc(352 * var(--u));
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: var(--beige);
+}
+.s-wd-intro-ph {
+  position: absolute;
+  left: calc(2 * var(--u));
+  top: calc(9 * var(--u));
+  width: calc(966 * var(--u));
+  height: calc(405 * var(--u));
+  overflow: hidden;
+}
+.s-wd-intro-ph img {
+  height: 100%;
+  object-fit: cover;
+}
+.s-wd-brand {
+  position: absolute;
+  left: 0;
+  top: calc(477 * var(--u));
+  font-size: calc(96 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #c2a67f;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.s-wd-box {
+  position: absolute;
+  left: calc(766 * var(--u));
+  top: calc(262 * var(--u));
+  width: calc(533 * var(--u));
+  height: calc(261 * var(--u));
+  padding-top: calc(48 * var(--u));
+  background: linear-gradient(180deg, #7f5942, #584a41);
+  color: #fff;
+  text-align: center;
+}
+.s-wd-box-eb {
+  font-size: calc(24.5 * var(--u));
+  line-height: calc(30 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffd396;
+}
+.s-wd-box-t {
+  margin-top: calc(7 * var(--u));
+  font-size: calc(39 * var(--u));
+  line-height: calc(46 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.s-wd-box-x {
+  margin-top: calc(32 * var(--u));
+  font-size: calc(20 * var(--u));
+  line-height: calc(30 * var(--u));
+  letter-spacing: -0.035em;
+}
+
+/* ---------------------------------------------------------------- 번호 블록 */
+.s-wd-f {
+  position: relative;
+  height: calc(var(--h) * var(--u));
+  isolation: isolate;
+  --tx-x: 73;
+  --std-x: 745;
+}
+.s-wd-f.is-r {
+  --tx-x: 797;
+  --std-x: 5;
+}
+.s-wd-f.has-band::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: calc(var(--band-a) * var(--u));
+  height: calc((var(--band-b) - var(--band-a)) * var(--u));
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: #f9f9f9;
+}
+.s-wd-tx {
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--tx-x) * var(--u));
+  top: calc((var(--tx-y) - 7) * var(--u));
+  width: calc(560 * var(--u));
+}
+.s-wd-num {
+  position: absolute;
+  z-index: -1;
+  left: calc(-81 * var(--u));
+  top: calc(-110 * var(--u));
+  font-size: calc(165 * var(--u));
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #efeae4;
+  pointer-events: none;
+}
+.s-wd-t {
+  font-size: calc(43 * var(--u));
+  line-height: calc(52 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: #1c1c1c;
+  white-space: nowrap;
+}
+.s-wd-x {
+  margin-top: calc(14 * var(--u));
+  font-size: calc(21.5 * var(--u));
+  line-height: calc(33 * var(--u));
+  letter-spacing: -0.04em;
+  color: #222;
+  white-space: nowrap;
+}
+/* 둥근(스타디움) 사진 + 아래로 살짝 밀린 금색 초승달 */
+.s-wd-std {
+  position: absolute;
+  left: calc(var(--std-x) * var(--u));
+  top: calc(var(--ph-y) * var(--u));
+  width: calc(550 * var(--u));
+  height: calc(270 * var(--u));
+}
+.s-wd-std::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  left: calc(-5 * var(--u));
+  right: calc(-5 * var(--u));
+  top: calc(10 * var(--u));
+  bottom: calc(-10 * var(--u));
+  border-radius: calc(140 * var(--u));
+  background: var(--beige);
+}
+/* 전역 picture{display:contents} 라 img 에 직접 */
+.s-wd-std img {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  border-radius: calc(135 * var(--u));
+  object-fit: cover;
+}
+.s-wd-pair {
+  position: absolute;
+  left: 0;
+  top: calc(var(--pair-y) * var(--u));
+  display: grid;
+  grid-template-columns: calc(628 * var(--u)) calc(628 * var(--u));
+  column-gap: calc(44 * var(--u));
+}
+.s-wd-pair li {
+  width: calc(628 * var(--u));
+  height: calc(328 * var(--u));
+  padding: calc(2 * var(--u));
+}
+.s-wd-pair img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------------------------------------------------------------- 배너 */
+.s-wd-cta {
+  position: relative;
+  height: calc(645 * var(--u));
+  background: #3f342e;
+  color: #fff;
+}
+.s-wd-cta-ph {
+  position: absolute;
+  left: 0;
+  top: calc(99 * var(--u));
+  width: calc(1300 * var(--u));
+  height: calc(455 * var(--u));
+  border-radius: calc(20 * var(--u));
+  overflow: hidden;
+}
+.s-wd-cta-ph img {
+  height: 100%;
+  object-fit: cover;
+}
+.s-wd-cta-tx {
+  position: absolute;
+  left: calc(87 * var(--u));
+  top: calc(197 * var(--u));
+}
+.s-wd-cta-eb {
+  font-size: calc(21 * var(--u));
+  line-height: calc(26 * var(--u));
+  letter-spacing: -0.03em;
+  color: #d9d8d7;
+}
+.s-wd-cta-t {
+  margin-top: calc(14.5 * var(--u));
+  font-size: calc(38 * var(--u));
+  line-height: calc(55 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+.s-wd-btn {
+  display: inline-block;
+  margin-top: calc(45.5 * var(--u));
+  margin-left: calc(5 * var(--u));
+  width: calc(127 * var(--u));
+  height: calc(43 * var(--u));
+  border-radius: 999px;
+  background: var(--beige);
+  color: #fff;
+  font-size: calc(17 * var(--u));
+  line-height: calc(43 * var(--u));
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: -0.03em;
+}
+.s-wd-btn:hover {
+  background: #ab8b62;
+}
+
+/* =========================================================================
+   모바일·태블릿(1023px 이하): 원본 모바일 시안(750px) 좌표
+   ========================================================================= */
+@media (max-width: 1023px) {
+  .s-wd {
+    --m: calc(min(100vw, 750px) / 750);
+    --u: var(--m);
+  }
+  .s-wd-in {
+    width: 100%;
+    max-width: 750px;
+  }
+  .s-wd-intro {
+    height: calc(720 * var(--m));
+  }
+  .s-wd-intro::before {
+    top: calc(231 * var(--m));
+    bottom: calc(45 * var(--m));
+  }
+  .s-wd-intro-ph {
+    left: 0;
+    top: calc(4 * var(--m));
+    width: calc(683 * var(--m));
+    height: calc(385 * var(--m));
+  }
+  .s-wd-brand {
+    left: calc(30 * var(--m));
+    top: calc(514 * var(--m));
+    font-size: calc(100 * var(--m));
+  }
+  .s-wd-box {
+    left: calc(209 * var(--m));
+    top: calc(264 * var(--m));
+    width: calc(541 * var(--m));
+    height: calc(249 * var(--m));
+    padding-top: calc(44 * var(--m));
+  }
+  .s-wd-box-eb {
+    font-size: calc(28 * var(--m));
+    line-height: calc(36 * var(--m));
+  }
+  .s-wd-box-t {
+    margin-top: calc(6 * var(--m));
+    font-size: calc(40 * var(--m));
+    line-height: calc(48 * var(--m));
+  }
+  .s-wd-box-x {
+    margin-top: calc(16 * var(--m));
+    font-size: calc(24 * var(--m));
+    line-height: calc(32 * var(--m));
+  }
+  /* 번호 블록: 글 → 둥근 사진 → 사진 두 장 순서로 흐름. 짝수 블록은 오른쪽 정렬 */
+  .s-wd-f,
+  .s-wd-f.is-r {
+    height: auto;
+    padding: calc(var(--num-ym) * var(--m)) 0 calc(var(--pad-m) * var(--m));
+  }
+  .s-wd-f.has-band::before {
+    display: none;
+  }
+  .s-wd-tx {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    padding: calc(88 * var(--m)) calc(63 * var(--m)) 0 calc(56 * var(--m));
+  }
+  .s-wd-f.is-r .s-wd-tx {
+    text-align: right;
+  }
+  .s-wd-num {
+    left: calc(31 * var(--m));
+    top: calc(-44 * var(--m));
+    font-size: calc(190 * var(--m));
+  }
+  .s-wd-f.is-r .s-wd-num {
+    left: auto;
+    right: calc(34 * var(--m));
+  }
+  .s-wd-t {
+    font-size: calc(46 * var(--m));
+    line-height: calc(56 * var(--m));
+    white-space: normal;
+  }
+  /* 05 블록: 원본 모바일은 원고의 줄바꿈 없이 자연스럽게 흐름 */
+  .s-wd-f.is-flow .s-wd-x .s-wd-ln {
+    display: inline;
+  }
+  .s-wd-x {
+    margin-top: calc(22 * var(--m));
+    font-size: calc(23 * var(--m));
+    line-height: calc(32 * var(--m));
+    white-space: normal;
+  }
+  .s-wd-std,
+  .s-wd-f.is-r .s-wd-std {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: calc(670 * var(--m));
+    height: calc(334 * var(--m));
+    margin: calc(68 * var(--m)) auto 0;
+  }
+  .s-wd-std::before {
+    left: calc(-10 * var(--m));
+    right: calc(-10 * var(--m));
+    top: calc(11 * var(--m));
+    bottom: calc(-11 * var(--m));
+    border-radius: calc(172 * var(--m));
+  }
+  .s-wd-std img {
+    border-radius: calc(167 * var(--m));
+  }
+  .s-wd-pair {
+    position: relative;
+    top: auto;
+    grid-template-columns: 1fr;
+    row-gap: calc(24 * var(--m));
+    margin: calc(78 * var(--m)) calc(31 * var(--m)) 0;
+  }
+  .s-wd-pair li {
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+  .s-wd-pair img {
+    height: auto;
+    aspect-ratio: 689 / 360;
+  }
+  /* 배너: 사진이 화면 가득 */
+  .s-wd-cta {
+    height: calc(688 * var(--m));
+    background: none;
+  }
+  .s-wd-cta-ph {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+  .s-wd-cta-tx {
+    left: calc(31 * var(--m));
+    top: calc(111 * var(--m));
+  }
+  .s-wd-cta-eb {
+    font-size: calc(26 * var(--m));
+    line-height: calc(34 * var(--m));
+    color: #e3e1e1;
+  }
+  .s-wd-cta-t {
+    margin-top: calc(16 * var(--m));
+    font-size: calc(52 * var(--m));
+    line-height: calc(61 * var(--m));
+  }
+  .s-wd-btn {
+    margin-top: calc(69 * var(--m));
+    margin-left: calc(2 * var(--m));
+    width: calc(212 * var(--m));
+    height: calc(57 * var(--m));
+    font-size: calc(26 * var(--m));
+    line-height: calc(57 * var(--m));
+  }
+}

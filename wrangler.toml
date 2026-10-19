@@ -1,0 +1,9 @@
+# 해운누리 리뉴얼 — Cloudflare Pages (정적 out/ + functions/ + D1)
+name = "haeun-nuri-renewal"
+pages_build_output_dir = "./out"
+compatibility_date = "2026-10-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "haeun-cms"
+database_id = "2915908f-ac9f-4f81-90c8-01127dbb77fd"

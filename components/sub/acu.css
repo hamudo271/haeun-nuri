@@ -1,0 +1,1234 @@
+/* =========================================================================
+   약침치료(treatment/page01) — 원본 통이미지(sub03-01-01~10, 1920 시안)를 HTML/CSS 로 옮김
+   .cx 체계(clinic.css) 위에 얹는다: --u = 시안 1px(가운데 1300px 기준, 원본 x 309~1609), 1023px 이하는 --m(모바일 750 시안)
+   원본에서 잰 색: 금색 #bc9c70 · 제목 #1c1c1c · 띠 제목/소제목 #ffd394 · 태그 #fdd292 · 본문 #4b4b4b · 선 #d4d4d4
+   노하우 띠 #bd9c71 · 배지/육각형 #bd9c6f · 링 #ead8bc · 목록 줄 #f7f7f7 · 체크 칸 #cbb190 · 안전 상자 금띠 #e9d8be
+   모든 선택자는 .s-acu- 접두어 — 다른 페이지에 영향 없음
+   ========================================================================= */
+.s-acu {
+  --acu-gold: #bc9c70;
+  --acu-ink: #1c1c1c;
+  --acu-text: #4b4b4b;
+  --acu-rule: #d4d4d4;
+  --acu-hex: #bd9c6f;
+  --acu-ring: #ead8bc;
+  position: relative;
+  letter-spacing: -0.03em;
+}
+.s-acu em {
+  color: var(--acu-gold);
+  font-weight: inherit;
+}
+.s-acu img.s-acu-mo {
+  display: none;
+}
+.s-acu-br--mo,
+.s-acu-intro-copy--mo {
+  display: none;
+}
+.s-acu .cx-in {
+  width: calc(1300 * var(--u));
+}
+.s-acu picture {
+  display: block;
+}
+
+/* 공통 머리글: "| 해운누리한의원 ○○" + 제목 + 가는 선 */
+.s-acu-hd {
+  text-align: left;
+}
+.s-acu-eb {
+  position: relative;
+  padding-left: calc(16 * var(--u)) !important;
+  font-size: calc(18 * var(--u));
+  line-height: 1;
+  font-weight: 500;
+  color: #bd9d71;
+}
+.s-acu-eb::before {
+  content: '';
+  position: absolute;
+  left: calc(4 * var(--u));
+  top: calc(1 * var(--u));
+  width: calc(3 * var(--u));
+  height: calc(16 * var(--u));
+  background: #bd9d71;
+}
+.s-acu-t {
+  margin-top: calc(12 * var(--u)) !important;
+  font-size: calc(30 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: var(--acu-ink);
+}
+.s-acu-rule {
+  display: block;
+  height: 1px;
+  margin-top: calc(22 * var(--u));
+  background: var(--acu-rule);
+}
+
+/* ---------------------------------------------------------------- 1. 소개 (sub03-01-01, 612) */
+.s-acu-intro {
+  position: relative;
+  height: calc(612 * var(--u));
+}
+/* 왼쪽 베이지 판: 원본 x 0~638 */
+.s-acu-intro::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% + 321 * var(--u));
+  background: #f8f0e5;
+}
+.s-acu-intro .cx-in {
+  height: 100%;
+}
+.s-acu-intro-ph {
+  position: absolute;
+  left: 0;
+  top: calc(114 * var(--u));
+  width: calc(586 * var(--u));
+  border: 1px solid #e9e4dc;
+  padding: 1px;
+  background: #fff;
+}
+.s-acu-intro-tx {
+  position: absolute;
+  left: calc(660 * var(--u));
+  top: calc(208 * var(--u));
+  width: calc(420 * var(--u));
+}
+.s-acu-intro-eb {
+  font-size: calc(24 * var(--u));
+  line-height: 1;
+  font-weight: 600;
+  color: var(--acu-gold);
+}
+.s-acu-intro-t {
+  margin-top: calc(16 * var(--u)) !important;
+  font-size: calc(45 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--acu-ink);
+}
+.s-acu-intro-body {
+  margin-top: calc(38 * var(--u)) !important;
+  font-size: calc(22 * var(--u));
+  line-height: calc(33 * var(--u));
+  color: var(--acu-ink);
+}
+.s-acu-intro-mark {
+  position: absolute;
+  left: calc(1142 * var(--u));
+  top: calc(66 * var(--u));
+  width: calc(261 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 2·5·8. 갈색 띠(442) + 흰 패널 */
+.s-acu-bsec {
+  position: relative;
+}
+.s-acu-bsec--2 {
+  padding-top: calc(25 * var(--u));
+}
+.s-acu-bsec--3 {
+  padding-top: calc(17 * var(--u));
+}
+/* 띠 사진: 원본 x 0~1707(오른쪽 위 둥근 모서리는 사진에 포함), 높이 442. 화면이 1920 보다 좁으면 오른쪽 끝에 맞춘다 */
+.s-acu-band {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 50vw);
+  right: max(calc(50% - 748 * var(--u)), 0px);
+  height: calc(442 * var(--u));
+  background: #5a4d3d var(--band) right top / auto 100% no-repeat;
+}
+.s-acu-bsec--2 .s-acu-band {
+  top: calc(25 * var(--u));
+}
+.s-acu-bsec--3 .s-acu-band {
+  top: calc(17 * var(--u));
+}
+.s-acu-band-tx {
+  position: relative;
+  height: calc(316 * var(--u));
+  color: #fff;
+}
+.s-acu-band-l {
+  position: absolute;
+  left: calc(-1 * var(--u));
+  top: calc(92 * var(--u));
+}
+.s-acu-band-t {
+  font-family: var(--font-acu-serif), 'Noto Serif KR', serif;
+  font-size: calc(44 * var(--u));
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: #ffd394;
+}
+.s-acu-tags {
+  display: flex;
+  gap: calc(8 * var(--u));
+  margin-top: calc(32 * var(--u)) !important;
+}
+.s-acu-tags li {
+  padding: 0 calc(12 * var(--u));
+  height: calc(35 * var(--u));
+  border: 1px solid #e3c08e;
+  border-radius: calc(18 * var(--u));
+  font-size: calc(16 * var(--u));
+  line-height: calc(33 * var(--u));
+  color: #fdd292;
+  white-space: nowrap;
+}
+.s-acu-band-r {
+  position: absolute;
+  left: calc(519 * var(--u));
+  top: calc(102 * var(--u));
+  width: calc(790 * var(--u));
+}
+.s-acu-band-lead {
+  font-size: calc(30 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+.s-acu-band-body {
+  margin-top: calc(32 * var(--u)) !important;
+  font-size: calc(20 * var(--u));
+  line-height: calc(30 * var(--u));
+  font-weight: 400;
+}
+/* 흰 패널: 원본 (308,316)부터 화면 오른쪽 끝까지 */
+.s-acu-panel {
+  position: relative;
+  margin-left: calc(-1 * var(--u));
+  margin-right: calc(50% - 50vw);
+  padding: calc(56 * var(--u)) 0 calc(44 * var(--u)) calc(76 * var(--u));
+  background: #fff;
+}
+.s-acu-panel .s-acu-hd {
+  width: calc(1225 * var(--u));
+}
+/* 카드 3×2: 396×208, 가로 간격 19, 세로 간격 99 */
+.s-acu-cards {
+  display: grid;
+  grid-template-columns: repeat(3, calc(396 * var(--u)));
+  column-gap: calc(19 * var(--u));
+  row-gap: calc(59 * var(--u));
+  margin-top: calc(28 * var(--u)) !important;
+  margin-left: calc(-2 * var(--u)) !important;
+}
+.s-acu-card-ph {
+  border: 1px solid #ededed;
+  padding: 1px;
+  background: #fff;
+}
+.s-acu-card-cap {
+  margin-top: calc(12 * var(--u)) !important;
+  font-size: calc(20 * var(--u));
+  line-height: calc(28 * var(--u));
+  font-weight: 500;
+  color: #141414;
+}
+.s-acu-card-t {
+  margin-top: calc(18 * var(--u)) !important;
+  font-size: calc(24 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: #141414;
+}
+.s-acu-card-x {
+  margin-top: calc(9 * var(--u)) !important;
+  font-size: calc(17 * var(--u));
+  line-height: calc(24 * var(--u));
+  color: var(--acu-text);
+}
+.s-acu-cards--text {
+  row-gap: calc(48 * var(--u));
+  margin-top: calc(24 * var(--u)) !important;
+}
+.s-acu-bsec--3 .s-acu-panel {
+  padding-bottom: calc(58 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 3. 노하우 (sub03-01-03, 649) */
+.s-acu-know {
+  position: relative;
+  height: calc(649 * var(--u));
+}
+.s-acu-know::before {
+  content: '';
+  position: absolute;
+  top: calc(46 * var(--u));
+  height: calc(568 * var(--u));
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: #bd9c71;
+}
+.s-acu-know .cx-in {
+  height: 100%;
+}
+.s-acu-know-ph {
+  position: absolute;
+  left: calc(29 * var(--u));
+  top: calc(105 * var(--u));
+  width: calc(463 * var(--u));
+  border-radius: 50%;
+  overflow: hidden;
+}
+/* 사진 위를 지나는 가는 링(중심 542.5,321.7 반지름 232.6) + 왼쪽 위 흰 점 */
+.s-acu-know-ring {
+  position: absolute;
+  left: calc(1 * var(--u));
+  top: calc(89 * var(--u));
+  width: calc(465 * var(--u));
+  height: calc(465 * var(--u));
+  border: 1.5px solid #cdb08a;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.s-acu-know-ring i {
+  position: absolute;
+  left: calc(158 * var(--u));
+  top: calc(-2 * var(--u));
+  width: calc(14 * var(--u));
+  height: calc(14 * var(--u));
+  border-radius: 50%;
+  background: #fff;
+}
+.s-acu-know-tx {
+  position: absolute;
+  left: calc(690 * var(--u));
+  top: calc(202 * var(--u));
+  width: calc(560 * var(--u));
+  color: #fff;
+}
+.s-acu-know-eb {
+  font-size: calc(23 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: #ffd394;
+}
+.s-acu-know-t {
+  margin-top: calc(10 * var(--u)) !important;
+  font-size: calc(40 * var(--u));
+  line-height: calc(47 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+.s-acu-know-body {
+  margin-top: calc(24 * var(--u)) !important;
+  font-size: calc(20 * var(--u));
+  line-height: calc(30 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 4. 프로세스 (sub03-01-04, 1387) */
+.s-acu-proc {
+  position: relative;
+  height: calc(1387 * var(--u));
+}
+.s-acu-proc .s-acu-hd {
+  position: absolute;
+  left: calc(75 * var(--u));
+  top: calc(65 * var(--u));
+  width: calc(1225 * var(--u));
+}
+.s-acu-step {
+  position: absolute;
+  left: calc(75 * var(--u));
+  width: calc(1225 * var(--u));
+  height: calc(277 * var(--u));
+}
+.s-acu-step:nth-child(1) { top: calc(176 * var(--u)); }
+.s-acu-step:nth-child(2) { top: calc(454 * var(--u)); }
+.s-acu-step:nth-child(3) { top: calc(731 * var(--u)); }
+.s-acu-step:nth-child(4) { top: calc(1009 * var(--u)); }
+.s-acu-step-ph {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(597 * var(--u));
+  border: 1px solid #ededed;
+  padding: 1px;
+  background: #fff;
+}
+.s-acu-step.is-r .s-acu-step-ph {
+  left: auto;
+  right: calc(-2 * var(--u));
+}
+/* 사진 가장자리 가운데의 흰 동그라미(r23) + 금색 점(r8) + 점선(점 5개) */
+.s-acu-step-dot {
+  position: absolute;
+  top: 50%;
+  width: calc(46 * var(--u));
+  height: calc(46 * var(--u));
+  margin-top: calc(-23 * var(--u));
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 calc(6 * var(--u)) rgba(0, 0, 0, 0.08);
+}
+.s-acu-step.is-l .s-acu-step-dot {
+  right: calc(-24 * var(--u));
+}
+.s-acu-step.is-r .s-acu-step-dot {
+  left: calc(-24 * var(--u));
+}
+.s-acu-step-dot::before {
+  content: '';
+  position: absolute;
+  inset: calc(15 * var(--u));
+  border-radius: 50%;
+  background: #bb9a6d;
+}
+.s-acu-step-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(42 * var(--u));
+  height: calc(5 * var(--u));
+  margin-top: calc(-2.5 * var(--u));
+  background: radial-gradient(circle, #bb9b6c calc(2 * var(--u)), transparent calc(2.6 * var(--u))) 0 0 / calc(9 * var(--u)) 100% repeat-x;
+}
+.s-acu-step.is-l .s-acu-step-dot::after {
+  left: calc(100% + 8 * var(--u));
+}
+.s-acu-step.is-r .s-acu-step-dot::after {
+  right: calc(100% + 8 * var(--u));
+}
+.s-acu-step-tx {
+  position: absolute;
+  top: calc(101 * var(--u));
+}
+.s-acu-step.is-l .s-acu-step-tx {
+  left: calc(693 * var(--u));
+}
+.s-acu-step.is-r .s-acu-step-tx {
+  left: calc(94 * var(--u));
+}
+.s-acu-step-tx h4 {
+  display: flex;
+  align-items: center;
+  gap: calc(11 * var(--u));
+  font-size: calc(26 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: #141414;
+}
+.s-acu-step-tx h4 b {
+  display: grid;
+  place-items: center;
+  width: calc(39 * var(--u));
+  height: calc(39 * var(--u));
+  background: #bd9d6e;
+  color: #fff;
+  font-size: calc(15 * var(--u));
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.s-acu-step-tx p {
+  margin-top: calc(15 * var(--u)) !important;
+  font-size: calc(17 * var(--u));
+  line-height: calc(25 * var(--u));
+  color: var(--acu-text);
+}
+
+/* ---------------------------------------------------------------- 5. 봉침 카드 2장 (597×277) */
+.s-acu-bee {
+  display: grid;
+  grid-template-columns: repeat(2, calc(597 * var(--u)));
+  column-gap: calc(31 * var(--u));
+  margin-top: calc(26 * var(--u)) !important;
+  margin-left: calc(1 * var(--u)) !important;
+}
+.s-acu-bee-ph {
+  border: 1px solid #ededed;
+  padding: 1px;
+  background: #fff;
+}
+.s-acu-bee-t {
+  margin-top: calc(24 * var(--u)) !important;
+  font-size: calc(24 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: #141414;
+}
+.s-acu-bee-x {
+  margin-top: calc(8 * var(--u)) !important;
+  font-size: calc(17 * var(--u));
+  line-height: calc(25 * var(--u));
+  color: var(--acu-text);
+}
+.s-acu-bee-card:nth-child(2) .s-acu-bee-t,
+.s-acu-bee-card:nth-child(2) .s-acu-bee-x {
+  padding-left: calc(11 * var(--u)) !important;
+}
+.s-acu-bsec--2 .s-acu-panel {
+  padding-bottom: calc(84 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 6·10. 육각형 (sub03-01-06 908 / sub03-01-10 788) */
+.s-acu-hexsec {
+  position: relative;
+}
+.s-acu-hexsec--bee {
+  height: calc(908 * var(--u));
+}
+.s-acu-hexsec--pla {
+  height: calc(788 * var(--u));
+}
+/* 벌집 무늬·해바라기 바탕(글자·상자·육각형은 지운 사진), 원본 y 25~866 */
+.s-acu-hexbg {
+  position: absolute;
+  top: calc(25 * var(--u));
+  height: calc(841 * var(--u));
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: #f7f6f2 url(/img/sub/treatment-page01/hexbg.webp) center top / calc(1918 * var(--u)) 100% no-repeat;
+}
+.s-acu-hexsec .cx-in {
+  height: 100%;
+}
+.s-acu-hexsec .s-acu-hd {
+  position: absolute;
+  left: calc(75 * var(--u));
+  width: calc(1225 * var(--u));
+}
+.s-acu-hexsec--bee .s-acu-hd {
+  top: calc(101 * var(--u));
+}
+.s-acu-hexsec--pla .s-acu-hd {
+  top: calc(17 * var(--u));
+}
+.s-acu-hexes {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.s-acu-hexsec--bee .s-acu-hexes {
+  top: calc(384 * var(--u));
+}
+.s-acu-hexsec--pla .s-acu-hexes {
+  top: calc(301 * var(--u));
+}
+/* 링 지름 252 칸, 중심 x 526·844·1162·1480 */
+.s-acu-hex {
+  position: absolute;
+  top: 0;
+  width: calc(252 * var(--u));
+  height: calc(218 * var(--u));
+}
+.s-acu-hex:nth-child(1) { left: calc(91 * var(--u)); }
+.s-acu-hex:nth-child(2) { left: calc(409 * var(--u)); }
+.s-acu-hex:nth-child(3) { left: calc(727 * var(--u)); }
+.s-acu-hex:nth-child(4) { left: calc(1045 * var(--u)); }
+.s-acu-hex-shape {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.s-acu-hex-shape::before {
+  content: '';
+  position: absolute;
+  left: calc(18 * var(--u));
+  top: calc(15.5 * var(--u));
+  width: calc(216 * var(--u));
+  height: calc(187 * var(--u));
+  background: var(--acu-hex);
+  clip-path: polygon(0 50%, 25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%);
+}
+.s-acu-hex-ring {
+  position: absolute;
+  left: calc(-6 * var(--u));
+  top: calc(-23 * var(--u));
+  width: calc(264 * var(--u));
+  height: calc(264 * var(--u));
+}
+.s-acu-hex-ring polygon {
+  fill: none;
+  stroke: var(--acu-ring);
+  stroke-width: 1.6;
+}
+.s-acu-hex-ring circle {
+  fill: var(--acu-ring);
+}
+.s-acu-hex-shape h4 {
+  position: relative;
+  text-align: center;
+  font-size: calc(24 * var(--u));
+  line-height: calc(30 * var(--u));
+  font-weight: 700;
+  color: #fff;
+}
+/* 말풍선 상자: 육각형 위(짝수 번째) 또는 아래(홀수 번째), 링에서 73 떨어짐 */
+.s-acu-hex-box {
+  position: absolute;
+  left: 50%;
+  width: calc(var(--bw) * var(--u));
+  transform: translateX(-50%);
+  padding: calc(20 * var(--u)) calc(10 * var(--u)) calc(19 * var(--u)) !important;
+  border-radius: calc(20 * var(--u));
+  background: #fff;
+  box-shadow: 0 calc(6 * var(--u)) calc(22 * var(--u)) rgba(120, 100, 70, 0.08);
+  text-align: center;
+  font-size: calc(20 * var(--u));
+  line-height: calc(30 * var(--u));
+  color: #151515;
+  white-space: nowrap;
+}
+.s-acu-hexsec--pla .s-acu-hex-box {
+  padding: calc(19.5 * var(--u)) calc(10 * var(--u)) !important;
+}
+.s-acu-hex:nth-child(even) .s-acu-hex-box {
+  bottom: calc(100% + 73 * var(--u));
+}
+.s-acu-hex:nth-child(odd) .s-acu-hex-box {
+  top: calc(100% + 73 * var(--u));
+}
+/* 점선(점 3px 간격 6px) + 상자 쪽 끝의 점(r5) */
+.s-acu-hex-dots {
+  position: absolute;
+  left: 50%;
+  width: calc(10 * var(--u));
+  height: calc(73 * var(--u));
+  margin-left: calc(-5 * var(--u));
+  background: radial-gradient(circle, #e4d0b1 calc(1.5 * var(--u)), transparent calc(2.1 * var(--u))) center top / 100% calc(6 * var(--u)) repeat-y;
+}
+.s-acu-hex-dots::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: calc(10 * var(--u));
+  height: calc(10 * var(--u));
+  border-radius: 50%;
+  background: #e4d0b1;
+}
+.s-acu-hex:nth-child(even) .s-acu-hex-dots {
+  bottom: 100%;
+}
+.s-acu-hex:nth-child(even) .s-acu-hex-dots::after {
+  top: calc(-5 * var(--u));
+}
+.s-acu-hex:nth-child(odd) .s-acu-hex-dots {
+  top: 100%;
+}
+.s-acu-hex:nth-child(odd) .s-acu-hex-dots::after {
+  bottom: calc(-5 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 7. 적용질환 목록 (sub03-01-07, 666) */
+.s-acu-list {
+  position: relative;
+  height: calc(666 * var(--u));
+}
+.s-acu-list .s-acu-hd {
+  position: absolute;
+  left: calc(75 * var(--u));
+  top: calc(91 * var(--u));
+  width: calc(1225 * var(--u));
+}
+.s-acu-rows {
+  position: absolute;
+  left: calc(75 * var(--u));
+  top: calc(207 * var(--u));
+  width: calc(1220 * var(--u));
+}
+.s-acu-rows li {
+  display: flex;
+  align-items: center;
+  height: calc(64 * var(--u));
+  margin-bottom: calc(8.75 * var(--u));
+  background: #f7f7f7;
+  font-size: calc(18 * var(--u));
+  line-height: 1.3;
+  color: #4a4a4a;
+}
+.s-acu-row-ck {
+  flex: none;
+  display: block;
+  width: calc(64 * var(--u));
+  height: 100%;
+  margin-right: calc(31 * var(--u));
+  background: #cbb190;
+}
+.s-acu-row-ck svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.s-acu-row-ck path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------------------------------------------------------------- 9. 자하거 안전성 (sub03-01-09, 836) */
+.s-acu-safe {
+  position: relative;
+  height: calc(836 * var(--u));
+}
+.s-acu-safe-bg {
+  position: absolute;
+  top: calc(39 * var(--u));
+  height: calc(747 * var(--u));
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: #f7f7f7 url(/img/sub/treatment-page01/safety-bg.webp) center top / calc(1918 * var(--u)) 100% no-repeat;
+}
+.s-acu-safe .cx-in {
+  height: 100%;
+}
+.s-acu-safe .s-acu-hd {
+  position: absolute;
+  left: calc(75 * var(--u));
+  top: calc(130 * var(--u));
+  width: calc(1225 * var(--u));
+}
+.s-acu-safe-rows {
+  position: absolute;
+  left: calc(202 * var(--u));
+  top: calc(258 * var(--u));
+  width: calc(923 * var(--u));
+}
+.s-acu-safe-rows li {
+  display: flex;
+  align-items: center;
+  height: calc(70 * var(--u));
+  margin-bottom: calc(20.25 * var(--u));
+  padding-left: calc(24 * var(--u));
+  border-left: calc(8 * var(--u)) solid #e9d8be;
+  background: #fff;
+  box-shadow: 0 calc(2 * var(--u)) calc(8 * var(--u)) rgba(0, 0, 0, 0.05);
+  font-size: calc(22 * var(--u));
+  line-height: 1.3;
+  color: #313131;
+}
+.s-acu-safe-ic {
+  flex: none;
+  width: calc(44 * var(--u));
+  margin-right: calc(18 * var(--u));
+}
+.s-acu-safe-ic img {
+  width: 100%;
+}
+
+/* =========================================================================
+   모바일·태블릿(1023px 이하): 원본 모바일 시안(m_sub03-01-01~10, 750px) 비율 — 좌우 여백 30
+   ========================================================================= */
+@media (max-width: 1023px) {
+  .s-acu img.s-acu-pc {
+    display: none;
+  }
+  .s-acu img.s-acu-mo {
+    display: block;
+  }
+  .s-acu-br--pc {
+    display: none;
+  }
+  .s-acu-br--mo,
+  .s-acu-intro-copy--mo {
+    display: inline;
+  }
+  .s-acu-intro-copy--pc {
+    display: none;
+  }
+  .s-acu .cx-in {
+    width: auto;
+    max-width: 720px;
+    padding: 0 calc(30 * var(--m));
+  }
+  .s-acu-eb {
+    padding-left: calc(18 * var(--m)) !important;
+    font-size: calc(28 * var(--m));
+  }
+  .s-acu-eb::before {
+    left: 0;
+    top: calc(2 * var(--m));
+    width: calc(4 * var(--m));
+    height: calc(24 * var(--m));
+  }
+  .s-acu-t {
+    margin-top: calc(17 * var(--m)) !important;
+    font-size: calc(34 * var(--m));
+    line-height: calc(45 * var(--m));
+  }
+  .s-acu-rule {
+    margin-top: calc(26 * var(--m));
+  }
+
+  /* 1. 소개 (880): 베이지 판 y 59~366 가로 전체, 사진 (31,176) 689×392, 글 왼쪽, 마크 오른쪽 아래 */
+  .s-acu-intro {
+    height: auto;
+    padding: calc(176 * var(--m)) 0 calc(60 * var(--m));
+  }
+  .s-acu-intro::before {
+    top: calc(59 * var(--m));
+    bottom: auto;
+    height: calc(307 * var(--m));
+    left: 0;
+    right: 0;
+  }
+  .s-acu-intro-ph {
+    position: relative;
+    top: auto;
+    left: calc(1 * var(--m));
+    width: calc(689 * var(--m));
+  }
+  .s-acu-intro-tx {
+    position: relative;
+    left: 0;
+    top: auto;
+    width: auto;
+    margin-top: calc(62 * var(--m));
+    padding-right: calc(200 * var(--m));
+  }
+  .s-acu-intro-eb {
+    font-size: calc(28 * var(--m));
+  }
+  .s-acu-intro-t {
+    margin-top: calc(15 * var(--m)) !important;
+    font-size: calc(49 * var(--m));
+  }
+  .s-acu-intro-body {
+    margin-top: calc(27 * var(--m)) !important;
+    margin-right: calc(-200 * var(--m)) !important;
+    font-size: calc(25 * var(--m));
+    line-height: calc(36 * var(--m));
+  }
+  .s-acu-intro-mark {
+    left: auto;
+    right: 0;
+    top: calc(414 * var(--m));
+    width: calc(190 * var(--m));
+  }
+
+  /* 2·5·8. 띠(0~719, 둥근 모서리 포함, 높이 473~511) — 제목·태그·설명을 세로로 */
+  .s-acu-bsec--2,
+  .s-acu-bsec--3 {
+    padding-top: 0;
+  }
+  .s-acu-band {
+    display: none;
+  }
+  .s-acu-band-tx {
+    position: relative;
+    height: auto;
+    width: calc(720 * var(--m));
+    margin-left: calc(-30 * var(--m));
+    padding: calc(61 * var(--m)) calc(30 * var(--m)) calc(55 * var(--m));
+    background: #5a4d3d var(--mband) left top / 100% 100% no-repeat;
+    border-top-right-radius: calc(90 * var(--m));
+  }
+  .s-acu-bsec--1 .s-acu-band-tx { margin-top: calc(30 * var(--m)); }
+  .s-acu-bsec--2 .s-acu-band-tx { margin-top: calc(25 * var(--m)); }
+  .s-acu-bsec--3 .s-acu-band-tx { margin-top: calc(46 * var(--m)); }
+  .s-acu-band-l,
+  .s-acu-band-r {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+  .s-acu-band-t {
+    font-size: calc(47 * var(--m));
+  }
+  .s-acu-tags {
+    margin-top: calc(30 * var(--m)) !important;
+    gap: calc(12 * var(--m));
+  }
+  .s-acu-tags li {
+    height: calc(50 * var(--m));
+    padding: 0 calc(18 * var(--m));
+    border-radius: calc(25 * var(--m));
+    font-size: calc(22 * var(--m));
+    line-height: calc(48 * var(--m));
+  }
+  .s-acu-band-r {
+    margin-top: calc(39 * var(--m));
+  }
+  .s-acu-band-lead {
+    font-size: calc(32 * var(--m));
+    line-height: calc(40 * var(--m));
+  }
+  .s-acu-band-body {
+    margin-top: calc(24 * var(--m)) !important;
+    font-size: calc(23 * var(--m));
+    line-height: calc(34 * var(--m));
+  }
+  .s-acu-panel {
+    margin: 0;
+    padding: calc(76 * var(--m)) 0 calc(42 * var(--m));
+  }
+  .s-acu-panel .s-acu-hd {
+    width: auto;
+  }
+  .s-acu-cards {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: calc(17 * var(--m));
+    row-gap: calc(34 * var(--m));
+    margin: calc(30 * var(--m)) 0 0 !important;
+  }
+  .s-acu-cards--text {
+    row-gap: calc(38 * var(--m));
+  }
+  .s-acu-card-cap {
+    margin-top: calc(9 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: calc(31 * var(--m));
+  }
+  .s-acu-card-t {
+    margin-top: calc(18 * var(--m)) !important;
+    font-size: calc(28 * var(--m));
+  }
+  .s-acu-card-x {
+    margin-top: calc(8 * var(--m)) !important;
+    font-size: calc(22 * var(--m));
+    line-height: calc(30 * var(--m));
+  }
+  .s-acu-bsec--1 .s-acu-panel {
+    padding-bottom: calc(49 * var(--m));
+  }
+  .s-acu-bsec--3 .s-acu-panel {
+    padding-bottom: calc(66 * var(--m));
+  }
+
+  /* 3. 노하우 (928): 띠 y 20~920, 원형 사진 가운데 위, 글 가운데 정렬 */
+  .s-acu-know {
+    height: auto;
+    padding: calc(87 * var(--m)) 0 calc(75 * var(--m));
+    text-align: center;
+  }
+  .s-acu-know::before {
+    top: calc(20 * var(--m));
+    height: auto;
+    bottom: calc(8 * var(--m));
+  }
+  .s-acu-know-ph {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: calc(410 * var(--m));
+    margin: 0 auto !important;
+  }
+  .s-acu-know-ring {
+    left: calc(157 * var(--m));
+    top: calc(85 * var(--m));
+    width: calc(400 * var(--m));
+    height: calc(400 * var(--m));
+  }
+  .s-acu-know-ring i {
+    left: calc(140 * var(--m));
+    top: calc(2 * var(--m));
+    width: calc(16 * var(--m));
+    height: calc(16 * var(--m));
+  }
+  .s-acu-know-tx {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin-top: calc(46 * var(--m));
+  }
+  .s-acu-know-eb {
+    font-size: calc(26 * var(--m));
+  }
+  .s-acu-know-t {
+    margin-top: calc(14 * var(--m)) !important;
+    font-size: calc(40 * var(--m));
+    line-height: calc(47 * var(--m));
+  }
+  .s-acu-know-body {
+    margin-top: calc(27 * var(--m)) !important;
+    font-size: calc(23 * var(--m));
+    line-height: calc(34 * var(--m));
+  }
+
+  /* 4. 프로세스 (1492): 사진 330×276 좌/우 교대, 글은 반대쪽 */
+  .s-acu-proc {
+    height: auto;
+    padding: calc(72 * var(--m)) 0 calc(26 * var(--m));
+  }
+  .s-acu-proc .s-acu-hd {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+  .s-acu-steps {
+    margin-top: calc(44 * var(--m)) !important;
+  }
+  .s-acu-step {
+    position: relative;
+    left: auto;
+    top: auto !important;
+    width: auto;
+    height: calc(276 * var(--m));
+    margin-bottom: calc(32 * var(--m));
+  }
+  .s-acu-step-ph {
+    width: calc(330 * var(--m));
+    left: 0;
+  }
+  .s-acu-step.is-r .s-acu-step-ph {
+    right: 0;
+  }
+  .s-acu-step-dot {
+    width: calc(40 * var(--m));
+    height: calc(40 * var(--m));
+    margin-top: calc(-20 * var(--m));
+  }
+  .s-acu-step.is-l .s-acu-step-dot { right: calc(-21 * var(--m)); }
+  .s-acu-step.is-r .s-acu-step-dot { left: calc(-21 * var(--m)); }
+  .s-acu-step-dot::before {
+    inset: calc(13 * var(--m));
+  }
+  .s-acu-step-dot::after {
+    width: calc(44 * var(--m));
+    height: calc(6 * var(--m));
+    margin-top: calc(-3 * var(--m));
+    background-size: calc(10 * var(--m)) 100%;
+  }
+  .s-acu-step-tx {
+    top: calc(46 * var(--m));
+    width: calc(300 * var(--m));
+  }
+  .s-acu-step.is-l .s-acu-step-tx {
+    left: calc(380 * var(--m));
+  }
+  .s-acu-step.is-r .s-acu-step-tx {
+    left: calc(28 * var(--m));
+    text-align: right;
+  }
+  .s-acu-step-tx h4 {
+    display: block;
+    font-size: calc(26 * var(--m));
+  }
+  .s-acu-step.is-r .s-acu-step-tx h4 b {
+    margin-left: auto;
+  }
+  .s-acu-step-tx h4 b {
+    width: calc(39 * var(--m));
+    height: calc(39 * var(--m));
+    font-size: calc(15 * var(--m));
+  }
+  .s-acu-step-tx h4 span {
+    display: block;
+    margin-top: calc(20 * var(--m));
+  }
+  .s-acu-step-tx p {
+    margin-top: calc(24 * var(--m)) !important;
+    font-size: calc(22 * var(--m));
+    line-height: calc(30 * var(--m));
+  }
+
+  /* 5. 봉침 카드: 한 열 */
+  .s-acu-bee {
+    grid-template-columns: 1fr;
+    row-gap: calc(50 * var(--m));
+    margin: calc(28 * var(--m)) 0 0 !important;
+  }
+  .s-acu-bee-t {
+    margin-top: calc(28 * var(--m)) !important;
+    font-size: calc(28 * var(--m));
+  }
+  .s-acu-bee-x {
+    margin-top: calc(12 * var(--m)) !important;
+    font-size: calc(22 * var(--m));
+    line-height: calc(32 * var(--m));
+  }
+  .s-acu-bee-card:nth-child(2) .s-acu-bee-t,
+  .s-acu-bee-card:nth-child(2) .s-acu-bee-x {
+    padding-left: 0 !important;
+  }
+  .s-acu-bsec--2 .s-acu-panel {
+    padding-bottom: calc(56 * var(--m));
+  }
+
+  /* 6·10. 육각형 2×2: 위 줄은 상자가 위, 아래 줄은 상자가 아래 */
+  .s-acu-hexsec--bee,
+  .s-acu-hexsec--pla {
+    height: auto;
+  }
+  .s-acu-hexsec--bee {
+    padding: calc(64 * var(--m)) 0 calc(44 * var(--m));
+    background:
+      #f7f6f2 url(/img/sub/treatment-page01/honey.webp) left top / calc(780 * var(--m)) auto no-repeat;
+  }
+  .s-acu-hexsec--bee::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: calc(8 * var(--m));
+    width: calc(578 * var(--m));
+    height: calc(286 * var(--m));
+    background: url(/img/sub/treatment-page01/sunflower.webp) center / 100% 100% no-repeat;
+    pointer-events: none;
+  }
+  .s-acu-hexsec--bee .cx-in {
+    position: relative;
+    z-index: 1;
+  }
+  .s-acu-hexsec--pla {
+    padding: calc(45 * var(--m)) 0 calc(98 * var(--m));
+  }
+  .s-acu-hexbg {
+    display: none;
+  }
+  .s-acu-hexsec .s-acu-hd {
+    position: relative;
+    left: auto;
+    top: auto !important;
+    width: auto;
+  }
+  .s-acu-hexes {
+    position: relative;
+    top: auto !important;
+    display: grid;
+    grid-template-columns: repeat(2, calc(252 * var(--m)));
+    justify-content: center;
+    column-gap: calc(90 * var(--m));
+    row-gap: calc(39 * var(--m));
+    margin-top: calc(68 * var(--m)) !important;
+  }
+  .s-acu-hexsec--pla .s-acu-hexes {
+    margin-top: calc(24 * var(--m)) !important;
+  }
+  .s-acu-hex {
+    position: relative;
+    left: auto !important;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .s-acu-hex:nth-child(n + 3) {
+    justify-content: flex-start;
+  }
+  .s-acu-hex-shape {
+    position: relative;
+    inset: auto;
+    width: calc(252 * var(--m));
+    height: calc(218 * var(--m));
+    order: 2;
+  }
+  .s-acu-hex-box {
+    position: relative;
+    left: auto;
+    top: auto !important;
+    bottom: auto !important;
+    width: calc(321 * var(--m));
+    transform: none;
+    margin-left: calc(-34 * var(--m)) !important;
+    padding: calc(19 * var(--m)) calc(10 * var(--m)) !important;
+    font-size: calc(22 * var(--m));
+    line-height: calc(30 * var(--m));
+    white-space: normal;
+    order: 1;
+  }
+  .s-acu-hex-dots {
+    position: relative;
+    left: auto;
+    top: auto !important;
+    bottom: auto !important;
+    height: calc(78 * var(--m));
+    margin-left: calc(121 * var(--m));
+    order: 1;
+  }
+  .s-acu-hex:nth-child(n + 3) .s-acu-hex-box {
+    order: 3;
+  }
+  .s-acu-hex:nth-child(n + 3) .s-acu-hex-dots {
+    order: 2;
+  }
+  .s-acu-hex-dots::after {
+    top: calc(-5 * var(--m)) !important;
+    bottom: auto !important;
+  }
+  .s-acu-hex:nth-child(n + 3) .s-acu-hex-dots::after {
+    top: auto !important;
+    bottom: calc(-5 * var(--m)) !important;
+  }
+  .s-acu-hex-shape h4 {
+    font-size: calc(24 * var(--m));
+    line-height: calc(30 * var(--m));
+  }
+
+  /* 7. 목록 (1019): 줄 높이는 글에 따라, 체크 칸 63×63 왼쪽 위 */
+  .s-acu-list {
+    height: auto;
+    padding: calc(54 * var(--m)) 0 calc(47 * var(--m));
+  }
+  .s-acu-list .s-acu-hd {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+  .s-acu-rows {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin-top: calc(21 * var(--m)) !important;
+  }
+  .s-acu-rows li {
+    align-items: flex-start;
+    height: auto;
+    min-height: calc(118 * var(--m));
+    margin-bottom: calc(18 * var(--m));
+    padding: calc(14 * var(--m)) calc(20 * var(--m)) calc(26 * var(--m)) 0;
+    font-size: calc(24 * var(--m));
+    line-height: calc(35 * var(--m));
+  }
+  .s-acu-row-ck {
+    width: calc(63 * var(--m));
+    height: calc(63 * var(--m));
+    margin: calc(-14 * var(--m)) calc(32 * var(--m)) 0 0;
+  }
+
+  /* 9. 안전성 (1019): 상자 세로 118, 아이콘 위, 글 두 줄 */
+  .s-acu-safe {
+    height: auto;
+    padding: calc(70 * var(--m)) 0 calc(69 * var(--m));
+  }
+  .s-acu-safe-bg {
+    top: calc(23 * var(--m));
+    height: auto;
+    bottom: calc(13 * var(--m));
+    background: #f7f7f7 url(/img/sub/treatment-page01/m-safety-hand.webp) right bottom / calc(458 * var(--m)) auto no-repeat;
+  }
+  .s-acu-safe .s-acu-hd {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+  }
+  .s-acu-safe-rows {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin-top: calc(27 * var(--m)) !important;
+  }
+  .s-acu-safe-rows li {
+    height: calc(118 * var(--m));
+    margin-bottom: calc(20 * var(--m));
+    padding-left: calc(26 * var(--m));
+    border-left-width: calc(8 * var(--m));
+    font-size: calc(24 * var(--m));
+    line-height: calc(34 * var(--m));
+  }
+  .s-acu-safe-ic {
+    width: calc(40 * var(--m));
+    margin-right: calc(30 * var(--m));
+  }
+}

@@ -1,0 +1,1092 @@
+/* =========================================================================
+   진료과목 상세 — 원본 통이미지(1920px 시안)를 HTML/CSS 로 옮김
+   기준: 가운데 1300px(원본 x 309~1609). --u = 시안 1px 이 화면에서 차지하는 크기
+   색: 소제목 금색 #bc9b6e · 제목 #1c1c1c · 띠 #f5f2ed · 설명 박스 #7f5942→#584a41
+   ========================================================================= */
+.cx {
+  --u: min(1px, calc((100vw - 48px) / 1300));
+  --cx-gold: #bc9b6e;
+  --cx-badge: #bd9d6e;
+  --cx-ink: #1c1c1c;
+  --cx-text: #4b4b4b;
+  --cx-beige: #f5f2ed;
+  color: var(--cx-ink);
+  overflow-x: clip;
+  letter-spacing: -0.03em;
+  word-break: keep-all;
+}
+.cx p,
+.cx h2,
+.cx h3,
+.cx h4,
+.cx ul,
+.cx ol,
+.cx figure {
+  margin: 0;
+  padding: 0;
+}
+.cx ul,
+.cx ol {
+  list-style: none;
+}
+.cx em {
+  font-style: normal;
+}
+.cx img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.cx-in {
+  position: relative;
+  width: calc(1300 * var(--u));
+  margin: 0 auto;
+}
+
+/* 공통 머리글(소제목 + 제목, 가운데) */
+.cx-hd {
+  text-align: center;
+}
+.cx-eb {
+  font-size: calc(26 * var(--u));
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--cx-gold);
+}
+.cx-t,
+.cx-t2 {
+  margin-top: calc(10 * var(--u)) !important;
+  font-size: calc(48 * var(--u));
+  line-height: 1.22;
+  font-weight: 700;
+  color: var(--cx-ink);
+  letter-spacing: -0.04em;
+}
+.cx-bar {
+  display: block;
+  width: calc(40 * var(--u));
+  height: 2px;
+  margin: calc(28 * var(--u)) auto 0;
+  background: #cfc3b3;
+}
+
+/* ---------------------------------------------------------------- 소개 */
+.cx-intro {
+  padding: calc(120 * var(--u)) 0 calc(20 * var(--u));
+}
+.cx-intro .cx-in {
+  display: grid;
+  grid-template-columns: calc(420 * var(--u)) calc(880 * var(--u));
+}
+.cx-intro-t {
+  font-family: var(--font-serif-kr), 'Noto Serif KR', serif;
+  font-size: calc(46 * var(--u));
+  line-height: 1.22;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--cx-ink);
+}
+.cx-ln {
+  display: block;
+}
+.cx-intro-lead {
+  font-size: calc(28 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  color: #735942;
+}
+.cx-intro-body {
+  margin-top: calc(14 * var(--u)) !important;
+  font-size: calc(18 * var(--u));
+  line-height: calc(28 * var(--u));
+  color: #747474;
+}
+.cx-intro-body + .cx-intro-body {
+  margin-top: 0 !important;
+}
+.cx-intro-ph {
+  margin-top: calc(42 * var(--u)) !important;
+}
+
+/* ---------------------------------------------------------------- 질환 블록 */
+.cx-dz {
+  padding: calc(82 * var(--u)) 0 0;
+  scroll-margin-top: 160px;
+}
+/* 같은 탭 안에서 블록 배경을 번갈아(원본: 흰 바탕+#f5f2ed 띠 / #f7f6f2 바탕+#eee9e3 띠) */
+.cx-dz:nth-child(even) {
+  background: #f7f6f2;
+}
+.cx-dz:nth-child(even) .cx-stage::before {
+  background: #eee9e3;
+}
+.cx-stage {
+  position: relative;
+  margin-top: calc(56 * var(--u));
+  padding-bottom: calc(82 * var(--u));
+  isolation: isolate;
+}
+/* 사진 중간부터 깔리는 베이지 띠(화면 끝까지) */
+.cx-stage::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: calc(306 * var(--u));
+  bottom: 0;
+  left: calc(50% - 50vw);
+  right: calc(50% - 50vw);
+  background: var(--cx-beige);
+}
+.cx-ph {
+  width: calc(970 * var(--u));
+}
+/* 갈색 설명 박스: 사진 오른쪽 아래를 덮는다(원본 좌표 그대로) */
+.cx-co {
+  position: absolute;
+  z-index: 2;
+  left: calc(var(--co-x, 801) * var(--u));
+  top: calc(227 * var(--u));
+  width: calc(var(--co-w, 499) * var(--u));
+  min-height: calc(284 * var(--u));
+  padding: calc(46 * var(--u)) calc(34 * var(--u)) calc(40 * var(--u));
+  background: linear-gradient(180deg, #7f5942, #584a41);
+  color: #fff;
+  text-align: center;
+}
+.cx-co-eb {
+  font-size: calc(25 * var(--u));
+  line-height: 1.3;
+  font-weight: 600;
+  color: #ffd396;
+}
+.cx-co-t {
+  margin-top: calc(6 * var(--u)) !important;
+  font-size: calc(40 * var(--u));
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.cx-co-x {
+  margin-top: calc(24 * var(--u)) !important;
+  font-size: calc(19 * var(--u));
+  line-height: calc(30 * var(--u));
+  font-weight: 400;
+}
+.cx-chk {
+  width: calc(780 * var(--u));
+  margin-top: calc(38 * var(--u));
+}
+.cx-chk-t {
+  position: relative;
+  padding-left: calc(14 * var(--u)) !important;
+  font-size: calc(28 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  color: #1b1b1b;
+}
+.cx-chk-t::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  width: calc(4 * var(--u));
+  height: 0.86em;
+  background: var(--cx-gold);
+}
+.cx-chk-t em {
+  color: var(--cx-gold);
+  font-weight: 500;
+}
+.cx-chk ul {
+  display: grid;
+  grid-template-columns: calc(424 * var(--u)) 1fr;
+  row-gap: calc(10 * var(--u));
+  margin-top: calc(26 * var(--u)) !important;
+}
+.cx-chk li {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(11 * var(--u));
+  font-size: calc(21 * var(--u));
+  line-height: calc(27 * var(--u));
+  color: #141414;
+}
+.cx-ck {
+  flex: none;
+  width: calc(26 * var(--u));
+  height: calc(26 * var(--u));
+  margin-top: calc(1 * var(--u));
+}
+.cx-ck circle {
+  fill: var(--cx-gold);
+}
+.cx-ck path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* 체크리스트가 없는 블록(체질별 다이어트): 띠 높이만 확보 */
+.cx-stage.no-check {
+  min-height: calc(560 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 치료 카드 */
+.cx-tr {
+  padding: calc(83 * var(--u)) 0 calc(76 * var(--u));
+}
+.cx-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: calc(66 * var(--u)) !important;
+}
+.cx-cards--v {
+  column-gap: calc(53 * var(--u));
+  row-gap: calc(62 * var(--u));
+}
+.cx-cards--v .cx-card {
+  width: calc(392 * var(--u));
+  text-align: center;
+}
+.cx-cp {
+  position: relative;
+  border: 1px solid #ececec;
+}
+.cx-badge {
+  position: absolute;
+  left: calc(-15 * var(--u));
+  top: calc(-13 * var(--u));
+  width: calc(52 * var(--u));
+  height: calc(52 * var(--u));
+  display: grid;
+  place-items: center;
+  background: var(--cx-badge);
+  color: #fff;
+  font-size: calc(25 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.cx-ct-t {
+  margin-top: calc(16 * var(--u)) !important;
+  font-size: calc(28 * var(--u));
+  line-height: 1.25;
+  font-weight: 700;
+  color: #131313;
+}
+.cx-ct-x {
+  margin-top: calc(10 * var(--u)) !important;
+  font-size: calc(19 * var(--u));
+  line-height: calc(28 * var(--u));
+  color: var(--cx-text);
+}
+.cx-cards--v .cx-ct-x {
+  max-width: calc(360 * var(--u));
+  margin-inline: auto !important;
+  text-wrap: balance;
+}
+/* 4개: 사진 왼쪽 + 글 오른쪽, 2x2 */
+.cx-cards--h {
+  column-gap: calc(30 * var(--u));
+  row-gap: calc(46 * var(--u));
+}
+.cx-cards--h .cx-card {
+  width: calc(600 * var(--u));
+  display: grid;
+  grid-template-columns: calc(323 * var(--u)) 1fr;
+  column-gap: calc(19 * var(--u));
+  align-items: start;
+}
+.cx-cards--h .cx-ct {
+  padding-top: calc(56 * var(--u));
+}
+.cx-cards--h .cx-ct-t {
+  margin-top: 0 !important;
+  font-size: calc(26 * var(--u));
+}
+.cx-cards--h .cx-ct-x {
+  max-width: calc(232 * var(--u));
+  text-wrap: pretty;
+  margin-top: calc(14 * var(--u)) !important;
+  font-size: calc(17 * var(--u));
+  line-height: calc(27.5 * var(--u));
+}
+
+/* 일반 카드 묶음(다이어트 '한의학적 치료' 등): 연회색 띠 */
+.cx-cardsec {
+  padding: calc(150 * var(--u)) 0 calc(150 * var(--u));
+  background: #f8f8f6;
+}
+.cx-cardsec .cx-t2 {
+  font-size: calc(44 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 자동차사고: 어혈 */
+.cx-eo {
+  padding: calc(92 * var(--u)) 0 calc(118 * var(--u));
+  background: var(--cx-beige) center top / cover no-repeat;
+  text-align: center;
+}
+.cx-eo .cx-t2 {
+  font-size: calc(40 * var(--u));
+}
+.cx-eo-x {
+  width: calc(470 * var(--u));
+  margin: calc(34 * var(--u)) auto 0 !important;
+  font-size: calc(18 * var(--u));
+  line-height: calc(29 * var(--u));
+  color: #4b4b4b;
+}
+.cx-eo-ph {
+  position: relative;
+  width: calc(676 * var(--u));
+  margin: calc(56 * var(--u)) auto 0 !important;
+}
+.cx-eo-ph img {
+  mix-blend-mode: darken;
+}
+.cx-eo-line {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: calc(60 * var(--u));
+  transform: translateX(-50%);
+  background: #dad4c8;
+}
+.cx-eo-box {
+  width: calc(880 * var(--u));
+  margin: calc(60 * var(--u)) auto 0 !important;
+  padding: calc(26 * var(--u)) calc(56 * var(--u)) !important;
+  text-wrap: balance;
+  background: #fff;
+  border: 1px solid #e3dfd6;
+  border-radius: calc(16 * var(--u));
+  font-size: calc(17 * var(--u));
+  line-height: calc(28 * var(--u));
+  color: #4b4b4b;
+}
+.cx-eo-box em {
+  color: #b38b55;
+  font-weight: 600;
+}
+
+/* 자동차사고: 후유증 증상 카드 */
+.cx-sym {
+  padding: calc(100 * var(--u)) 0 calc(110 * var(--u));
+}
+.cx-sym-list {
+  display: flex;
+  justify-content: center;
+  gap: calc(32 * var(--u));
+  margin-top: calc(56 * var(--u)) !important;
+}
+.cx-sym-list li {
+  width: calc(375 * var(--u));
+  background: #f4f4f4;
+}
+.cx-sym-list figure {
+  position: relative;
+}
+.cx-sym-tag {
+  position: absolute;
+  left: calc(-8 * var(--u));
+  top: calc(-10 * var(--u));
+  padding: calc(7 * var(--u)) calc(14 * var(--u));
+  background: #735843;
+  color: #fff;
+  font-size: calc(21 * var(--u));
+  font-weight: 700;
+  line-height: 1.3;
+}
+.cx-sym-list p {
+  padding: calc(24 * var(--u)) calc(28 * var(--u)) calc(30 * var(--u)) !important;
+  text-align: center;
+  font-size: calc(16.5 * var(--u));
+  line-height: calc(26 * var(--u));
+  color: #555;
+}
+
+/* 자동차사고: 치료 시기(갈색 사진 띠) */
+.cx-tl {
+  padding: calc(72 * var(--u)) 0 calc(110 * var(--u));
+  background: #6c5646 center / cover no-repeat;
+  color: #fff;
+  text-align: center;
+}
+.cx-tl-mark {
+  display: block;
+  width: calc(64 * var(--u));
+  height: calc(64 * var(--u));
+  margin: 0 auto;
+  background: url(/img/clinic/p1/mark.png) center / contain no-repeat;
+}
+.cx-tl-t {
+  margin-top: calc(26 * var(--u)) !important;
+  font-size: calc(36 * var(--u));
+  line-height: 1.4;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+.cx-tl-t em {
+  color: #f2c88a;
+}
+.cx-tl-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: calc(70 * var(--u)) !important;
+  padding: 0 calc(40 * var(--u)) !important;
+}
+/* 가로 선 + 왼쪽 점 + 오른쪽 화살표 */
+.cx-tl-row::before {
+  content: '';
+  position: absolute;
+  left: calc(10 * var(--u));
+  right: calc(10 * var(--u));
+  top: calc(75 * var(--u));
+  height: calc(4 * var(--u));
+  background: #c9a77a;
+}
+.cx-tl-row::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: calc(66 * var(--u));
+  border-left: calc(22 * var(--u)) solid #c9a77a;
+  border-top: calc(11 * var(--u)) solid transparent;
+  border-bottom: calc(11 * var(--u)) solid transparent;
+}
+.cx-tl-c {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: calc(150 * var(--u));
+  height: calc(150 * var(--u));
+  border-radius: 50%;
+  background: #f5efe6;
+  display: grid;
+  place-items: center;
+  color: #735843;
+  font-size: calc(27 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+}
+.cx-tl-c.is-key {
+  background: linear-gradient(180deg, #e8b878, #d39a55);
+  color: #fff;
+}
+.cx-tl-l {
+  position: relative;
+  flex: none;
+  width: calc(172 * var(--u));
+  padding-top: calc(165 * var(--u)) !important;
+  font-size: calc(16 * var(--u));
+  line-height: 1.5;
+}
+/* 줄 시작점과, 원 앞의 작은 화살표 */
+.cx-tl-c:first-child::before {
+  content: '';
+  position: absolute;
+  left: calc(-36 * var(--u));
+  top: 50%;
+  width: calc(14 * var(--u));
+  height: calc(14 * var(--u));
+  margin-top: calc(-6 * var(--u));
+  border-radius: 50%;
+  background: #c9a77a;
+}
+.cx-tl-c:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  left: calc(-40 * var(--u));
+  top: 50%;
+  margin-top: calc(-8 * var(--u));
+  border-left: calc(14 * var(--u)) solid #c9a77a;
+  border-top: calc(8 * var(--u)) solid transparent;
+  border-bottom: calc(8 * var(--u)) solid transparent;
+}
+/* 선에서 내려오는 점선 + 점 */
+.cx-tl-l::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(80 * var(--u));
+  height: calc(64 * var(--u));
+  border-left: 2px dotted #c9a77a;
+}
+.cx-tl-l::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(140 * var(--u));
+  width: calc(9 * var(--u));
+  height: calc(9 * var(--u));
+  margin-left: calc(-3.5 * var(--u));
+  border-radius: 50%;
+  background: #c9a77a;
+}
+.cx-tl-l strong {
+  display: block;
+  color: #f2c88a;
+  font-size: calc(19 * var(--u));
+  margin-bottom: calc(4 * var(--u));
+}
+.cx-tl-l span {
+  display: block;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 자동차사고: 치료 단계(지그재그) */
+.cx-pr {
+  padding: calc(110 * var(--u)) 0 calc(120 * var(--u));
+}
+.cx-pr .cx-t2 {
+  font-size: calc(40 * var(--u));
+}
+.cx-pr-lead {
+  margin-top: calc(28 * var(--u)) !important;
+  font-size: calc(19 * var(--u));
+  color: #333;
+}
+.cx-pr-list {
+  width: calc(1224 * var(--u));
+  margin: calc(70 * var(--u)) auto 0 !important;
+}
+.cx-pr-list li {
+  display: grid;
+  grid-template-columns: calc(605 * var(--u)) 1fr;
+  align-items: center;
+}
+.cx-pr-list li.is-r {
+  grid-template-columns: 1fr calc(605 * var(--u));
+}
+.cx-pr-list li.is-r figure {
+  order: 2;
+}
+.cx-pr-tx {
+  position: relative;
+  padding: 0 calc(40 * var(--u)) 0 calc(96 * var(--u)) !important;
+  text-align: left;
+}
+.cx-pr-list li.is-r .cx-pr-tx {
+  padding: 0 calc(96 * var(--u)) 0 calc(42 * var(--u)) !important;
+}
+.cx-pr-tx h3 {
+  display: flex;
+  align-items: center;
+  gap: calc(10 * var(--u));
+  font-size: calc(23 * var(--u));
+  font-weight: 700;
+}
+.cx-pr-tx h3 b {
+  display: grid;
+  place-items: center;
+  width: calc(26 * var(--u));
+  height: calc(26 * var(--u));
+  background: var(--cx-badge);
+  color: #fff;
+  font-size: calc(13 * var(--u));
+  font-weight: 700;
+}
+.cx-pr-tx p {
+  margin-top: calc(16 * var(--u)) !important;
+  font-size: calc(16 * var(--u));
+  line-height: calc(26 * var(--u));
+  color: #555;
+}
+/* 사진 가장자리의 동그라미 + 점선 */
+.cx-pr-dot {
+  position: absolute;
+  top: 50%;
+  left: calc(-16 * var(--u));
+  width: calc(32 * var(--u));
+  height: calc(32 * var(--u));
+  margin-top: calc(-16 * var(--u));
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+.cx-pr-dot::before {
+  content: '';
+  position: absolute;
+  inset: calc(10 * var(--u));
+  border-radius: 50%;
+  background: var(--cx-badge);
+}
+.cx-pr-dot::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(36 * var(--u));
+  width: calc(40 * var(--u));
+  border-top: 2px dotted var(--cx-badge);
+}
+.cx-pr-list li.is-r .cx-pr-dot {
+  left: auto;
+  right: calc(-16 * var(--u));
+}
+.cx-pr-list li.is-r .cx-pr-dot::after {
+  left: auto;
+  right: calc(36 * var(--u));
+}
+.cx-pr-list li.is-l .cx-pr-tx {
+  text-align: left;
+}
+
+/* 자동차사고: 집중치료(비단 바탕) */
+.cx-silk {
+  background: #e9e1d5 center / cover no-repeat;
+}
+.cx--p1 .cx-silk .cx-cards--v .cx-card {
+  width: calc(383 * var(--u));
+}
+.cx--p1 .cx-silk .cx-cards--v {
+  column-gap: calc(24 * var(--u));
+  row-gap: calc(52 * var(--u));
+}
+.cx--p1 .cx-silk .cx-cp {
+  border: 0;
+}
+.cx--p1 .cx-silk .cx-badge {
+  left: calc(8 * var(--u));
+  top: calc(-10 * var(--u));
+  width: calc(48 * var(--u));
+  height: calc(48 * var(--u));
+  font-size: calc(22 * var(--u));
+}
+.cx--p1 .cx-silk .cx-ct-t {
+  font-size: calc(23 * var(--u));
+}
+.cx--p1 .cx-silk .cx-ct-x {
+  font-size: calc(16 * var(--u));
+  line-height: calc(26 * var(--u));
+}
+
+/* 탭 아래 첫 블록 여백 */
+.cx-tabs .dt-nav {
+  margin-top: calc(70 * var(--u));
+}
+.cx-tabs [data-pane] > .cx-dz:first-child {
+  padding-top: calc(30 * var(--u));
+}
+
+/* =========================================================================
+   모바일·태블릿(1023px 이하): 원본 모바일 시안(750px) 비율
+   ========================================================================= */
+@media (max-width: 1023px) {
+  .cx {
+    --m: calc(min(100vw, 720px) / 750);
+    --u: var(--m);
+  }
+  .cx-in {
+    width: auto;
+    max-width: 720px;
+    padding: 0 calc(40 * var(--m));
+  }
+  .cx-eb {
+    font-size: calc(28 * var(--m));
+  }
+  .cx-t,
+  .cx-t2,
+  .cx-cardsec .cx-t2 {
+    font-size: calc(46 * var(--m));
+  }
+  /* 소개 */
+  .cx-intro {
+    padding-top: calc(90 * var(--m));
+  }
+  .cx-intro .cx-in {
+    display: block;
+  }
+  .cx-intro-t {
+    font-size: calc(44 * var(--m));
+  }
+  .cx-ln {
+    display: inline;
+  }
+  .cx-intro-lead {
+    margin-top: calc(26 * var(--m)) !important;
+    font-size: calc(30 * var(--m));
+  }
+  .cx-intro-body {
+    margin-top: calc(18 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: 1.65;
+  }
+  .cx-intro-ph {
+    margin-top: calc(50 * var(--m)) !important;
+  }
+  /* 질환 */
+  .cx-dz {
+    padding-top: calc(110 * var(--m));
+  }
+  .cx-stage {
+    margin-top: calc(50 * var(--m));
+    padding-bottom: calc(80 * var(--m));
+  }
+  .cx-stage::before {
+    top: calc(260 * var(--m));
+  }
+  .cx-ph {
+    width: auto;
+    margin: 0 calc(20 * var(--m)) 0 calc(-40 * var(--m)) !important;
+    aspect-ratio: 690 / 384;
+    overflow: hidden;
+  }
+  .cx-ph img {
+    height: 100%;
+    object-fit: cover;
+  }
+  /* 사진 오른쪽 아래를 덮도록(사진 높이의 55% 지점부터) */
+  .cx-co {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    min-height: 0;
+    margin: calc(-174 * var(--m)) calc(-10 * var(--m)) 0 calc(180 * var(--m));
+    padding: calc(44 * var(--m)) calc(30 * var(--m)) calc(40 * var(--m));
+  }
+  .cx-co-eb {
+    font-size: calc(26 * var(--m));
+  }
+  .cx-co-t {
+    font-size: calc(40 * var(--m));
+  }
+  .cx-co-x {
+    margin-top: calc(18 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: 1.5;
+  }
+  .cx-chk {
+    width: auto;
+    margin-top: calc(56 * var(--m));
+  }
+  .cx-chk-t {
+    font-size: calc(32 * var(--m));
+  }
+  .cx-chk ul {
+    grid-template-columns: 1fr;
+    row-gap: calc(14 * var(--m));
+  }
+  /* PC 의 왼쪽 열을 먼저, 그다음 오른쪽 열(원본 모바일 순서) */
+  .cx-chk li:nth-child(even) {
+    order: 1;
+  }
+  .cx-chk li {
+    font-size: calc(27 * var(--m));
+    line-height: 1.35;
+    gap: calc(14 * var(--m));
+  }
+  .cx-ck {
+    width: calc(32 * var(--m));
+    height: calc(32 * var(--m));
+  }
+  .cx-stage.no-check {
+    min-height: 0;
+  }
+  /* 치료 카드: 2열 세로형 */
+  .cx-tr {
+    padding: calc(100 * var(--m)) 0 calc(120 * var(--m));
+  }
+  .cx-cards {
+    justify-content: flex-start;
+    margin-top: calc(50 * var(--m)) !important;
+    column-gap: calc(30 * var(--m)) !important;
+    row-gap: calc(60 * var(--m)) !important;
+  }
+  .cx-cards--v .cx-card,
+  .cx-cards--h .cx-card,
+  .cx--p1 .cx-silk .cx-cards--v .cx-card {
+    width: calc((100% - 30 * var(--m)) / 2);
+    display: block;
+    text-align: center;
+  }
+  .cx-cards--h .cx-ct {
+    padding-top: 0;
+  }
+  .cx-badge,
+  .cx--p1 .cx-silk .cx-badge {
+    left: calc(-10 * var(--m));
+    top: calc(-10 * var(--m));
+    width: calc(52 * var(--m));
+    height: calc(52 * var(--m));
+    font-size: calc(24 * var(--m));
+  }
+  .cx-ct-t,
+  .cx-cards--h .cx-ct-t,
+  .cx--p1 .cx-silk .cx-ct-t {
+    margin-top: calc(20 * var(--m)) !important;
+    font-size: calc(30 * var(--m));
+  }
+  .cx-ct-x,
+  .cx-cards--h .cx-ct-x,
+  .cx--p1 .cx-silk .cx-ct-x {
+    margin-top: calc(10 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: 1.5;
+  }
+  .cx-cardsec {
+    padding: calc(110 * var(--m)) 0;
+  }
+  /* 자동차사고 */
+  .cx-eo-x,
+  .cx-eo-ph,
+  .cx-eo-box {
+    width: auto;
+  }
+  .cx-eo-x,
+  .cx-eo-box,
+  .cx-pr-lead,
+  .cx-sym-list p {
+    font-size: calc(25 * var(--m));
+    line-height: 1.6;
+  }
+  .cx-sym-list {
+    flex-direction: column;
+    gap: calc(50 * var(--m));
+  }
+  .cx-sym-list li {
+    width: 100%;
+  }
+  .cx-sym-tag {
+    font-size: calc(26 * var(--m));
+  }
+  .cx-tl-t {
+    font-size: calc(38 * var(--m));
+    text-wrap: balance;
+  }
+  /* 원본 모바일: 두 줄(사고당일·급성기·2일 / 아급성기·3주·회복기·3개월), 줄마다 가로선 */
+  .cx-tl-row {
+    display: grid !important;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: calc(270 * var(--m)) calc(270 * var(--m));
+    row-gap: calc(30 * var(--m));
+    padding: 0 !important;
+    margin-top: calc(60 * var(--m)) !important;
+    background:
+      linear-gradient(#c9a77a, #c9a77a) 0 calc(73 * var(--m)) / 100% calc(4 * var(--m)) no-repeat,
+      linear-gradient(#c9a77a, #c9a77a) 0 calc(373 * var(--m)) / 100% calc(4 * var(--m)) no-repeat;
+  }
+  .cx-tl-row::before,
+  .cx-tl-row::after,
+  .cx-tl-c::before {
+    display: none !important;
+  }
+  .cx-tl-row > li:nth-child(1) { grid-area: 1 / 2 / 2 / 4; }
+  .cx-tl-row > li:nth-child(2) { grid-area: 1 / 4 / 2 / 6; }
+  .cx-tl-row > li:nth-child(3) { grid-area: 1 / 6 / 2 / 8; }
+  .cx-tl-row > li:nth-child(4) { grid-area: 2 / 1 / 3 / 3; }
+  .cx-tl-row > li:nth-child(5) { grid-area: 2 / 3 / 3 / 5; }
+  .cx-tl-row > li:nth-child(6) { grid-area: 2 / 5 / 3 / 7; }
+  .cx-tl-row > li:nth-child(7) { grid-area: 2 / 7 / 3 / 9; }
+  .cx-tl-c {
+    justify-self: center;
+    width: calc(150 * var(--m));
+    height: calc(150 * var(--m));
+    font-size: calc(30 * var(--m));
+  }
+  .cx-tl-l {
+    width: auto;
+    padding-top: calc(170 * var(--m)) !important;
+    font-size: calc(21 * var(--m));
+  }
+  .cx-tl-l::before {
+    top: calc(80 * var(--m));
+    height: calc(56 * var(--m));
+  }
+  .cx-tl-l::after {
+    top: calc(136 * var(--m));
+    width: calc(9 * var(--m));
+    height: calc(9 * var(--m));
+    margin-left: calc(-3.5 * var(--m));
+  }
+  .cx-tl-l strong {
+    font-size: calc(25 * var(--m));
+  }
+  .cx-pr-list {
+    width: auto;
+  }
+  .cx-pr-list li,
+  .cx-pr-list li.is-r {
+    display: block;
+    margin-bottom: calc(60 * var(--m));
+  }
+  .cx-pr-tx,
+  .cx-pr-list li.is-r .cx-pr-tx {
+    padding: calc(30 * var(--m)) 0 0 !important;
+  }
+  .cx-pr-dot {
+    display: none;
+  }
+  .cx-pr-tx h3 {
+    font-size: calc(32 * var(--m));
+  }
+  .cx-pr-tx h3 b {
+    width: calc(36 * var(--m));
+    height: calc(36 * var(--m));
+    font-size: calc(18 * var(--m));
+  }
+  .cx-pr-tx p {
+    font-size: calc(25 * var(--m));
+    line-height: 1.6;
+  }
+}
+
+/* =========================================================================
+   PC 글자 크기 보정(2026-10-06): 원본 이미지의 같은 문장 폭을 재서 맞춤(진료과목 전용)
+   ========================================================================= */
+@media (min-width: 1024px) {
+  .cx-clinic .cx-eb { font-size: calc(24 * var(--u)); }
+  .cx-clinic .cx-t,
+  .cx-clinic .cx-t2 { font-size: calc(45 * var(--u)); }
+  .cx-clinic .cx-cardsec .cx-t2,
+  .cx-clinic .cx-pr .cx-t2 { font-size: calc(45 * var(--u)); }
+  .cx-clinic .cx-eo .cx-t2 { font-size: calc(45.5 * var(--u)); }
+  /* 자동차사고 본문(원본 폭 측정값) */
+  .cx-clinic .cx-eo-x { width: calc(560 * var(--u)); font-size: calc(22 * var(--u)); line-height: calc(35 * var(--u)); }
+  .cx-clinic .cx-eo-box { font-size: calc(20 * var(--u)); line-height: calc(30 * var(--u)); }
+  .cx-clinic .cx-sym-list p { font-size: calc(19.5 * var(--u)); line-height: calc(28 * var(--u)); }
+  .cx-clinic .cx-tl-t { font-size: calc(43 * var(--u)); }
+  .cx-clinic .cx-tl-l { width: calc(200 * var(--u)); font-size: calc(18.5 * var(--u)); }
+  .cx-clinic .cx-tl-l strong { font-size: calc(21 * var(--u)); }
+  .cx-clinic .cx-pr-lead { font-size: calc(22 * var(--u)); }
+  .cx-clinic .cx-pr-tx h3 { font-size: calc(28 * var(--u)); }
+  .cx-clinic .cx-pr-tx h3 b { width: calc(30 * var(--u)); height: calc(30 * var(--u)); font-size: calc(15 * var(--u)); }
+  .cx-clinic .cx-pr-tx p { font-size: calc(18.5 * var(--u)); line-height: calc(27 * var(--u)); }
+  .cx-clinic.cx--p1 .cx-silk .cx-ct-t { font-size: calc(23.4 * var(--u)); }
+  .cx-clinic.cx--p1 .cx-silk .cx-ct-x { font-size: calc(17.7 * var(--u)); line-height: calc(27 * var(--u)); }
+  .cx-clinic .cx-intro-t { font-size: calc(42 * var(--u)); }
+  .cx-clinic .cx-intro-body { font-size: calc(18.6 * var(--u)); }
+  .cx-clinic .cx-co-eb { font-size: calc(24 * var(--u)); }
+  .cx-clinic .cx-co-t { font-size: calc(38.5 * var(--u)); }
+  .cx-clinic .cx-co { padding-left: calc(58 * var(--u)); padding-right: calc(58 * var(--u)); }
+  .cx-clinic .cx-co-x { text-wrap: balance; }
+  .cx-clinic .cx-chk { width: calc(800 * var(--u)); }
+  .cx-clinic .cx-chk-t { font-size: calc(25.5 * var(--u)); }
+  .cx-clinic .cx-ct-t { font-size: calc(25 * var(--u)); }
+  .cx-clinic .cx-ct-x { font-size: calc(18.5 * var(--u)); }
+  .cx-clinic .cx-cards--h .cx-ct-t { font-size: calc(23.5 * var(--u)); }
+  .cx-clinic .cx-cards--h .cx-ct-x { font-size: calc(16.5 * var(--u)); }
+}
+
+/* 모바일 글자 크기 보정(원본 모바일 시안 폭 측정, 진료과목 전용) */
+@media (max-width: 1023px) {
+  .cx-clinic .cx-eb { font-size: calc(27.5 * var(--m)); }
+  .cx-clinic .cx-t,
+  .cx-clinic .cx-t2 { font-size: calc(47.5 * var(--m)); }
+  .cx-clinic .cx-chk li { font-size: calc(30 * var(--m)); }
+  /* 카드: PC 가로형의 글 폭 제한을 풀고 원본 모바일 크기·줄간격으로 */
+  .cx-clinic .cx-cards--h .cx-ct-x,
+  .cx-clinic .cx-cards--v .cx-ct-x { max-width: none; }
+  .cx-clinic .cx-ct-t,
+  .cx-clinic .cx-cards--h .cx-ct-t { font-size: calc(27.5 * var(--m)); }
+  .cx-clinic .cx-ct-x,
+  .cx-clinic .cx-cards--h .cx-ct-x { font-size: calc(23 * var(--m)); line-height: 1.32; }
+  .cx-clinic .cx-co-x { font-size: calc(23.4 * var(--m)); line-height: 1.38; }
+  .cx-clinic .cx-cards { row-gap: calc(44 * var(--m)) !important; }
+  .cx-clinic .cx-tr { padding-top: calc(86 * var(--m)); }
+}
+
+/* 자동차사고 모바일: 원본 모바일 시안 배치 */
+@media (max-width: 1023px) {
+  /* 증상 카드: 사진을 가로로 낮게 */
+  .cx-clinic .cx-sym-list figure {
+    aspect-ratio: 670 / 280;
+  }
+  .cx-clinic .cx-sym-list figure img {
+    height: 100%;
+    object-fit: cover;
+  }
+  /* 치료단계: 사진 40% + 글, 지그재그 */
+  .cx-clinic .cx-pr-list li,
+  .cx-clinic .cx-pr-list li.is-r {
+    display: grid;
+    grid-template-columns: 42% 1fr;
+    align-items: center;
+    column-gap: calc(64 * var(--m));
+    margin-bottom: calc(44 * var(--m));
+  }
+  .cx-clinic .cx-pr-list li.is-r {
+    grid-template-columns: 1fr 42%;
+  }
+  .cx-clinic .cx-pr-list figure {
+    aspect-ratio: 300 / 276;
+    overflow: hidden;
+  }
+  .cx-clinic .cx-pr-list figure img {
+    height: 100%;
+    object-fit: cover;
+  }
+  .cx-clinic .cx-pr-tx,
+  .cx-clinic .cx-pr-list li.is-r .cx-pr-tx {
+    padding: 0 !important;
+  }
+  .cx-clinic .cx-pr-list li.is-r .cx-pr-tx {
+    text-align: right;
+  }
+  .cx-clinic .cx-pr-tx h3 {
+    display: block;
+    font-size: calc(30 * var(--m));
+  }
+  .cx-clinic .cx-pr-tx h3 b {
+    display: grid;
+    width: calc(34 * var(--m));
+    height: calc(34 * var(--m));
+    margin-bottom: calc(12 * var(--m));
+    font-size: calc(17 * var(--m));
+  }
+  .cx-clinic .cx-pr-list li.is-r .cx-pr-tx h3 b {
+    margin-left: auto;
+  }
+  .cx-clinic .cx-pr-tx p {
+    margin-top: calc(14 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: 1.5;
+  }
+  .cx-clinic .cx-pr-dot {
+    display: block;
+    left: calc(-48 * var(--m));
+    width: calc(20 * var(--m));
+    height: calc(20 * var(--m));
+    margin-top: calc(-10 * var(--m));
+  }
+  .cx-clinic .cx-pr-dot::before {
+    inset: calc(5 * var(--m));
+  }
+  .cx-clinic .cx-pr-dot::after {
+    left: calc(24 * var(--m));
+    width: calc(22 * var(--m));
+  }
+  .cx-clinic .cx-pr-list li.is-r .cx-pr-dot {
+    left: auto;
+    right: calc(-48 * var(--m));
+  }
+  .cx-clinic .cx-pr-list li.is-r .cx-pr-dot::after {
+    left: auto;
+    right: calc(24 * var(--m));
+  }
+}
+
+/* 카드 사진: 마우스를 올리면 살짝 확대(번호 배지는 그대로) */
+.cx-cp-in {
+  display: block;
+  overflow: hidden;
+}
+.cx-cp-in img {
+  transition: transform 0.9s var(--ease-out, cubic-bezier(0.22, 1, 0.36, 1));
+}
+@media (hover: hover) {
+  .cx-card:hover .cx-cp-in img {
+    transform: scale(1.06);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cx-cp-in img {
+    transition: none;
+  }
+}

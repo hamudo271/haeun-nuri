@@ -1,0 +1,241 @@
+{
+  "slug": "sub_hospital_page02",
+  "title": "입원절차 안내",
+  "source": [
+    "sub02-02-01.jpg",
+    "sub02-02-02.jpg",
+    "sub02-02-07.jpg",
+    "sub02-02-08.jpg",
+    "sub02-02-09.jpg",
+    "sub02-02-10.jpg",
+    "sub02-02-04.jpg",
+    "sub02-02-05.jpg",
+    "sub02-02-06.jpg",
+    "sub02-02-15.jpg",
+    "sub02-02-16.jpg",
+    "sub02-02-17.jpg",
+    "sub02-02-18.jpg",
+    "sub02-02-19.jpg",
+    "sub02-02-20.jpg"
+  ],
+  "sections": [
+    {
+      "id": "one-stop",
+      "kind": "intro",
+      "eyebrow": "검사, 입원, 회복까지 ONE-STOP 토탈 의료 서비스",
+      "title": "1년 365일 연중무휴, 상시 입원 가능",
+      "lead": "갑작스러운 사고/원인을 알 수 없는 통증으로 인해 잃어버린 일상의 여유를 되찾으세요."
+    },
+    {
+      "id": "promises",
+      "kind": "cards",
+      "items": [
+        {
+          "title": "정성과 신뢰를 바탕으로\n체계적인 진료"
+        },
+        {
+          "title": "상태, 체질에 따라\n1:1 맞춤 집중치료"
+        },
+        {
+          "title": "입원 환자 24시간\n모니터링 시스템"
+        }
+      ]
+    },
+    {
+      "id": "custom-care",
+      "kind": "intro",
+      "eyebrow": "환자의 체질과 건강을 고려하여 맞춤 한방 치료",
+      "title": "개별적인 맞춤 집중 입원 케어",
+      "lead": "약침, 봉침, 추나, 부항, 뜸 등 다양한 한방요법들과 물리치료까지\n비수술적 한방요법을 통해 통증을 줄이고 건강을 회복하는데 도움을 드립니다."
+    },
+    {
+      "id": "treatments",
+      "kind": "cards",
+      "items": [
+        {
+          "eyebrow": "Chuna treatment",
+          "title": "추나치료",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-11.jpg",
+          "href": "/sub/treatment/page02/"
+        },
+        {
+          "eyebrow": "Pain/Traffic accident",
+          "title": "통증/교통사고",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-12.jpg",
+          "href": "/sub/clinic/page01/"
+        },
+        {
+          "eyebrow": "Oriental medicine",
+          "title": "한약치료",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-13.jpg",
+          "href": "/sub/treatment/page04/"
+        },
+        {
+          "eyebrow": "Acupuncture",
+          "title": "약침치료",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-14.jpg",
+          "href": "/sub/treatment/page01/"
+        }
+      ]
+    },
+    {
+      "id": "special",
+      "kind": "cards",
+      "title": "해운누리한의원\n**입원치료 특별함**",
+      "lead": "불편감을 주는 원인부터 찾아 개선하는 것을 목표로 하며, 집중적인 케어를 통해\n빠른 시일 내에 일상으로 복귀할 수 있도록 도와드립니다.",
+      "items": [
+        {
+          "title": "자동차/실비보험 적용",
+          "text": "본인부담금 없이 쾌적한 1인용 입원 시설에서 한방진료를 받을 수 있습니다.",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-07.jpg"
+        },
+        {
+          "title": "별도 개인 준비물 불필요",
+          "text": "입원 시 필요한 물품들이 구비되어 있어 당일 즉시 입원이 가능합니다.",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-08.jpg"
+        },
+        {
+          "title": "1:1 개별 맞춤 케어",
+          "text": "각각 체질과 환경을 고려하여 맞춤 한방 치료를 실시합니다.",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-09.jpg"
+        },
+        {
+          "title": "쾌적하고 안락한 1인실",
+          "text": "편안한 침구류와 개별 공기청정 시스템으로 치료에 집중이 가능합니다",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-10.jpg"
+        }
+      ]
+    },
+    {
+      "id": "insurance",
+      "kind": "cards",
+      "title": "교통사고 한방치료비 **전액 자동차보험, 건강보험 처리** 가능",
+      "itemsEyebrow": "1992년 2월 자동차손해배상보장법 개정 이후",
+      "itemsTitle": "다양한 한방치료를 모두 **본인 부담금없이** 자동차 보험, 건강보험으로 처리 가능",
+      "items": [
+        {
+          "title": "침"
+        },
+        {
+          "title": "부항"
+        },
+        {
+          "title": "물리치료"
+        },
+        {
+          "title": "한약처방"
+        }
+      ],
+      "checklist": [
+        "입원 치료뿐만 아니라 통원 치료에 관한 비용도 혜택 가능"
+      ],
+      "missingPhoto": "배경 입원실 사진(어둡게 처리, 침대·거울) 및 좌우 일러스트 2개(돋보기 든 여성, 차트 든 한의사) 미추출 — sub02-02-04.jpg 배경 box [0,0,1920,731], 일러스트 box 약 [490,400,180,220] / [1265,370,170,250]"
+    },
+    {
+      "id": "butler",
+      "kind": "cards",
+      "eyebrow": "복잡한 서류 절차 NO! 전담대행 버틀러 서비스",
+      "title": "교통사고 발생 후, 신경써야 할 일이 많은데 입원 서류까지?",
+      "lead": "보험사 담당자 연락처와 사고접수번호만 알려주시면, 나머지 서류 처리는 해운누리에서 진행해드립니다.\n간단한 입원 수속을 마친 후, 다양한 한방치료를 받으실 수 있습니다.",
+      "items": [
+        {
+          "num": "01",
+          "title": "접수&연락",
+          "text": "보험사와 담당자 연락처만 알려주세요. 필요한 절차는 해운누리에서 전담하여 진행합니다."
+        },
+        {
+          "num": "02",
+          "title": "교통사고 입원 시",
+          "text": "교통사고 입원치료 자동차보험, 건강보험 적용. 사고 한방치료는 100% 보험 처리 가능합니다."
+        },
+        {
+          "num": "03",
+          "title": "실비보험 지원",
+          "text": "상해나 질병으로 입원 치료 또한 실비보험 지원으로 본인 부담금이 최소화됩니다.\n*보험사, 계약사항에 따라 다를 수 있음"
+        },
+        {
+          "num": "04",
+          "title": "입원치료",
+          "text": "비용, 절차 없이 치료와 휴식에만 전념하실 수 있습니다."
+        },
+        {
+          "num": "05",
+          "title": "입원생활",
+          "text": "입원 시 필요한 물품들이 원 내에 구비되어 있어 준비물, 식사 걱정 없이 즉시 입원이 가능합니다."
+        }
+      ],
+      "missingPhoto": "카드별 금색 선 아이콘 5개(문서·자동차·동전·침대·병원) 미추출 — sub02-02-05.jpg box 약 [355,415,40,40] / [790,420,40,40] / [1238,420,40,40] / [355,745,40,40] / [1015,745,40,40]"
+    },
+    {
+      "id": "process",
+      "kind": "steps",
+      "eyebrow": "입원 절차는 간편하게, 집중 치료 진행",
+      "title": "입원절차 및 치료 과정",
+      "lead": "간편한 입퇴원절차 & 정성을 담은 치료\n입원치료의 불편함이 없는 해운누리한의원 입원실을 만나보세요.",
+      "items": [
+        {
+          "num": "01",
+          "title": "입원결정",
+          "text": "담당의로부터 입원이 결정되면 접수 진행"
+        },
+        {
+          "num": "02",
+          "title": "입원수속",
+          "text": "인포 데스크에서 입원 수속진행"
+        },
+        {
+          "num": "03",
+          "title": "입원",
+          "text": "입원 시간 및 입원 준비물 등에 대해 담당 직원의 안내를 받아 입원"
+        },
+        {
+          "num": "04",
+          "title": "입원예약",
+          "text": "병원 사정 등으로 당일 입원되지 않은 분은 입원예약 후 귀가, 추후 안내를 받아 입원 진행"
+        }
+      ]
+    },
+    {
+      "id": "steps",
+      "kind": "steps",
+      "items": [
+        {
+          "num": "01",
+          "title": "내원 및 접수",
+          "text": "- 인포 데스크에서 안내에 따라 서류 작성\n- 사고 정보, 개인 정보, 입원서약 작성\n- 스트레스지수 검사, 말초혈관순환 검사 등 예진 실시",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-15.jpg"
+        },
+        {
+          "num": "02",
+          "title": "진료",
+          "text": "- 이학적 검사로 증상 파악\n- 상담을 통해 자동차 사고의 특징에 대해 파악\n- 충격의 방향, 좌석 위치 등을 면밀히 고려\n- 문진으로 근육통, 뇌진탕 등 증상 파악\n- 대변, 소변, 식욕, 소화, 수면 상태 파악\n- 진맥으로 구체적인 건강상태를 파악\n- 설진으로 어혈정도, 담음정도를 판단",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-16.jpg"
+        },
+        {
+          "num": "03",
+          "title": "입원",
+          "text": "- 병실 배정 및 입원\n- 준비물 : 개인용 세면도구, 속옷, 복용중인 약\n- 세면도구, 기타물품이나 입원복, 편의시설 완비",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-17.jpg"
+        },
+        {
+          "num": "04",
+          "title": "치료",
+          "text": "- 1일 2회 치료 진행\n- 한약 처방·침·약침·뜸·부항요법·추나요법·물리치료",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-18.jpg"
+        },
+        {
+          "num": "05",
+          "title": "보험처리",
+          "text": "- 교통사고에 대한 한방 입원치료는 보험처리 대상\n- 특수한 추가검사 없을 시 한약, 침, 물리치료 등 모든 치료에 보험 적용 가능",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-19.jpg"
+        },
+        {
+          "num": "06",
+          "title": "경과관찰 및 퇴원",
+          "text": "- 퇴원 후 필요에 따라 통원 치료\n- 퇴원 시 건강관리를 위한 탕약 맞춤 처방",
+          "photo": "/default/img/_yami/images/sub/sub02/sub02-02-20.jpg"
+        }
+      ]
+    }
+  ]
+}

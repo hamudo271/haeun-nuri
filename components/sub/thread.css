@@ -1,0 +1,575 @@
+/* 통증매선 — 원본 PC 1920px / 모바일 750px 시안을 HTML/CSS로 재구성 */
+.s-thr {
+  --thr-gold: #bc9b6e;
+  --thr-deep: #735942;
+  --thr-ink: #1c1c1c;
+  --thr-gray: #666;
+  --thr-beige: #f5f2ed;
+}
+.s-thr em {
+  color: var(--thr-gold);
+}
+.s-thr-intro {
+  height: calc(614 * var(--u));
+}
+.s-thr-intro-in {
+  height: 100%;
+}
+.s-thr-intro-photo {
+  position: absolute;
+  left: 0;
+  top: calc(115 * var(--u));
+  width: calc(585 * var(--u));
+  height: calc(392 * var(--u));
+  overflow: hidden;
+}
+.s-thr-intro-photo picture,
+.s-thr-intro-photo img {
+  width: 100%;
+  height: 100%;
+}
+.s-thr-intro-photo img {
+  object-fit: cover;
+}
+.s-thr-intro-copy {
+  position: absolute;
+  left: calc(660 * var(--u));
+  top: calc(135 * var(--u));
+  width: calc(620 * var(--u));
+}
+.s-thr-eyebrow {
+  font-size: calc(25 * var(--u));
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--thr-gold);
+}
+.s-thr-intro-title {
+  margin-top: calc(10 * var(--u)) !important;
+  font-size: calc(48 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  color: var(--thr-ink);
+}
+.s-thr-intro-body {
+  width: calc(550 * var(--u));
+  margin-top: calc(36 * var(--u)) !important;
+  font-size: calc(19 * var(--u));
+  line-height: calc(32 * var(--u));
+  color: #5e5e5e;
+}
+
+/* 치료 원리: 사진 띠 + 3단계 도해 */
+.s-thr-how {
+  position: relative;
+  height: calc(840 * var(--u));
+}
+.s-thr-how-band {
+  position: relative;
+  height: calc(390 * var(--u));
+  overflow: hidden;
+  isolation: isolate;
+  color: #fff;
+}
+.s-thr-how-bg,
+.s-thr-how-bg img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+.s-thr-how-bg img {
+  object-fit: cover;
+}
+.s-thr-how-copy {
+  padding-top: calc(88 * var(--u));
+  text-align: center;
+}
+.s-thr-how-copy h2 {
+  font-size: calc(45 * var(--u));
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.s-thr-how-copy p {
+  width: calc(820 * var(--u));
+  margin: calc(25 * var(--u)) auto 0 !important;
+  font-size: calc(19 * var(--u));
+  line-height: calc(31 * var(--u));
+  color: rgba(255, 255, 255, 0.92);
+}
+.s-thr-how-list {
+  display: grid;
+  grid-template-columns: repeat(3, calc(374 * var(--u)));
+  justify-content: center;
+  gap: calc(34 * var(--u));
+  margin-top: calc(-31 * var(--u)) !important;
+}
+.s-thr-how-list > li {
+  position: relative;
+  height: calc(445 * var(--u));
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: calc(18 * var(--u));
+  box-shadow: 0 calc(10 * var(--u)) calc(30 * var(--u)) rgba(54, 42, 30, 0.14);
+  overflow: hidden;
+}
+.s-thr-how-list figure {
+  height: calc(306 * var(--u));
+  display: grid;
+  place-items: center;
+}
+.s-thr-how-list figure picture {
+  display: block;
+}
+.s-thr-how-list > li:nth-child(1) figure picture {
+  width: calc(278 * var(--u));
+}
+.s-thr-how-list > li:nth-child(2) figure picture {
+  width: calc(266 * var(--u));
+}
+.s-thr-how-list > li:nth-child(3) figure picture {
+  width: calc(254 * var(--u));
+}
+.s-thr-how-text {
+  position: relative;
+  min-height: calc(139 * var(--u));
+  padding: calc(26 * var(--u)) calc(24 * var(--u)) calc(20 * var(--u)) calc(83 * var(--u));
+  box-sizing: border-box;
+  border-top: 1px solid #eee9e2;
+}
+.s-thr-how-text b {
+  position: absolute;
+  left: calc(31 * var(--u));
+  top: calc(29 * var(--u));
+  font-size: calc(24 * var(--u));
+  line-height: 1;
+  font-weight: 700;
+  color: var(--thr-gold);
+}
+.s-thr-how-text h3 {
+  font-size: calc(20 * var(--u));
+  line-height: calc(29 * var(--u));
+  font-weight: 600;
+  color: #333;
+}
+
+/* 안전성 */
+.s-thr-safety {
+  height: calc(701 * var(--u));
+  box-sizing: border-box;
+  padding-top: calc(55 * var(--u));
+}
+.s-thr-head {
+  text-align: center;
+}
+.s-thr-head-line,
+.s-thr-advantages-head > span {
+  display: block;
+  width: calc(48 * var(--u));
+  height: calc(5 * var(--u));
+  margin: 0 auto;
+  background: var(--thr-deep);
+}
+.s-thr-head > p,
+.s-thr-advantages-head > p {
+  margin-top: calc(36 * var(--u)) !important;
+  font-size: calc(24 * var(--u));
+  line-height: 1.25;
+  font-weight: 500;
+  color: var(--thr-gold);
+}
+.s-thr-head h2,
+.s-thr-advantages-head h2 {
+  margin-top: calc(8 * var(--u)) !important;
+  font-size: calc(40 * var(--u));
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.s-thr-safety-list {
+  display: grid;
+  grid-template-columns: repeat(2, calc(550 * var(--u)));
+  justify-content: center;
+  column-gap: calc(70 * var(--u));
+  row-gap: calc(18 * var(--u));
+  margin-top: calc(66 * var(--u)) !important;
+}
+.s-thr-safety-list li {
+  display: flex;
+  align-items: center;
+  gap: calc(18 * var(--u));
+  min-height: calc(72 * var(--u));
+  padding: calc(12 * var(--u)) calc(16 * var(--u));
+  box-sizing: border-box;
+  border-bottom: 1px solid #e4e0da;
+  font-size: calc(18 * var(--u));
+  line-height: calc(27 * var(--u));
+  color: #4b4b4b;
+}
+.s-thr-check-icon {
+  flex: none;
+  width: calc(42 * var(--u));
+  height: calc(42 * var(--u));
+}
+.s-thr-check-icon circle {
+  fill: var(--thr-gold);
+}
+.s-thr-check-icon path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* 적용 질환 9개 */
+.s-thr-indications {
+  height: calc(1337 * var(--u));
+  box-sizing: border-box;
+  padding-top: calc(126 * var(--u));
+  background: #f8f7f5;
+}
+.s-thr-simple-head {
+  text-align: center;
+}
+.s-thr-simple-head h2 {
+  font-size: calc(43 * var(--u));
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+}
+.s-thr-simple-head p {
+  width: calc(800 * var(--u));
+  margin: calc(24 * var(--u)) auto 0 !important;
+  font-size: calc(18.5 * var(--u));
+  line-height: calc(30 * var(--u));
+  color: #686868;
+}
+.s-thr-indication-list {
+  display: grid;
+  grid-template-columns: repeat(3, calc(361 * var(--u)));
+  grid-auto-rows: calc(276 * var(--u));
+  justify-content: center;
+  gap: calc(41 * var(--u)) calc(48 * var(--u));
+  margin-top: calc(68 * var(--u)) !important;
+}
+.s-thr-indication-list li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: calc(24 * var(--u)) calc(22 * var(--u)) calc(20 * var(--u));
+  background: #fff;
+  border: 1px solid #e7e2db;
+}
+.s-thr-indication-list img {
+  width: auto;
+  max-width: calc(210 * var(--u));
+  height: calc(145 * var(--u));
+  object-fit: contain;
+}
+.s-thr-indication-list h3 {
+  margin-top: calc(15 * var(--u)) !important;
+  max-width: calc(315 * var(--u));
+  text-align: center;
+  font-size: calc(20 * var(--u));
+  line-height: calc(28 * var(--u));
+  font-weight: 500;
+  color: #3f3b37;
+}
+
+/* 장점: 사진과 설명 상자를 지그재그로 배치 */
+.s-thr-advantages {
+  height: calc(1147 * var(--u));
+  box-sizing: border-box;
+  padding-top: calc(53 * var(--u));
+}
+.s-thr-advantages-head {
+  text-align: center;
+}
+.s-thr-advantages-head > p {
+  margin-top: calc(25 * var(--u)) !important;
+  font-size: calc(22 * var(--u));
+}
+.s-thr-advantages-head h2 {
+  font-size: calc(37 * var(--u));
+}
+.s-thr-adv-list {
+  width: calc(1224 * var(--u));
+  margin: calc(66 * var(--u)) auto 0 !important;
+}
+.s-thr-adv-list li {
+  display: grid;
+  grid-template-columns: calc(597 * var(--u)) calc(627 * var(--u));
+  min-height: calc(277 * var(--u));
+}
+.s-thr-adv-list li.is-reverse {
+  grid-template-columns: calc(627 * var(--u)) calc(597 * var(--u));
+}
+.s-thr-adv-list li.is-reverse figure {
+  order: 2;
+}
+.s-thr-adv-list figure,
+.s-thr-adv-list figure picture,
+.s-thr-adv-list figure img {
+  width: 100%;
+  height: calc(277 * var(--u));
+}
+.s-thr-adv-list figure {
+  overflow: hidden;
+}
+.s-thr-adv-list figure img {
+  object-fit: cover;
+}
+.s-thr-adv-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(277 * var(--u));
+  padding: calc(32 * var(--u)) calc(58 * var(--u)) calc(30 * var(--u)) calc(92 * var(--u));
+  box-sizing: border-box;
+  background: #f4f1ed;
+}
+.s-thr-adv-copy b {
+  position: absolute;
+  left: calc(37 * var(--u));
+  top: calc(48 * var(--u));
+  font-size: calc(26 * var(--u));
+  color: var(--thr-gold);
+}
+.s-thr-adv-copy h3 {
+  font-size: calc(24 * var(--u));
+  line-height: 1.35;
+  font-weight: 700;
+  color: #302b27;
+}
+.s-thr-adv-copy p {
+  margin-top: calc(14 * var(--u)) !important;
+  font-size: calc(17 * var(--u));
+  line-height: calc(27 * var(--u));
+  color: #666;
+}
+
+@media (max-width: 1023px) {
+  .s-thr .cx-in {
+    width: auto;
+    max-width: 720px;
+    padding: 0 calc(30 * var(--m));
+  }
+
+  /* 모바일 원본 750×902 */
+  .s-thr-intro {
+    height: calc(902 * var(--m));
+  }
+  .s-thr-intro-photo {
+    left: calc(-30 * var(--m));
+    top: calc(59 * var(--m));
+    width: calc(750 * var(--m));
+    height: calc(507 * var(--m));
+  }
+  .s-thr-intro-copy {
+    left: calc(30 * var(--m));
+    top: calc(626 * var(--m));
+    width: calc(630 * var(--m));
+  }
+  .s-thr-eyebrow {
+    font-size: calc(28 * var(--m));
+  }
+  .s-thr-intro-title {
+    margin-top: calc(7 * var(--m)) !important;
+    font-size: calc(48 * var(--m));
+  }
+  .s-thr-intro-body {
+    width: auto;
+    margin-top: calc(25 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: calc(37 * var(--m));
+  }
+
+  /* 모바일 원본의 how 구간은 y 0~1310 */
+  .s-thr-how {
+    height: calc(1310 * var(--m));
+  }
+  .s-thr-how-band {
+    height: calc(402 * var(--m));
+  }
+  .s-thr-how-copy {
+    padding-top: calc(77 * var(--m));
+  }
+  .s-thr-how-copy h2 {
+    font-size: calc(43 * var(--m));
+    line-height: calc(56 * var(--m));
+  }
+  .s-thr-how-copy p {
+    width: calc(650 * var(--m));
+    margin-top: calc(24 * var(--m)) !important;
+    font-size: calc(23 * var(--m));
+    line-height: calc(36 * var(--m));
+  }
+  .s-thr-how-list {
+    grid-template-columns: repeat(2, calc(335 * var(--m)));
+    gap: calc(28 * var(--m)) calc(20 * var(--m));
+    margin-top: calc(42 * var(--m)) !important;
+  }
+  .s-thr-how-list > li {
+    height: calc(413 * var(--m));
+    border-radius: calc(16 * var(--m));
+  }
+  .s-thr-how-list > li:nth-child(3) {
+    grid-column: 1 / 3;
+    width: calc(335 * var(--m));
+    justify-self: center;
+    height: calc(398 * var(--m));
+  }
+  .s-thr-how-list figure {
+    height: calc(280 * var(--m));
+  }
+  .s-thr-how-list > li:nth-child(1) figure picture {
+    width: calc(243 * var(--m));
+  }
+  .s-thr-how-list > li:nth-child(2) figure picture {
+    width: calc(233 * var(--m));
+  }
+  .s-thr-how-list > li:nth-child(3) figure picture {
+    width: calc(221 * var(--m));
+  }
+  .s-thr-how-text {
+    min-height: calc(133 * var(--m));
+    padding: calc(20 * var(--m)) calc(14 * var(--m)) calc(16 * var(--m)) calc(66 * var(--m));
+  }
+  .s-thr-how-text b {
+    left: calc(20 * var(--m));
+    top: calc(23 * var(--m));
+    font-size: calc(25 * var(--m));
+  }
+  .s-thr-how-text h3 {
+    font-size: calc(21 * var(--m));
+    line-height: calc(29 * var(--m));
+  }
+
+  /* 모바일 원본 safety 구간: 831px */
+  .s-thr-safety {
+    height: calc(831 * var(--m));
+    padding-top: calc(84 * var(--m));
+  }
+  .s-thr-head-line,
+  .s-thr-advantages-head > span {
+    width: calc(48 * var(--m));
+    height: calc(5 * var(--m));
+  }
+  .s-thr-head > p,
+  .s-thr-advantages-head > p {
+    margin-top: calc(35 * var(--m)) !important;
+    font-size: calc(27 * var(--m));
+  }
+  .s-thr-head h2,
+  .s-thr-advantages-head h2 {
+    margin-top: calc(8 * var(--m)) !important;
+    font-size: calc(41 * var(--m));
+    line-height: calc(54 * var(--m));
+  }
+  .s-thr-safety-list {
+    grid-template-columns: 1fr;
+    row-gap: 0;
+    margin-top: calc(55 * var(--m)) !important;
+  }
+  .s-thr-safety-list li {
+    gap: calc(18 * var(--m));
+    min-height: calc(86 * var(--m));
+    padding: calc(14 * var(--m)) 0;
+    font-size: calc(22 * var(--m));
+    line-height: calc(31 * var(--m));
+  }
+  .s-thr-check-icon {
+    width: calc(40 * var(--m));
+    height: calc(40 * var(--m));
+  }
+
+  /* 모바일 원본 750×1894 */
+  .s-thr-indications {
+    height: calc(1894 * var(--m));
+    padding-top: calc(101 * var(--m));
+  }
+  .s-thr-simple-head h2 {
+    font-size: calc(45 * var(--m));
+  }
+  .s-thr-simple-head p {
+    width: calc(650 * var(--m));
+    margin-top: calc(25 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: calc(37 * var(--m));
+  }
+  .s-thr-indication-list {
+    grid-template-columns: repeat(2, calc(333 * var(--m)));
+    grid-auto-rows: calc(282 * var(--m));
+    gap: calc(34 * var(--m)) calc(24 * var(--m));
+    margin-top: calc(63 * var(--m)) !important;
+  }
+  .s-thr-indication-list li {
+    padding: calc(20 * var(--m)) calc(15 * var(--m));
+  }
+  .s-thr-indication-list img {
+    max-width: calc(190 * var(--m));
+    height: calc(150 * var(--m));
+  }
+  .s-thr-indication-list h3 {
+    margin-top: calc(13 * var(--m)) !important;
+    max-width: calc(300 * var(--m));
+    font-size: calc(23 * var(--m));
+    line-height: calc(31 * var(--m));
+  }
+
+  /* 모바일 원본 750×1340 */
+  .s-thr-advantages {
+    height: calc(1340 * var(--m));
+    padding-top: calc(76 * var(--m));
+  }
+  .s-thr-advantages-head > p {
+    margin-top: calc(28 * var(--m)) !important;
+    font-size: calc(25 * var(--m));
+  }
+  .s-thr-advantages-head h2 {
+    font-size: calc(37 * var(--m));
+    line-height: calc(49 * var(--m));
+  }
+  .s-thr-adv-list {
+    width: calc(690 * var(--m));
+    margin-top: calc(60 * var(--m)) !important;
+  }
+  .s-thr-adv-list li,
+  .s-thr-adv-list li.is-reverse {
+    grid-template-columns: calc(300 * var(--m)) calc(390 * var(--m));
+    min-height: calc(316 * var(--m));
+    margin-bottom: calc(38 * var(--m));
+  }
+  .s-thr-adv-list li.is-reverse {
+    grid-template-columns: calc(390 * var(--m)) calc(300 * var(--m));
+  }
+  .s-thr-adv-list figure,
+  .s-thr-adv-list figure picture,
+  .s-thr-adv-list figure img {
+    height: calc(277 * var(--m));
+  }
+  .s-thr-adv-copy {
+    min-height: calc(277 * var(--m));
+    padding: calc(30 * var(--m)) calc(24 * var(--m)) calc(26 * var(--m)) calc(58 * var(--m));
+  }
+  .s-thr-adv-copy b {
+    left: calc(19 * var(--m));
+    top: calc(34 * var(--m));
+    font-size: calc(25 * var(--m));
+  }
+  .s-thr-adv-copy h3 {
+    font-size: calc(23 * var(--m));
+    line-height: calc(31 * var(--m));
+  }
+  .s-thr-adv-copy p {
+    margin-top: calc(10 * var(--m)) !important;
+    font-size: calc(19 * var(--m));
+    line-height: calc(27 * var(--m));
+  }
+}

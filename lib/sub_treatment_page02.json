@@ -1,0 +1,372 @@
+{
+ "intro": {
+  "src": "/img/sub/treatment-page02/intro.jpg",
+  "wh": [
+   586,
+   392
+  ]
+ },
+ "mIntro": {
+  "src": "/img/sub/treatment-page02/m-intro.jpg",
+  "wh": [
+   689,
+   392
+  ]
+ },
+ "badge": [
+  1514.96,
+  274.85,
+  90.71
+ ],
+ "band": {
+  "src": "/img/sub/treatment-page02/band-insurance.jpg",
+  "wh": [
+   1920,
+   440
+  ]
+ },
+ "mBadge": [
+  370.39,
+  581.12,
+  132.66
+ ],
+ "mBand": {
+  "src": "/img/sub/treatment-page02/m-band-insurance.jpg",
+  "wh": [
+   750,
+   778
+  ]
+ },
+ "skillFit": [
+  570.75,
+  289.53,
+  233.5
+ ],
+ "skill": {
+  "src": "/img/sub/treatment-page02/skill.jpg",
+  "wh": [
+   467,
+   467
+  ]
+ },
+ "listBg": {
+  "src": "/img/sub/treatment-page02/list-bg.jpg",
+  "wh": [
+   619,
+   695
+  ]
+ },
+ "mListBg": {
+  "src": "/img/sub/treatment-page02/m-list-bg.jpg",
+  "wh": [
+   750,
+   477
+  ]
+ },
+ "cardsBand": {
+  "src": "/img/sub/treatment-page02/band-cards.jpg",
+  "wh": [
+   1920,
+   389
+  ]
+ },
+ "mCardsBand": {
+  "src": "/img/sub/treatment-page02/m-band-cards.jpg",
+  "wh": [
+   750,
+   388
+  ]
+ },
+ "ic-neck": {
+  "src": "/img/sub/treatment-page02/ic-neck.jpg",
+  "wh": [
+   357,
+   211
+  ]
+ },
+ "ic-spine": {
+  "src": "/img/sub/treatment-page02/ic-spine.jpg",
+  "wh": [
+   357,
+   211
+  ]
+ },
+ "ic-knee": {
+  "src": "/img/sub/treatment-page02/ic-knee.jpg",
+  "wh": [
+   357,
+   211
+  ]
+ },
+ "ic-pelvis": {
+  "src": "/img/sub/treatment-page02/ic-pelvis.jpg",
+  "wh": [
+   357,
+   211
+  ]
+ },
+ "ic-car": {
+  "src": "/img/sub/treatment-page02/ic-car.jpg",
+  "wh": [
+   357,
+   211
+  ]
+ },
+ "ic-child": {
+  "src": "/img/sub/treatment-page02/ic-child.jpg",
+  "wh": [
+   357,
+   211
+  ]
+ },
+ "m-ic-neck": {
+  "src": "/img/sub/treatment-page02/m-ic-neck.jpg",
+  "wh": [
+   329,
+   190
+  ]
+ },
+ "m-ic-spine": {
+  "src": "/img/sub/treatment-page02/m-ic-spine.jpg",
+  "wh": [
+   329,
+   190
+  ]
+ },
+ "m-ic-knee": {
+  "src": "/img/sub/treatment-page02/m-ic-knee.jpg",
+  "wh": [
+   329,
+   190
+  ]
+ },
+ "m-ic-pelvis": {
+  "src": "/img/sub/treatment-page02/m-ic-pelvis.jpg",
+  "wh": [
+   329,
+   190
+  ]
+ },
+ "m-ic-car": {
+  "src": "/img/sub/treatment-page02/m-ic-car.jpg",
+  "wh": [
+   329,
+   190
+  ]
+ },
+ "m-ic-child": {
+  "src": "/img/sub/treatment-page02/m-ic-child.jpg",
+  "wh": [
+   329,
+   190
+  ]
+ },
+ "neck": {
+  "src": "/img/sub/treatment-page02/neck.jpg",
+  "wh": [
+   1298,
+   326
+  ]
+ },
+ "back": {
+  "src": "/img/sub/treatment-page02/back.jpg",
+  "wh": [
+   1298,
+   326
+  ]
+ },
+ "mNeck": {
+  "src": "/img/sub/treatment-page02/m-neck.jpg",
+  "wh": [
+   750,
+   459
+  ]
+ },
+ "mBack": {
+  "src": "/img/sub/treatment-page02/m-back.jpg",
+  "wh": [
+   750,
+   459
+  ]
+ },
+ "hexNeck": {
+  "src": "/img/sub/treatment-page02/hex-neck.jpg",
+  "wh": [
+   577,
+   517
+  ],
+  "discs": [
+   [
+    176.64,
+    63.61,
+    63.45,
+    "#e8e5e0"
+   ],
+   [
+    401.58,
+    63.67,
+    63.07,
+    "#f2dec5"
+   ],
+   [
+    63.35,
+    258.01,
+    62.97,
+    "#f2dec5"
+   ],
+   [
+    513.21,
+    258.01,
+    63.46,
+    "#e8e5e0"
+   ],
+   [
+    176.68,
+    452.4,
+    63.48,
+    "#e8e5e0"
+   ],
+   [
+    401.6,
+    452.34,
+    63.08,
+    "#f2dec5"
+   ]
+  ]
+ },
+ "hexBack": {
+  "src": "/img/sub/treatment-page02/hex-back.jpg",
+  "wh": [
+   577,
+   517
+  ],
+  "discs": [
+   [
+    176.65,
+    63.61,
+    63.46,
+    "#e8e5e0"
+   ],
+   [
+    401.59,
+    63.68,
+    63.07,
+    "#f2dec5"
+   ],
+   [
+    63.28,
+    258.02,
+    62.93,
+    "#f2dec5"
+   ],
+   [
+    513.36,
+    258.03,
+    63.38,
+    "#e8e5e0"
+   ],
+   [
+    176.62,
+    452.44,
+    63.45,
+    "#e8e5e0"
+   ],
+   [
+    401.59,
+    452.34,
+    63.08,
+    "#f2dec5"
+   ]
+  ]
+ },
+ "mHexNeck": {
+  "src": "/img/sub/treatment-page02/m-hex-neck.jpg",
+  "wh": [
+   690,
+   617
+  ],
+  "discs": [
+   [
+    212.02,
+    77.16,
+    75.66,
+    "#e8e5e0"
+   ],
+   [
+    480.09,
+    77.23,
+    75.27,
+    "#f2dec5"
+   ],
+   [
+    77.01,
+    309.22,
+    75.16,
+    "#f2dec5"
+   ],
+   [
+    613.09,
+    309.21,
+    75.66,
+    "#e8e5e0"
+   ],
+   [
+    212.03,
+    541.22,
+    75.66,
+    "#e8e5e0"
+   ],
+   [
+    480.09,
+    541.13,
+    75.27,
+    "#f2dec5"
+   ]
+  ]
+ },
+ "mHexBack": {
+  "src": "/img/sub/treatment-page02/m-hex-back.jpg",
+  "wh": [
+   690,
+   617
+  ],
+  "discs": [
+   [
+    212.03,
+    77.44,
+    75.64,
+    "#e8e5e0"
+   ],
+   [
+    480.09,
+    77.51,
+    75.23,
+    "#f2dec5"
+   ],
+   [
+    76.91,
+    309.38,
+    75.11,
+    "#f2dec5"
+   ],
+   [
+    613.18,
+    309.4,
+    75.59,
+    "#e8e5e0"
+   ],
+   [
+    212.0,
+    541.32,
+    75.63,
+    "#e8e5e0"
+   ],
+   [
+    480.11,
+    541.22,
+    75.23,
+    "#f2dec5"
+   ]
+  ]
+ }
+}

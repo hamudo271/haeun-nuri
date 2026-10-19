@@ -1,0 +1,386 @@
+/* =========================================================================
+   의료진 소개(about/page03) — 원본 통이미지(1920px 시안)를 HTML/CSS 로 옮김
+   기준: 가운데 1300px(원본 x 310~1609). --u = 시안 1px 이 화면에서 차지하는 크기
+   1023px 이하: 모바일 750 시안(--m) 좌표를 그대로 씀
+   색(원본에서 측정): 이름 금색 #bc9c6e · 점 #bd9e72 · 직함 #626262 · 한 줄 소개 #584a3f
+        경력 #636363 · 구분선 #ebe7df · 아치 바탕 #f4efe9 · 어두운 사진 위 회색 글자 #968f89 · 금색 강조 #fcd497
+   ========================================================================= */
+.s-doc {
+  --u: min(1px, calc((100vw - 48px) / 1300));
+  --gold: #bc9c6e;
+  color: #1c1c1c;
+  overflow-x: clip;
+  word-break: keep-all;
+  letter-spacing: -0.03em;
+}
+.s-doc :where(p, h2, ul, figure) {
+  margin: 0;
+  padding: 0;
+}
+.s-doc ul {
+  list-style: none;
+}
+.s-doc em {
+  font-style: normal;
+}
+.s-doc img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.s-doc-in {
+  position: relative;
+  width: calc(1300 * var(--u));
+  height: 100%;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------- 진료 철학(어두운 사진) */
+.s-doc-quote {
+  position: relative;
+  height: calc(529 * var(--u));
+  margin-bottom: calc(42 * var(--u));
+  background: #3b3b3b;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+/* 전역 picture{display:contents} 라 img 에 직접 */
+.s-doc-quote > picture > img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.s-doc-quote .s-doc-in {
+  z-index: 1;
+}
+.s-doc-qm {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(66 * var(--u));
+  font-family: var(--font-serif-kr), 'Noto Serif KR', serif;
+  font-size: calc(40 * var(--u));
+  line-height: 1;
+  color: #968f89;
+}
+.s-doc-eb {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(109 * var(--u));
+  font-size: calc(19.5 * var(--u));
+  line-height: calc(24 * var(--u));
+  color: #968f89;
+  letter-spacing: -0.04em;
+}
+.s-doc-eb-ln {
+  display: block;
+  width: max-content;
+  margin: 0 auto;
+  padding-bottom: calc(2 * var(--u));
+  border-bottom: 1px solid #968f89;
+}
+.s-doc-eb-ln + .s-doc-eb-ln {
+  margin-top: calc(13 * var(--u));
+}
+.s-doc-vl {
+  position: absolute;
+  left: 50%;
+  top: calc(206 * var(--u));
+  width: 1px;
+  height: calc(64 * var(--u));
+  background: #666;
+}
+.s-doc-dot {
+  position: absolute;
+  left: calc(50% - 5.5 * var(--u));
+  top: calc(271.5 * var(--u));
+  width: calc(11 * var(--u));
+  height: calc(11 * var(--u));
+  border-radius: 50%;
+  background: #ffd396;
+  box-shadow:
+    0 0 0 calc(8 * var(--u)) #6b6660,
+    0 0 0 calc(14 * var(--u)) #58534d;
+}
+.s-doc-qt {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(314 * var(--u));
+  font-family: var(--font-serif-kr), 'Noto Serif KR', serif;
+  font-size: calc(32 * var(--u));
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+.s-doc-qt em {
+  color: #fcd497;
+}
+.s-doc-qx {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(364 * var(--u));
+  font-size: calc(19 * var(--u));
+  line-height: calc(34 * var(--u));
+  color: #fff;
+  letter-spacing: -0.035em;
+}
+.s-doc-ln {
+  display: block;
+}
+
+/* ---------------------------------------------------------------- 원장 */
+.s-doc-dr {
+  position: relative;
+  height: calc(var(--h) * var(--u));
+  --tx-x: 567;
+  --list-w: 740;
+  --col: 410;
+  --list-pad: 26;
+  --hex-x: 1138;
+  --ph-x: 0;
+}
+.s-doc-dr.is-r {
+  --tx-x: 1;
+  --list-w: 757;
+  --col: 364;
+  --list-pad: 25;
+  --hex-x: 569;
+  --ph-x: 786;
+}
+.s-doc-hex {
+  position: absolute;
+  z-index: 0;
+  left: calc(var(--hex-x) * var(--u));
+  top: calc(var(--hex-y) * var(--u));
+  width: calc(253 * var(--u));
+  height: calc(219 * var(--u));
+  background: url(/img/sub/about-page03/hex.svg) center / contain no-repeat;
+  opacity: 0.6;
+  pointer-events: none;
+}
+.s-doc-ph {
+  position: absolute;
+  z-index: 1;
+  left: calc(var(--ph-x) * var(--u));
+  top: calc(var(--ph-y) * var(--u));
+  width: calc(513 * var(--u));
+  height: calc(565 * var(--u));
+  border-radius: calc(256.5 * var(--u)) calc(256.5 * var(--u)) 0 0;
+  overflow: hidden;
+  background: #f4efe9;
+}
+.s-doc-ph img {
+  height: 100%;
+  object-fit: cover;
+}
+.s-doc-tx {
+  position: absolute;
+  z-index: 2;
+  left: calc(var(--tx-x) * var(--u));
+  top: calc(var(--tx-y) * var(--u));
+  width: calc(var(--list-w) * var(--u));
+}
+/* 이름 + 직함(점은 이름 왼쪽 위) */
+.s-doc-nm {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  gap: calc(17 * var(--u));
+  padding: calc(17 * var(--u)) 0 0 calc(13 * var(--u));
+  line-height: calc(48 * var(--u));
+  white-space: nowrap;
+}
+.s-doc-nm::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(12 * var(--u));
+  height: calc(12 * var(--u));
+  border-radius: 50%;
+  background: #bd9e72;
+}
+.s-doc-nm strong {
+  font-size: calc(35 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.08em;
+  color: var(--gold);
+}
+.s-doc-nm span {
+  font-size: calc(21.5 * var(--u));
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #626262;
+}
+.s-doc-lead {
+  margin: calc(11 * var(--u)) 0 0 calc(12 * var(--u));
+  font-family: var(--font-serif-kr), 'Noto Serif KR', serif;
+  font-size: calc(22.5 * var(--u));
+  line-height: calc(32 * var(--u));
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #584a3f;
+  white-space: nowrap;
+}
+/* 경력: 두 칸, 줄마다 구분선(칸 전체 너비) */
+.s-doc-list {
+  display: grid;
+  grid-template-columns: calc((var(--col) + var(--list-pad)) * var(--u)) 1fr;
+  margin: calc(23 * var(--u)) 0 0 calc(-9 * var(--u));
+  width: calc(var(--list-w) * var(--u));
+}
+.s-doc-list li {
+  display: flex;
+  align-items: center;
+  min-height: calc(48.5 * var(--u));
+  border-bottom: 1px solid #ebe7df;
+  font-size: calc(18 * var(--u));
+  line-height: calc(26 * var(--u));
+  letter-spacing: -0.04em;
+  color: #636363;
+}
+.s-doc-list > ul:first-child li {
+  padding-left: calc(var(--list-pad) * var(--u));
+}
+
+/* =========================================================================
+   모바일·태블릿(1023px 이하): 원본 모바일 시안(750px) 좌표
+   ========================================================================= */
+@media (max-width: 1023px) {
+  .s-doc {
+    --m: calc(min(100vw, 750px) / 750);
+    --u: var(--m);
+  }
+  .s-doc-in {
+    width: 100%;
+    max-width: 750px;
+  }
+  .s-doc-quote {
+    height: calc(668 * var(--m));
+    margin-bottom: calc(11 * var(--m));
+  }
+  .s-doc-qm {
+    top: calc(44 * var(--m));
+    font-size: calc(52 * var(--m));
+  }
+  .s-doc-eb {
+    top: calc(103 * var(--m));
+    font-size: calc(27 * var(--m));
+    line-height: calc(32 * var(--m));
+  }
+  .s-doc-eb-ln {
+    padding-bottom: calc(3 * var(--m));
+  }
+  .s-doc-eb-ln + .s-doc-eb-ln {
+    margin-top: calc(18 * var(--m));
+  }
+  .s-doc-vl {
+    top: calc(205 * var(--m));
+    width: 2px;
+    margin-left: -1px;
+    height: calc(85 * var(--m));
+  }
+  .s-doc-dot {
+    left: calc(50% - 8.5 * var(--m));
+    top: calc(293 * var(--m));
+    width: calc(17 * var(--m));
+    height: calc(17 * var(--m));
+    box-shadow:
+      0 0 0 calc(11 * var(--m)) #6b6660,
+      0 0 0 calc(20.5 * var(--m)) #58534d;
+  }
+  .s-doc-qt {
+    top: calc(351 * var(--m));
+    font-size: calc(42 * var(--m));
+  }
+  .s-doc-qx {
+    top: calc(423 * var(--m));
+    padding: 0 calc(60 * var(--m));
+    font-size: calc(26 * var(--m));
+    line-height: calc(41.5 * var(--m));
+  }
+  .s-doc-qx .s-doc-ln {
+    text-wrap: balance;
+  }
+  /* 원장: 사진 → 글 순서로 흐름 */
+  .s-doc-dr,
+  .s-doc-dr.is-r {
+    height: auto;
+    padding: calc(var(--phm-y) * var(--m)) 0 calc(var(--pbm) * var(--m));
+  }
+  .s-doc-hex {
+    z-index: 2;
+    left: calc(478 * var(--m));
+    top: calc((var(--phm-y) - 47) * var(--m));
+    width: calc(233 * var(--m));
+    height: calc(201 * var(--m));
+    opacity: 1;
+    mix-blend-mode: multiply;
+  }
+  .s-doc-ph {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: calc(513 * var(--m));
+    height: calc(565 * var(--m));
+    margin: 0 auto;
+  }
+  .s-doc-tx {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: auto;
+    margin-top: calc(58 * var(--m));
+    padding: 0 calc(30 * var(--m));
+  }
+  .s-doc-nm {
+    gap: calc(16 * var(--m));
+    padding: calc(2 * var(--m)) 0 0 calc(13 * var(--m));
+    line-height: calc(45 * var(--m));
+  }
+  .s-doc-nm::before {
+    width: calc(12 * var(--m));
+    height: calc(12 * var(--m));
+  }
+  .s-doc-nm strong {
+    font-size: calc(50 * var(--m));
+  }
+  .s-doc-nm span {
+    font-size: calc(26 * var(--m));
+  }
+  .s-doc-lead {
+    margin: calc(6 * var(--m)) 0 0 calc(12 * var(--m));
+    font-size: calc(29 * var(--m));
+    line-height: calc(38 * var(--m));
+    white-space: normal;
+  }
+  .s-doc-list,
+  .s-doc-dr.is-r .s-doc-list {
+    --col: 429;
+    --list-pad: 17;
+    width: auto;
+    margin: calc(17 * var(--m)) 0 0;
+  }
+  .s-doc-list li,
+  .s-doc-dr.is-r .s-doc-list li {
+    align-items: flex-start;
+    min-height: calc(62 * var(--m));
+    padding-top: calc(15 * var(--m));
+    padding-bottom: calc(15 * var(--m));
+    font-size: calc(21 * var(--m));
+    line-height: calc(32 * var(--m));
+    letter-spacing: -0.05em;
+  }
+  .s-doc-list > ul:first-child li,
+  .s-doc-dr.is-r .s-doc-list > ul:first-child li {
+    padding-left: calc(var(--list-pad) * var(--m));
+  }
+}

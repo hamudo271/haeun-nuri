@@ -1,0 +1,1087 @@
+/* =========================================================================
+   입원절차 안내 — 원본(1920px 시안·HTML 혼합)을 옮김. 모든 선택자는 .s-adm- 로 시작.
+   기준: .cx 의 --u(시안 1px), 가운데 1300px(.cx-in, 원본 x 310~1610)
+   색(원본에서 잰 값): 소제목 금색 #ba9a6b · 제목 #141414 · 요약 #767676 · 배지/탭 #bc9c70
+        검은 띠 #212529 · 띠 제목 강조 #ebcea4 · 연베이지 #f4efe9 · 버틀러 바탕 #f4f4f4
+   ========================================================================= */
+.s-adm {
+  --adm-gold: #ba9a6b;
+  --adm-badge: #bc9c70;
+  --adm-ink: #141414;
+  --adm-gray: #767676;
+  --adm-beige: #f4efe9;
+  --adm-dark: #212529;
+}
+.s-adm h3,
+.s-adm strong,
+.s-adm b {
+  margin: 0;
+}
+
+/* 공통 머리글: 짧은 갈색 선 + 금색 소제목 + 제목 + 요약 (원본 통이미지 01·02·05·06) */
+.s-adm-hd {
+  position: relative;
+  text-align: center;
+}
+.s-adm-bar {
+  display: block;
+  width: calc(48 * var(--u));
+  height: calc(5 * var(--u));
+  margin: 0 auto;
+  background: #735843;
+}
+.s-adm-eb {
+  margin-top: calc(42 * var(--u)) !important;
+  font-size: calc(26 * var(--u));
+  line-height: 1.2;
+  font-weight: 500;
+  color: var(--adm-gold);
+}
+.s-adm-t {
+  margin-top: calc(9 * var(--u)) !important;
+  font-size: calc(40 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--adm-ink);
+}
+.s-adm-lead {
+  margin-top: calc(21 * var(--u)) !important;
+  font-size: calc(19.5 * var(--u));
+  line-height: calc(30 * var(--u));
+  color: var(--adm-gray);
+}
+.s-adm em {
+  color: var(--adm-gold);
+}
+
+/* ---------------------------------------------------------------- 1. ONE-STOP + 원 3개 */
+.s-adm-top {
+  padding-top: calc(100 * var(--u));
+}
+.s-adm-top .s-adm-eb {
+  margin-top: calc(57 * var(--u)) !important;
+}
+/* 알약 테두리(1044×365) 안에 원 3개(315) */
+.s-adm-pill {
+  display: flex;
+  justify-content: space-between;
+  width: calc(1044 * var(--u));
+  height: calc(365 * var(--u));
+  margin: calc(82 * var(--u)) auto 0 !important;
+  padding: calc(24 * var(--u)) !important;
+  box-sizing: border-box;
+  border: 1px solid #dee2e6;
+  border-radius: calc(200 * var(--u));
+}
+.s-adm-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(315 * var(--u));
+  height: calc(315 * var(--u));
+  padding-bottom: calc(34 * var(--u));
+  box-sizing: border-box;
+  border-radius: 50%;
+  text-align: center;
+  color: var(--adm-dark);
+}
+.s-adm-circle--1 {
+  border: 1px solid #bc9c70;
+  background: #fff;
+}
+.s-adm-circle--2 {
+  background: var(--adm-badge);
+  color: #f8f9fa;
+}
+.s-adm-circle--3 {
+  background: var(--adm-dark);
+  color: #f8f9fa;
+}
+.s-adm-ci {
+  width: calc(46 * var(--u));
+  height: calc(46 * var(--u));
+  fill: currentColor;
+}
+.s-adm-circle--1 .s-adm-ci {
+  fill: var(--adm-badge);
+}
+.s-adm-circle h3 {
+  margin-top: calc(28 * var(--u));
+  font-size: calc(25 * var(--u));
+  line-height: calc(36 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+/* ---------------------------------------------------------------- 2. 맞춤 집중 입원 케어 */
+.s-adm-care {
+  padding-top: calc(132 * var(--u));
+}
+.s-adm-cares {
+  display: grid;
+  grid-template-columns: repeat(2, calc(626 * var(--u)));
+  gap: calc(16 * var(--u)) calc(23 * var(--u));
+  justify-content: center;
+  margin-top: calc(56 * var(--u)) !important;
+}
+.s-adm-care-card {
+  position: relative;
+  display: block;
+  height: calc(250 * var(--u));
+  border-radius: calc(6 * var(--u));
+  overflow: hidden;
+  color: #fff;
+  text-decoration: none;
+  isolation: isolate;
+}
+.s-adm-care-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+.s-adm-care-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+.s-adm-care-card:hover img {
+  transform: scale(1.05);
+}
+.s-adm-care-tx {
+  position: absolute;
+  z-index: 1;
+  left: calc(49 * var(--u));
+  bottom: calc(102 * var(--u));
+  display: flex;
+  flex-direction: column;
+  gap: calc(17 * var(--u));
+}
+.s-adm-care-en {
+  font-size: calc(19 * var(--u));
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  opacity: 0.7;
+}
+.s-adm-care-tx strong {
+  font-size: calc(34 * var(--u));
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* ---------------------------------------------------------------- 3. 입원치료 특별함(검은 띠) */
+.s-adm-dark {
+  margin-top: calc(100 * var(--u));
+  padding: calc(100 * var(--u)) 0 calc(100 * var(--u));
+  background: var(--adm-dark);
+  color: #f8f9fa;
+}
+.s-adm-dark-hd {
+  display: grid;
+  grid-template-columns: calc(650 * var(--u)) 1fr;
+  padding: 0 calc(33 * var(--u)) 0 calc(12 * var(--u));
+}
+.s-adm-dark-t {
+  font-size: calc(50 * var(--u));
+  line-height: calc(57 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #f8f9fa;
+}
+.s-adm-dark-t em {
+  color: #ebcea4;
+}
+.s-adm-dark-lead {
+  font-size: calc(20.5 * var(--u));
+  line-height: calc(29 * var(--u));
+  font-weight: 300;
+  color: #f8f9fa;
+}
+/* 사진(558×301) 오른쪽을 흰 상자(367×217)가 덮는 카드, 2열 */
+.s-adm-rooms {
+  display: flex;
+  gap: calc(60 * var(--u));
+  margin: calc(79 * var(--u)) calc(-24 * var(--u)) 0 calc(12 * var(--u)) !important;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.s-adm-rooms::-webkit-scrollbar {
+  display: none;
+}
+.s-adm-rooms li {
+  position: relative;
+  flex: none;
+  width: calc(608 * var(--u));
+  height: calc(301 * var(--u));
+  scroll-snap-align: start;
+}
+.s-adm-room-ph {
+  width: calc(558 * var(--u));
+  height: calc(301 * var(--u));
+  border-radius: calc(8 * var(--u));
+  overflow: hidden;
+}
+.s-adm-room-ph img {
+  height: 100%;
+  object-fit: cover;
+}
+.s-adm-room-box {
+  position: absolute;
+  left: calc(241 * var(--u));
+  top: calc(44 * var(--u));
+  width: calc(367 * var(--u));
+  height: calc(217 * var(--u));
+  padding: calc(82 * var(--u)) calc(16 * var(--u)) 0;
+  box-sizing: border-box;
+  border-radius: calc(10 * var(--u));
+  background: #fff;
+  color: #111;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.s-adm-room-box h3 {
+  font-size: calc(25 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.s-adm-room-box p {
+  margin-top: calc(3 * var(--u)) !important;
+  font-size: calc(18.5 * var(--u));
+  line-height: calc(27 * var(--u));
+  font-weight: 300;
+  color: #111;
+}
+
+/* ---------------------------------------------------------------- 4. 교통사고 한방치료비(띠) */
+.s-adm-band {
+  position: relative;
+  height: calc(731 * var(--u));
+  overflow: hidden;
+  isolation: isolate;
+}
+.s-adm-band-bg,
+.s-adm-band-bg img {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.s-adm-band-t {
+  padding-top: calc(100 * var(--u)) !important;
+  text-align: center;
+  font-size: calc(45 * var(--u));
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: #fff;
+}
+.s-adm-band-t em {
+  color: #f1d1a6;
+}
+/* 흰 상자: 원본 (463,198)~(1458,624), 반투명 흰 테두리 5px, 모서리 26 */
+.s-adm-box {
+  position: absolute;
+  left: calc(153 * var(--u));
+  top: calc(198 * var(--u));
+  width: calc(995 * var(--u));
+  height: calc(426 * var(--u));
+  box-sizing: border-box;
+  border: calc(5 * var(--u)) solid rgba(255, 255, 255, 0.39);
+  border-radius: calc(26 * var(--u));
+  background: #fff;
+  background-clip: padding-box;
+  text-align: center;
+  color: #242422;
+}
+.s-adm-box-eb {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(48 * var(--u));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(7 * var(--u));
+  font-size: calc(27 * var(--u));
+  line-height: calc(36 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #3d342b;
+}
+.s-adm-alert {
+  width: calc(36 * var(--u));
+  height: calc(36 * var(--u));
+  fill: #3d342b;
+}
+.s-adm-box-t {
+  position: absolute;
+  left: calc(158 * var(--u));
+  top: calc(93 * var(--u));
+  width: calc(669 * var(--u));
+  height: calc(38 * var(--u));
+  line-height: calc(38 * var(--u));
+  background: var(--adm-badge);
+  color: #fff;
+  font-size: calc(22 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.s-adm-box-t em {
+  color: #fff3aa;
+  font-weight: 700;
+}
+/* 원 4개(122) + 사이 연결선 */
+.s-adm-pills {
+  position: absolute;
+  left: calc(213 * var(--u));
+  top: calc(165 * var(--u));
+  display: flex;
+  gap: calc(25 * var(--u));
+}
+.s-adm-pills li {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(122 * var(--u));
+  height: calc(122 * var(--u));
+  border-radius: 50%;
+  background: var(--adm-beige);
+  font-size: calc(22 * var(--u));
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #242422;
+}
+.s-adm-pills li + li::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: calc(58 * var(--u));
+  width: calc(25 * var(--u));
+  height: calc(7 * var(--u));
+  background: var(--adm-beige);
+}
+.s-adm-box-chk {
+  position: absolute;
+  left: 50%;
+  top: calc(333 * var(--u));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: calc(15 * var(--u));
+  padding-bottom: calc(6 * var(--u)) !important;
+  border-bottom: calc(2 * var(--u)) solid #785036;
+  font-size: calc(20 * var(--u));
+  line-height: calc(26 * var(--u));
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  color: #78502f;
+}
+.s-adm-clip {
+  width: calc(26 * var(--u));
+  height: calc(27 * var(--u));
+  fill: #8b725c;
+}
+/* 일러스트(흰 상자 바닥에 붙음) */
+.s-adm-box picture img {
+  position: absolute;
+  bottom: 0;
+  width: auto;
+  height: auto;
+}
+.s-adm-box .s-adm-woman {
+  left: calc(18 * var(--u));
+  width: calc(188 * var(--u));
+}
+.s-adm-box .s-adm-doctor {
+  left: calc(794 * var(--u));
+  width: calc(184 * var(--u));
+}
+
+/* ---------------------------------------------------------------- 5. 버틀러 카드 5 */
+.s-adm-butler {
+  padding: calc(95 * var(--u)) 0 calc(118 * var(--u));
+  background: #f4f4f4;
+  box-shadow: inset 0 calc(-17 * var(--u)) 0 #fff;
+}
+.s-adm-butler .s-adm-lead,
+.s-adm-proc .s-adm-lead {
+  margin-top: calc(23 * var(--u)) !important;
+}
+.s-adm-bcards {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: calc(19 * var(--u)) calc(21 * var(--u));
+  margin: calc(50 * var(--u)) calc(-5 * var(--u)) 0 calc(5 * var(--u)) !important;
+}
+.s-adm-bcards li {
+  grid-column: span 2;
+  position: relative;
+  min-height: calc(300 * var(--u));
+  padding: calc(50 * var(--u)) calc(40 * var(--u)) calc(40 * var(--u)) calc(43 * var(--u));
+  box-sizing: border-box;
+  border-radius: calc(10 * var(--u));
+  background: #fff;
+  box-shadow: 0 calc(4 * var(--u)) calc(14 * var(--u)) rgba(0, 0, 0, 0.04);
+}
+.s-adm-bcards li:nth-child(n + 4) {
+  grid-column: span 3;
+  min-height: calc(280 * var(--u));
+}
+.s-adm-bi {
+  display: block;
+  height: calc(43 * var(--u));
+  width: auto;
+  fill: var(--adm-badge);
+}
+.s-adm-bcards h3 {
+  margin-top: calc(37 * var(--u));
+  font-size: calc(26 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #b89c6c;
+}
+.s-adm-bcards p {
+  margin-top: calc(12 * var(--u)) !important;
+  font-size: calc(18.5 * var(--u));
+  line-height: calc(28 * var(--u));
+  color: #636363;
+}
+
+/* ---------------------------------------------------------------- 6. 입원절차 흐름도 */
+.s-adm-proc {
+  padding: calc(86 * var(--u)) 0 calc(46 * var(--u));
+}
+.s-adm-flow {
+  position: relative;
+  display: flex;
+  margin-top: calc(57 * var(--u)) !important;
+  padding: 0 0 0 calc(62 * var(--u)) !important;
+  gap: calc(165 * var(--u));
+}
+/* 가로 금색 선(시작 점 포함) */
+.s-adm-flow::before {
+  content: '';
+  position: absolute;
+  left: calc(12 * var(--u));
+  right: calc(-10 * var(--u));
+  top: calc(88 * var(--u));
+  height: calc(8 * var(--u));
+  background: var(--adm-badge);
+}
+.s-adm-flow::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(80 * var(--u));
+  width: calc(25 * var(--u));
+  height: calc(25 * var(--u));
+  border-radius: 50%;
+  background: var(--adm-badge);
+}
+.s-adm-flow li {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  width: calc(186 * var(--u));
+  text-align: center;
+}
+/* 원 사이 화살표(원 사이 한가운데) */
+.s-adm-flow li + li::before {
+  content: '';
+  position: absolute;
+  left: calc(-97 * var(--u));
+  top: calc(78 * var(--u));
+  border-left: calc(28 * var(--u)) solid var(--adm-badge);
+  border-top: calc(14 * var(--u)) solid transparent;
+  border-bottom: calc(14 * var(--u)) solid transparent;
+}
+.s-adm-fc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(186 * var(--u));
+  height: calc(186 * var(--u));
+  border-radius: 50%;
+  background: var(--adm-beige);
+}
+.s-adm-fc b {
+  position: relative;
+  top: calc(-4 * var(--u));
+  font-size: calc(31 * var(--u));
+  line-height: 1.1;
+  font-weight: 500;
+  color: #a68550;
+}
+.s-adm-fc strong {
+  margin-top: calc(5 * var(--u));
+  font-size: calc(28 * var(--u));
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #101010;
+}
+.s-adm-flow .is-key .s-adm-fc {
+  background: linear-gradient(180deg, #d6b582, #e2a35e);
+}
+.s-adm-flow .is-key .s-adm-fc b,
+.s-adm-flow .is-key .s-adm-fc strong {
+  color: #fff;
+}
+/* 점선 + 끝 점 */
+.s-adm-flow p {
+  position: relative;
+  width: calc(300 * var(--u));
+  margin: calc(114 * var(--u)) 0 0 calc(-57 * var(--u)) !important;
+  font-size: calc(21.5 * var(--u));
+  line-height: calc(30 * var(--u));
+  letter-spacing: -0.03em;
+  color: #4b4b4b;
+}
+/* 원본의 줄바꿈 폭(항목마다 다름) */
+.s-adm-flow li:nth-child(1) p {
+  padding: 0 calc(55 * var(--u)) !important;
+}
+.s-adm-flow li:nth-child(2) p {
+  padding: 0 calc(75 * var(--u)) !important;
+}
+.s-adm-flow li:nth-child(3) p {
+  padding: 0 calc(37 * var(--u)) !important;
+}
+.s-adm-flow li:nth-child(4) p {
+  padding: 0 calc(5 * var(--u)) !important;
+}
+.s-adm-flow p::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(-109 * var(--u));
+  width: calc(4 * var(--u));
+  height: calc(64 * var(--u));
+  margin-left: calc(-2 * var(--u));
+  background: repeating-linear-gradient(180deg, #3f3530 0 calc(7 * var(--u)), transparent calc(7 * var(--u)) calc(12 * var(--u)));
+}
+.s-adm-flow p::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: calc(-35 * var(--u));
+  width: calc(12 * var(--u));
+  height: calc(12 * var(--u));
+  margin-left: calc(-6 * var(--u));
+  border-radius: 50%;
+  background: #3f352e;
+}
+
+/* ---------------------------------------------------------------- 7. STEP 탭 */
+.s-adm-steps {
+  padding: calc(99 * var(--u)) 0 calc(100 * var(--u));
+}
+.s-adm-tabs {
+  position: relative;
+  margin: 0 calc(24 * var(--u)) 0 calc(12 * var(--u));
+}
+.s-adm-tabs input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.s-adm-tabbar {
+  display: flex;
+}
+.s-adm-tabbar label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(80 * var(--u));
+  background: #e9ecef;
+  color: var(--adm-dark);
+  padding-bottom: calc(2 * var(--u));
+  box-sizing: border-box;
+  font-size: calc(16 * var(--u));
+  line-height: calc(24 * var(--u));
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+.s-adm-tabbar label:hover {
+  background: #dfe3e7;
+}
+.s-adm-pane {
+  display: none;
+  grid-template-columns: calc(478 * var(--u)) calc(563 * var(--u));
+  justify-content: space-between;
+  align-items: start;
+  padding: calc(48 * var(--u)) calc(37 * var(--u)) 0 calc(48 * var(--u));
+}
+#s-adm-st1:checked ~ .s-adm-tabbar label[for='s-adm-st1'],
+#s-adm-st2:checked ~ .s-adm-tabbar label[for='s-adm-st2'],
+#s-adm-st3:checked ~ .s-adm-tabbar label[for='s-adm-st3'],
+#s-adm-st4:checked ~ .s-adm-tabbar label[for='s-adm-st4'],
+#s-adm-st5:checked ~ .s-adm-tabbar label[for='s-adm-st5'],
+#s-adm-st6:checked ~ .s-adm-tabbar label[for='s-adm-st6'] {
+  background: var(--adm-badge);
+  color: #fff;
+}
+#s-adm-st1:checked ~ .s-adm-panes > .s-adm-pane:nth-child(1),
+#s-adm-st2:checked ~ .s-adm-panes > .s-adm-pane:nth-child(2),
+#s-adm-st3:checked ~ .s-adm-panes > .s-adm-pane:nth-child(3),
+#s-adm-st4:checked ~ .s-adm-panes > .s-adm-pane:nth-child(4),
+#s-adm-st5:checked ~ .s-adm-panes > .s-adm-pane:nth-child(5),
+#s-adm-st6:checked ~ .s-adm-panes > .s-adm-pane:nth-child(6) {
+  display: grid;
+  animation: s-adm-fade 0.4s ease;
+}
+@keyframes s-adm-fade {
+  from {
+    opacity: 0;
+  }
+}
+.s-adm-step-tx {
+  padding-top: calc(20 * var(--u));
+}
+.s-adm-step-tx h3 {
+  font-size: calc(42 * var(--u));
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--adm-dark);
+}
+.s-adm-step-tx h3 b {
+  color: var(--adm-badge);
+}
+.s-adm-step-tx ul {
+  margin-top: calc(38 * var(--u)) !important;
+  border-top: 1px solid #ddd;
+}
+.s-adm-step-tx li {
+  padding: calc(12 * var(--u)) 0 !important;
+  border-bottom: 1px solid #ddd;
+  font-size: calc(17.5 * var(--u));
+  line-height: calc(24 * var(--u));
+  letter-spacing: -0.03em;
+  color: #646669;
+}
+.s-adm-step-ph {
+  width: calc(563 * var(--u));
+}
+
+/* =========================================================================
+   모바일·태블릿(1023px 이하): 원본 모바일(750px 시안·부트스트랩 1열) 기준, --m
+   ========================================================================= */
+@media (max-width: 1023px) {
+  .s-adm-bar {
+    width: calc(48 * var(--m));
+    height: calc(5 * var(--m));
+  }
+  .s-adm-eb {
+    margin-top: calc(44 * var(--m)) !important;
+    font-size: calc(32 * var(--m));
+  }
+  .s-adm-t {
+    margin-top: calc(6 * var(--m)) !important;
+    font-size: calc(50 * var(--m));
+  }
+  .s-adm-lead {
+    margin-top: calc(26 * var(--m)) !important;
+    font-size: calc(26 * var(--m));
+    line-height: calc(34 * var(--m));
+  }
+  /* 원본 모바일은 요약의 PC 줄바꿈을 대부분 풀어 쓴다(케어·절차 섹션만 유지) */
+  .s-adm-lead br,
+  .s-adm-dark-lead br {
+    display: none;
+  }
+  .s-adm-keepbr br {
+    display: inline;
+  }
+  /* 1 */
+  .s-adm-top {
+    padding-top: calc(80 * var(--m));
+  }
+  .s-adm-top .s-adm-lead {
+    max-width: calc(560 * var(--m));
+    margin-inline: auto !important;
+  }
+  .s-adm-pill {
+    flex-direction: column;
+    gap: calc(31 * var(--m));
+    width: calc(488 * var(--m));
+    height: auto;
+    margin-top: calc(118 * var(--m)) !important;
+    padding: calc(48 * var(--m)) !important;
+    border-radius: calc(300 * var(--m));
+  }
+  .s-adm-circle {
+    width: calc(392 * var(--m));
+    height: calc(392 * var(--m));
+  }
+  .s-adm-ci {
+    width: calc(84 * var(--m));
+    height: calc(84 * var(--m));
+  }
+  .s-adm-circle h3 {
+    margin-top: calc(30 * var(--m));
+    font-size: calc(31 * var(--m));
+    line-height: calc(44 * var(--m));
+  }
+  /* 2 */
+  .s-adm-care {
+    padding-top: calc(120 * var(--m));
+  }
+  .s-adm-care .s-adm-lead {
+    margin-inline: calc(-25 * var(--m)) !important;
+  }
+  .s-adm-cares {
+    grid-template-columns: 1fr;
+    gap: calc(15 * var(--m));
+    margin: calc(60 * var(--m)) calc(6 * var(--m)) 0 !important;
+  }
+  .s-adm-care-card {
+    height: calc(481 * var(--m));
+    border-radius: calc(10 * var(--m));
+  }
+  .s-adm-care-tx {
+    left: calc(40 * var(--m));
+    top: calc(118 * var(--m));
+    bottom: auto;
+    gap: calc(16 * var(--m));
+  }
+  .s-adm-care-en {
+    font-size: calc(25 * var(--m));
+  }
+  .s-adm-care-tx strong {
+    font-size: calc(38 * var(--m));
+  }
+  /* 3 */
+  .s-adm-dark {
+    margin-top: calc(96 * var(--m));
+    padding: calc(96 * var(--m)) 0 calc(96 * var(--m));
+  }
+  .s-adm-dark-hd {
+    grid-template-columns: 1fr;
+    padding: 0 calc(6 * var(--m));
+  }
+  .s-adm-dark-t {
+    font-size: calc(48 * var(--m));
+    line-height: calc(62 * var(--m));
+  }
+  .s-adm-dark-lead {
+    margin-top: calc(50 * var(--m)) !important;
+    font-size: calc(25 * var(--m));
+    line-height: calc(37 * var(--m));
+  }
+  .s-adm-rooms {
+    gap: calc(40 * var(--m));
+    margin: calc(60 * var(--m)) calc(6 * var(--m)) 0 !important;
+    padding-bottom: 0 !important;
+  }
+  .s-adm-rooms li {
+    width: 100%;
+    height: auto;
+    padding-bottom: calc(60 * var(--m));
+  }
+  .s-adm-room-ph {
+    width: calc(100% - 100 * var(--m));
+    height: calc(304 * var(--m));
+    border-radius: calc(12 * var(--m));
+  }
+  .s-adm-room-box {
+    left: auto;
+    right: 0;
+    top: calc(75 * var(--m));
+    width: calc(380 * var(--m));
+    height: auto;
+    min-height: calc(152 * var(--m));
+    padding: calc(30 * var(--m)) calc(24 * var(--m)) calc(30 * var(--m));
+    border-radius: calc(12 * var(--m));
+  }
+  .s-adm-room-box h3 {
+    font-size: calc(28 * var(--m));
+  }
+  .s-adm-room-box p {
+    margin-top: calc(10 * var(--m)) !important;
+    font-size: calc(22 * var(--m));
+    line-height: calc(32 * var(--m));
+  }
+  /* 4: 모바일 띠 750×882, 상자 (22,229)~(728,796) */
+  .s-adm-band {
+    height: calc(882 * var(--m));
+  }
+  .s-adm-band .cx-in {
+    padding: 0;
+  }
+  .s-adm-band-t {
+    padding: calc(80 * var(--m)) calc(20 * var(--m)) 0 !important;
+    font-size: calc(46 * var(--m));
+    line-height: calc(58 * var(--m));
+  }
+  .s-adm-box {
+    left: calc(22 * var(--m));
+    top: calc(229 * var(--m));
+    width: calc(706 * var(--m));
+    height: calc(567 * var(--m));
+    border-width: calc(5 * var(--m));
+    border-radius: calc(26 * var(--m));
+  }
+  .s-adm-box-eb {
+    top: calc(44 * var(--m));
+    gap: calc(10 * var(--m));
+    font-size: calc(26 * var(--m));
+    line-height: calc(36 * var(--m));
+  }
+  .s-adm-alert {
+    width: calc(36 * var(--m));
+    height: calc(36 * var(--m));
+  }
+  .s-adm-box-t {
+    left: calc(41 * var(--m));
+    top: calc(95 * var(--m));
+    width: calc(615 * var(--m));
+    height: auto;
+    min-height: calc(101 * var(--m));
+    padding: calc(14 * var(--m)) calc(20 * var(--m));
+    box-sizing: border-box;
+    font-size: calc(24 * var(--m));
+    line-height: calc(36 * var(--m));
+    text-wrap: balance;
+  }
+  .s-adm-pills {
+    left: calc(40 * var(--m));
+    top: calc(222 * var(--m));
+    gap: calc(27 * var(--m));
+  }
+  .s-adm-pills li {
+    width: calc(134 * var(--m));
+    height: calc(134 * var(--m));
+    font-size: calc(22 * var(--m));
+  }
+  .s-adm-pills li + li::before {
+    top: calc(64 * var(--m));
+    width: calc(27 * var(--m));
+    height: calc(6 * var(--m));
+  }
+  .s-adm-box-chk {
+    top: calc(376 * var(--m));
+    flex-direction: column;
+    gap: calc(8 * var(--m));
+    padding-bottom: calc(4 * var(--m)) !important;
+    border-bottom-width: calc(2 * var(--m));
+    font-size: calc(24 * var(--m));
+    line-height: calc(36 * var(--m));
+    white-space: normal;
+    width: calc(400 * var(--m));
+    text-align: center;
+  }
+  .s-adm-clip {
+    width: calc(30 * var(--m));
+    height: calc(31 * var(--m));
+  }
+  .s-adm-box .s-adm-woman {
+    left: calc(20 * var(--m));
+    width: calc(130 * var(--m));
+  }
+  .s-adm-box .s-adm-doctor {
+    left: auto;
+    right: calc(24 * var(--m));
+    width: calc(127 * var(--m));
+  }
+  /* 5 */
+  .s-adm-butler {
+    padding: calc(50 * var(--m)) 0 calc(80 * var(--m));
+    box-shadow: none;
+  }
+  .s-adm-butler .cx-in {
+    padding: 0 calc(15 * var(--m));
+  }
+  .s-adm-bcards {
+    grid-template-columns: 1fr;
+    gap: calc(20 * var(--m));
+    margin: calc(32 * var(--m)) 0 0 !important;
+  }
+  .s-adm-bcards li,
+  .s-adm-bcards li:nth-child(n + 4) {
+    grid-column: auto;
+    display: grid;
+    grid-template-columns: calc(70 * var(--m)) 1fr;
+    column-gap: calc(31 * var(--m));
+    align-items: start;
+    min-height: calc(222 * var(--m));
+    padding: calc(58 * var(--m)) calc(40 * var(--m)) calc(46 * var(--m)) calc(69 * var(--m));
+    border-radius: calc(14 * var(--m));
+  }
+  .s-adm-bi {
+    height: calc(52 * var(--m));
+    max-width: 100%;
+  }
+  .s-adm-bcards h3 {
+    margin-top: 0;
+    font-size: calc(30 * var(--m));
+  }
+  .s-adm-bcards p {
+    margin-top: calc(10 * var(--m)) !important;
+    font-size: calc(24 * var(--m));
+    line-height: calc(36 * var(--m));
+  }
+  /* 6: 2열 두 줄 */
+  .s-adm-proc {
+    padding: calc(72 * var(--m)) 0 calc(60 * var(--m));
+  }
+  .s-adm-proc .cx-in {
+    padding: 0;
+  }
+  .s-adm-flow {
+    flex-wrap: wrap;
+    gap: calc(40 * var(--m)) 0;
+    margin-top: calc(56 * var(--m)) !important;
+    padding: 0 !important;
+  }
+  .s-adm-flow::before,
+  .s-adm-flow::after {
+    display: none;
+  }
+  .s-adm-flow li {
+    width: 50%;
+    padding-bottom: calc(20 * var(--m));
+  }
+  /* 줄마다 가로 선: 첫 줄은 시작 점부터 오른쪽 끝까지, 둘째 줄은 왼쪽 끝부터 4번 원까지 */
+  .s-adm-flow li::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    right: 0;
+    top: calc(88 * var(--m));
+    height: calc(8 * var(--m));
+    background: var(--adm-badge);
+  }
+  .s-adm-flow li:nth-child(1)::after {
+    left: calc(20 * var(--m));
+  }
+  .s-adm-flow li:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    left: calc(20 * var(--m));
+    top: calc(80 * var(--m));
+    width: calc(25 * var(--m));
+    height: calc(25 * var(--m));
+    border: 0;
+    border-radius: 50%;
+    background: var(--adm-badge);
+  }
+  .s-adm-flow li:nth-child(4)::after {
+    right: 50%;
+  }
+  .s-adm-flow li + li::before {
+    left: calc(-14 * var(--m));
+    top: calc(78 * var(--m));
+    border-left-width: calc(28 * var(--m));
+    border-top-width: calc(14 * var(--m));
+    border-bottom-width: calc(14 * var(--m));
+  }
+  /* 첫 줄 오른쪽 끝 화살표(원본: 화면 밖으로 이어지는 선 끝) */
+  .s-adm-flow li:nth-child(3)::before {
+    display: none;
+  }
+  .s-adm-flow li:nth-child(2) .s-adm-fc::after {
+    content: '';
+    position: absolute;
+    right: calc(-6 * var(--m));
+    top: calc(78 * var(--m));
+    border-left: calc(28 * var(--m)) solid var(--adm-badge);
+    border-top: calc(14 * var(--m)) solid transparent;
+    border-bottom: calc(14 * var(--m)) solid transparent;
+  }
+  .s-adm-fc {
+    position: relative;
+    width: calc(184 * var(--m));
+    height: calc(184 * var(--m));
+    margin: 0 auto;
+  }
+  .s-adm-fc b {
+    font-size: calc(28 * var(--m));
+  }
+  .s-adm-fc strong {
+    font-size: calc(30 * var(--m));
+  }
+  .s-adm-flow p {
+    width: auto;
+    margin: calc(96 * var(--m)) calc(10 * var(--m)) 0 !important;
+    font-size: calc(26 * var(--m));
+    line-height: calc(34 * var(--m));
+  }
+  .s-adm-flow p::before {
+    top: calc(-94 * var(--m));
+    width: calc(4 * var(--m));
+    height: calc(52 * var(--m));
+    margin-left: calc(-2 * var(--m));
+    background: repeating-linear-gradient(180deg, #3f3530 0 calc(7 * var(--m)), transparent calc(7 * var(--m)) calc(12 * var(--m)));
+  }
+  .s-adm-flow p::after {
+    top: calc(-34 * var(--m));
+    width: calc(12 * var(--m));
+    height: calc(12 * var(--m));
+    margin-left: calc(-6 * var(--m));
+  }
+  /* 7 */
+  .s-adm-steps {
+    padding: calc(60 * var(--m)) 0 calc(90 * var(--m));
+  }
+  .s-adm-steps .cx-in {
+    padding: 0 calc(23 * var(--m));
+  }
+  .s-adm-tabs {
+    margin: 0;
+  }
+  .s-adm-tabbar label {
+    height: calc(102 * var(--m));
+    font-size: calc(24 * var(--m));
+    line-height: 1;
+  }
+  .s-adm-tabbar label span:first-child {
+    display: none;
+  }
+  .s-adm-pane,
+  #s-adm-st1:checked ~ .s-adm-panes > .s-adm-pane:nth-child(1),
+  #s-adm-st2:checked ~ .s-adm-panes > .s-adm-pane:nth-child(2),
+  #s-adm-st3:checked ~ .s-adm-panes > .s-adm-pane:nth-child(3),
+  #s-adm-st4:checked ~ .s-adm-panes > .s-adm-pane:nth-child(4),
+  #s-adm-st5:checked ~ .s-adm-panes > .s-adm-pane:nth-child(5),
+  #s-adm-st6:checked ~ .s-adm-panes > .s-adm-pane:nth-child(6) {
+    grid-template-columns: 1fr;
+    padding: calc(31 * var(--m)) calc(31 * var(--m)) 0;
+  }
+  .s-adm-step-ph {
+    order: -1;
+    width: 100%;
+  }
+  .s-adm-step-tx h3 {
+    margin-top: calc(14 * var(--m));
+    font-size: calc(43 * var(--m));
+  }
+  .s-adm-step-tx ul {
+    margin-top: calc(24 * var(--m)) !important;
+  }
+  .s-adm-step-tx li {
+    padding: calc(16 * var(--m)) 0 !important;
+    font-size: calc(28 * var(--m));
+    line-height: calc(35 * var(--m));
+  }
+}

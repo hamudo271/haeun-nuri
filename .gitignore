@@ -1,0 +1,15 @@
+# 비밀값·로컬 상태
+.dev.vars
+.env*
+.wrangler/
+
+# 의존성·빌드 결과
+node_modules/
+.next/
+out/
+*.tsbuildinfo
+
+# 기타
+.DS_Store
+__pycache__/
+*.log
