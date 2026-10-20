@@ -4,13 +4,14 @@
 참고: 더가든피부과(thegardenclinic.co.kr)의 연출 방식(절제된 색, 세리프 영문 라벨, 고정 스크롤, 숫자 카운트, 원형 의료진 컷, 번호 격자, 아치 전환, 알약형 카드, 원근 갤러리, 회전 예약 버튼).
 더가든의 사진·문구·로고는 쓰지 않았습니다. 사진은 모두 해운누리 원본 사이트의 사진입니다.
 
-- 작업일: 2026-10-03 · Next.js 16.3.8 / React 19 · 정적 내보내기(`out/`) · 외부 라이브러리 없음(움직임은 `components/Motion.tsx` 하나로 처리)
+- 작업일: 2026-10-03 · Next.js 16.3.8 / React 19 · 정적 내보내기(`out/`) + Express 서버(`server/`, 2026-10-20~) · 화면에는 외부 라이브러리 없음(움직임은 `components/Motion.tsx` 하나로 처리)
 
 ## 실행
 ```bash
 npm install
-npm run dev     # http://localhost:3000 (127.0.0.1 말고 localhost)
+npm run dev     # http://localhost:3000 (127.0.0.1 말고 localhost) — 화면만
 npm run build   # 정적 파일 → out/
+npm start       # server/ 가 out/ 과 관리자(/admin)를 함께 내보냄 (아래 '서버·관리자')
 ```
 
 ## 구조
@@ -36,27 +37,40 @@ public/img/               원본 사이트 사진(서브 본문 사진은 통이
 
 ## 원본과 달라진 점(의도)
 - 통이미지 → 실제 텍스트(모바일 가독성·검색 노출·수정 용이). 원고 문장은 그대로(원본 오탈자도 그대로 둠).
-- 공지사항 2건은 고정 페이지(글쓰기·검색 기능 없음). 첨부 엑셀은 `public/files/`.
+- 공지사항은 관리자 게시판에서 쓴다(예전 2건은 데이터베이스로 옮김). 첨부 엑셀은 `public/files/`.
 - 추적·우클릭 방지 스크립트 없음.
 
 ## 다시 만들 때(원고·사진 추출 도구는 상위 폴더)
 `../tools/extract_photos.py`(사진 자르기) → `../tools/fix_photos.py`(빠진 사진 보충) → `../tools/renewal_assets.py`(이 프로젝트로 복사, 번호 배지 지움).
 검증: `../renew-verify/shoot.js`(PC·모바일 캡처·오류 점검), `../renew-verify/interact.js`(동작 점검).
 
-## 배포 (Railway, 2026-10-19~)
-- GitHub `hamudo271/haeun-nuri` main → Railway 가 `npm run build` 뒤 `npm start` 실행.
-- `npm start` = `serve` 로 `out/` 정적 파일을 `$PORT` 에서 내보낸다(`next start` 는 정적 내보내기에서 동작하지 않음). 폴더 목록 숨김·끝 슬래시는 `public/serve.json`.
-- 아직 Cloudflare 전용인 것: 관리자(`/admin`)·유튜브·전문칼럼(`functions/`, D1)은 Railway 에서 동작하지 않는다(화면 틀만 보임). CMS 이전 예정.
+## 서버·관리자 (Railway, 2026-10-20~) — 얼굴본성형외과와 같은 방식
+- 화면은 Next.js 가 정적으로 만든 `out/`, 그것을 `server/`(Express) 가 내보낸다. `npm start` = `node server/server.js`.
+- 서버가 하는 일: 게시판 쪽(해운누리 소식·전문칼럼·유튜브)과 비급여 진료비용을 데이터베이스 글로 채움(Next.js 틀의 `#cms-root`), 메인 팝업, 방문 집계(`public/js/track.js`), 광고·분석 코드, `/sitemap.xml`·`/rss.xml` 에 글 주소 추가, 관리자 `/admin`.
+- 관리자 `/admin`(빌드 없는 HTML·CSS·JS, `server/admin/`): 대시보드 · 상담 관리 · 예약 일정 · 유입 분석 · 게시판 · 홈페이지(팝업·비급여·광고 코드) · 설정(직원 계정·접속 기록 등). 얼굴본 관리자를 옮겨 와 이름·색·메뉴 주소만 바꿨다.
+- 해운누리에는 상담 신청서가 없어(예약은 네이버, 상담은 카톡) 상담 관리는 직원이 직접 등록하는 용도.
+- 예전 공지 2건(lib/board.ts)은 처음 켤 때 같은 번호(5, 1)로 데이터베이스에 들어간다 → `/sub/board/page01/5/` 그대로.
 
-## 배포 (Cloudflare Pages)
-- 주소: https://haeun-nuri-renewal.pages.dev (프로젝트 `haeun-nuri-renewal`, 2026-10-03, 검색 차단)
-- 다시 올리기(스테이징): `npm run deploy:staging` — 빌드 뒤 `scripts/write-headers.mjs` 가 `out/_headers`(전 페이지 noindex + 캐시)를 쓴다.
-- 운영 빌드: `npm run build:prod` — robots 메타를 넣지 않고 `_headers` 는 `/admin/*` 만 noindex. 운영 도메인 전환 때만 쓴다(스테이징 프로젝트에 올리면 noindex 가 풀림).
-- 검색 설정: 쪽마다 `alternates.canonical`(끝 슬래시 포함). 전문칼럼 본문은 `functions/sub/media` 가 글 주소로 canonical 을 붙이므로 `sub/media/page02/view` 틀에는 넣지 않는다.
-  - 빌드 전에 `python3 ../tools/webp_images.py && python3 ../tools/imgsize.py` 로 WebP 사본과 그림 크기 표를 갱신한다(새 이미지를 넣었을 때). 사진은 `components/Pic.tsx`(`<picture>` WebP 우선 + width/height) 로 넣는다.
-  - 글꼴: Pretendard 는 `public/fonts/pretendard/`(92개 동적 서브셋, OFL) + `app/fonts.css` 로 같은 서버에서 내보내고, 영문 Cormorant Garamond 는 `next/font/google`(빌드 때 1회 내려받음 → 빌드는 인터넷 연결 필요) 로 넣는다. 외부 CDN 요청 없음.
-  - AI 점검 보고서: `../AI_CHECK_REPORT_2026-10-06.md`
-  - 실서비스로 옮길 때는 `npm run build:prod` 결과를 올린다(noindex 메타·헤더가 자동으로 빠짐).
+### Railway 변수 (haeun-nuri 서비스 → Variables)
+| 이름 | 내용 |
+|---|---|
+| `DATABASE_URL` | 같은 프로젝트의 Postgres 주소 (`${{Postgres.DATABASE_URL}}`) |
+| `ADMIN_PASSWORD` | 대표 관리자(아이디 `admin`) 비밀번호 |
+| `SITE_URL` | (선택) 대표 주소. 기본값 `https://www.haeun-nuri.com` |
+| `NOTIFY_WEBHOOK_URL` / `NOTIFY_EMAIL` + `SMTP_URL` | (선택) 새 상담 알림 |
+
+변수가 없어도 페이지는 모두 열린다(게시판 쪽은 빈 틀). `/healthz` 로 데이터베이스·비밀번호 상태를 확인한다. `*.up.railway.app` 주소는 검색 차단(X-Robots-Tag).
+
+### 로컬에서 돌리기
+```bash
+npm run build
+DATABASE_URL=postgres://… ADMIN_PASSWORD=… PORT=8090 npm start   # http://localhost:8090, 관리자 /admin
+```
+`npm run dev` 는 화면만(관리자·게시판 글 없음).
+
+- 운영 도메인으로 옮길 때는 빌드 명령을 `npm run build:prod` 로 바꾼다(robots noindex 메타가 빠짐).
+- 남은 일(다음 단계): 기존 Cloudflare D1 의 칼럼·영상 옮기기, 칼럼 작성 원장 표시, 직원에게만 보이는 '수정' 버튼, 공지 상단 고정.
+- 알아 둘 점: 글 한 편 페이지의 `<title>` 은 서버가 바꿔 보내지만, 브라우저에서 Next.js 가 틀의 제목('전문칼럼 | 해운누리한의원')으로 다시 바꾼다(검색엔진이 받는 HTML 은 글 제목).
 
 ## 진료과목 7쪽 = 코딩 화면 (2026-10-06)
 - 자동차사고·척추관절·내과·여성·피부·정신건강·다이어트는 통이미지 조각 대신 HTML/CSS 로 원본 디자인을 그대로 다시 그린다.

@@ -60,6 +60,7 @@ export default function Footer() {
             <p className="links">
               <a href="/service_rull/">이용안내</a>
               <a href="/personal/">개인정보보호정책</a>
+              <a href="/nonpay/">비급여 진료비용</a>
             </p>
             <p>
               {SITE.address}

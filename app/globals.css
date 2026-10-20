@@ -5059,3 +5059,50 @@ picture {
 .js .outro-in {
   opacity: var(--p, 0);
 }
+
+/* 비급여 진료비용 — 표는 관리자(홈페이지 → 비급여 진료비용)에서 저장하면 서버가 채운다 */
+.nonpay .price-date {
+  margin-bottom: 24px;
+  text-align: right;
+  font-size: 14.5px;
+  color: var(--muted);
+}
+.nonpay .price-group + .price-group {
+  margin-top: 40px;
+}
+.nonpay .price-group h2 {
+  margin-bottom: 14px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.nonpay .price-wrap {
+  overflow-x: auto;
+}
+.nonpay .price-table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  border-top: 2px solid var(--ink);
+  font-size: 15.5px;
+}
+.nonpay .price-table th,
+.nonpay .price-table td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.nonpay .price-table thead th {
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+}
+.nonpay .price-table tbody th {
+  font-weight: 500;
+  color: var(--ink);
+}
+.nonpay .price-table td:nth-child(2) {
+  color: var(--gold-d);
+  font-weight: 600;
+  white-space: nowrap;
+}

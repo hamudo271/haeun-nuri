@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "type": "module",
+  "description": "해운누리한의원 서버: Next.js 가 만든 out/ 을 내보내고 관리자(/admin)·게시판·방문 집계를 돌린다. 의존성은 루트 package.json"
+}

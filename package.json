@@ -5,20 +5,24 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:staging": "next build && node scripts/write-headers.mjs",
-    "build:prod": "NEXT_PUBLIC_SITE_ENV=production next build && NEXT_PUBLIC_SITE_ENV=production node scripts/write-headers.mjs",
-    "deploy:staging": "npm run build:staging && npx wrangler pages deploy out --project-name haeun-nuri-renewal --branch main --commit-dirty=true",
-    "start": "serve out --no-clipboard -l tcp://0.0.0.0:${PORT:-3000}",
+    "build:prod": "NEXT_PUBLIC_SITE_ENV=production next build",
+    "start": "node server/server.js",
+    "start:local": "node --env-file-if-exists=.env server/server.js",
     "lint": "eslint"
   },
   "engines": {
-    "node": ">=20.9"
+    "node": ">=22"
   },
   "dependencies": {
+    "compression": "1.8.2",
+    "express": "4.22.3",
+    "multer": "2.4.0",
     "next": "16.3.8",
+    "nodemailer": "10.0.13",
+    "pg": "8.23.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "serve": "14.2.4"
+    "sharp": "0.35.5"
   },
   "devDependencies": {
     "@types/node": "^20",
