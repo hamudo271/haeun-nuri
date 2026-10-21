@@ -73,6 +73,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="ko" className={`${serif.variable} ${kserif.variable}`}>
       <head>
+        {/* RSS 자동 발견: 네이버·구글·피드 리더가 /rss.xml 을 찾는다. 페이지마다 alternates.canonical 을 쓰므로 metadata 대신 여기에 둔다 */}
+        <link rel="alternate" type="application/rss+xml" title="해운누리한의원 소식·전문칼럼" href="https://www.haeun-nuri.com/rss.xml" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       </head>
       <body id="top">

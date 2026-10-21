@@ -12,6 +12,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import * as R from "./render.js";
+import * as feeds from "./feeds.js";
 import { db, state, init, getSetting, setSetting } from "./db.js";
 import { h, need, ownerOnly, whoIs, audit, authRoutes, ensureOwner, hasOwnerPassword } from "./auth.js";
 import * as consult from "./consult.js";
@@ -369,26 +370,25 @@ for (const b of BOARDS) {
 // the empty frames themselves are not pages
 app.get(["/sub/board/page01/view/", "/sub/media/page02/view/"], (req, res) => res.redirect(302, req.path.replace(/view\/$/, "")));
 
+// search engines: every page plus the published posts with their pictures (server/feeds.js)
+const publishedForFeeds = async (cols) => {
+  const { rows } = await db.query(`select ${cols} from posts where published order by created_at desc, id desc`);
+  return { rows, pics: await mediaOf(rows.filter((p) => p.cat !== "video").map((p) => p.id)) };
+};
 app.get("/sitemap.xml", h(async (req, res, next) => {
   const SITEMAP = (() => { try { return fs.readFileSync(path.join(OUT, "sitemap.xml"), "utf8"); } catch { return ""; } })();
   if (!db || !state.ready || !SITEMAP) return next();
-  const { rows } = await db.query("select id, cat, updated_at from posts where published and cat <> 'video' order by id");
-  const extra = rows.map((p) => `<url><loc>${SITE}${R.postUrl(p)}</loc><lastmod>${R.ymd(p.updated_at)}</lastmod></url>\n`).join("");
+  const { rows, pics } = await publishedForFeeds("id, cat, updated_at");
   res.set({ "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "no-cache" });
-  res.send(SITEMAP.replace("</urlset>", `${extra}</urlset>`));
+  res.send(feeds.sitemapXml(SITE, SITEMAP, rows, pics));
 }));
 
-// the feed for Naver Search Advisor: the 50 newest posts
+// the feed for 네이버 서치어드바이저 (RSS 제출) and feed readers: 해운누리 소식 · 전문칼럼, the 50 newest
 app.get("/rss.xml", h(async (req, res, next) => {
   if (!db || !state.ready) return next();
-  const { rows } = await db.query("select id, cat, title, body, youtube, created_at from posts where published order by created_at desc, id desc limit 50");
-  const items = rows.map((p) => {
-    const link = p.cat === "video" ? `https://www.youtube.com/watch?v=${R.youtubeId(p.youtube)}` : `${SITE}${R.postUrl(p)}`;
-    const desc = R.excerpt(p.body, 150) || `해운누리한의원 ${R.CATS[p.cat]}`;
-    return `    <item>\n      <title>${R.esc(p.title)}</title>\n      <link>${R.esc(link)}</link>\n      <guid isPermaLink="true">${R.esc(link)}</guid>\n      <description>${R.esc(desc)}</description>\n      <category>${R.CATS[p.cat] || ""}</category>\n      <pubDate>${new Date(p.created_at).toUTCString()}</pubDate>\n    </item>\n`;
-  }).join("");
+  const { rows, pics } = await publishedForFeeds("id, cat, title, body, created_at, updated_at");
   res.set({ "Content-Type": "application/xml; charset=utf-8", "Cache-Control": "no-cache" });
-  res.send(`<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n  <channel>\n    <title>해운누리한의원</title>\n    <link>${SITE}/</link>\n    <description>해운누리한의원 소식 · 전문칼럼 · 유튜브</description>\n    <language>ko</language>\n${items}  </channel>\n</rss>\n`);
+  res.send(feeds.rssXml(SITE, rows.filter((p) => p.cat !== "video").slice(0, 50), pics));
 }));
 
 /* ---------- the admin app: one page, its own files, never indexed or framed ---------- */
