@@ -1,10 +1,9 @@
-import { Noto_Serif_KR } from 'next/font/google';
 import Rich from '../Rich';
 import { loadPage } from '@/lib/content';
 import './doctors.css';
 
 /* 원본: 소개 제목·한 줄 소개는 명조 */
-const serifKr = Noto_Serif_KR({ weight: ['400', '700'], subsets: ['latin'], display: 'swap', preload: false, variable: '--font-serif-kr' });
+// 명조(Noto Serif KR)는 자체 부분 글꼴('HN KSerif', app/globals.css · scripts/fonts/subset.py) — 구글 폰트 CSS(렌더링 차단) 없이 같은 글꼴
 
 /**
  * 의료진 소개(about/page03) — 원본 통이미지(sub01-03-01~04.jpg, 1920px 시안)를 HTML/CSS 로 다시 그린 것.
@@ -55,7 +54,7 @@ export default function DoctorsPage() {
   const [eb1, eb2] = (quote.eyebrow ?? '').split('\n');
 
   return (
-    <div className={`s-doc ${serifKr.variable}`}>
+    <div className="s-doc">
       {/* ---------------------------------------------------------- 진료 철학(어두운 접수대 사진 위) */}
       <section className="s-doc-quote" id={quote.id} aria-labelledby="s-doc-quote-t">
         <Pic pc={`${IMG}/quote-bg.jpg`} mo={`${IMG}/quote-bg-m.jpg`} wh={[1920, 529]} alt="" eager />

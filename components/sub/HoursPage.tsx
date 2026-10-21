@@ -1,11 +1,9 @@
-import { Montserrat, Song_Myung } from 'next/font/google';
 import Rich from '../Rich';
 import { loadPage } from '@/lib/content';
 import './hours.css';
 
 /* 제목(원본: 붓 느낌 명조) · 큰 숫자 365(원본: 굵은 기하 산세리프) — 빌드 때 받아 같은 서버에서 내보냄 */
-const song = Song_Myung({ weight: '400', display: 'swap', variable: '--font-song' });
-const mont = Montserrat({ weight: '800', subsets: ['latin'], display: 'swap', preload: false, variable: '--font-mont' });
+// 송명·몬세라트는 자체 부분 글꼴('HN Song'·'HN Mont', app/globals.css · scripts/fonts/subset.py) — 구글 폰트 CSS 없이 같은 글꼴
 
 const IMG = '/img/sub/about-page01';
 /* 항목 앞 원형 금색 아이콘(약탕기·침대·자동차) — tools_sub/about_page01.py 가 원본 선을 따라 그린 SVG */
@@ -22,7 +20,7 @@ export default function HoursPage() {
   const [t1, t2] = (hours.title ?? '').split('\n');
 
   return (
-    <div className={`s-hrs ${song.variable} ${mont.variable}`}>
+    <div className="s-hrs">
       {/* ---------------------------------------------------------- 진료시간 */}
       <section className="s-hrs-a" aria-labelledby="s-hrs-t">
         <div className="s-hrs-in">

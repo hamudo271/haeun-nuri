@@ -37,23 +37,30 @@ export default function SubLayout({
   const Title = h1 ? 'h1' : 'p';
   // 큰 제목 아래 검색어 한 줄(예: '해운대 교통사고 한의원') — h1 안에 들어가 검색엔진이 페이지 주제를 바로 읽는다
   const tag = h1 ? SEO[href]?.hero : undefined;
+  // 모바일은 사진의 가운데만 보이므로 가운데를 잘라 둔 작은 파일(-m, scripts/hero-mobile.mjs)을 받는다 — 보이는 모습은 같다
+  const heroM = hero.replace(/\.webp$/, '-m.webp');
   // 첫 화면 큰 사진을 먼저 받게(LCP). 404 틀은 Next 가 모든 페이지에 함께 그려 두므로 미리받기를 걸지 않는다
   // (걸면 메인·서브 어디서나 404 배경 사진을 먼저 받는다)
-  if (href !== '/404/') preload(hero, { as: 'image' });
+  if (href !== '/404/') {
+    preload(hero, { as: 'image', media: '(min-width: 768px)' });
+    preload(heroM, { as: 'image', media: '(max-width: 767px)' });
+  }
   return (
     <>
       {ld && <JsonLd data={pageGraph(href)} />}
       <section className="sub-hero" data-mouse>
-        <div className="sub-hero-bg" style={{ backgroundImage: `url(${hero})` }} data-parallax="0.15" data-depth="-26" />
+        <div className="sub-hero-bg" style={{ ['--hero' as string]: `url(${hero})`, ['--hero-m' as string]: `url(${heroM})` }} data-parallax="0.15" data-depth="-26" />
         <div className="wrap sub-hero-in" data-depth="14">
           <p className="crumb">
             <a href="/">HOME</a> <i>/</i> {group.label} <i>/</i> {label}
           </p>
           <p className="en">{group.en}</p>
           <Title className="sub-hero-title">
-            <span className="split" aria-label={label}>
+            {/* 읽히는 글은 숨김 텍스트 하나, 글자 하나씩 올라오는 연출은 보조기기에서 통째로 숨김(span 에 aria-label 은 규칙 위반) */}
+            <span className="sr-only">{label}</span>
+            <span className="split" aria-hidden="true">
               {Array.from(label).map((c, k) => (
-                <span key={k} aria-hidden="true" style={{ ['--i' as string]: k }}>
+                <span key={k} style={{ ['--i' as string]: k }}>
                   {c === ' ' ? '\u00a0' : c}
                 </span>
               ))}

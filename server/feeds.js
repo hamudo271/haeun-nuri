@@ -15,6 +15,8 @@ const absolute = (site, html) => html.replace(/(<img src=")\//g, `$1${site}/`);
  * - 유튜브 posts have no page of their own (they open on YouTube), so only their list page is listed
  */
 export function sitemapXml(site, built, posts, pics) {
+  const counts = {};
+  for (const p of posts) counts[p.cat] = (counts[p.cat] || 0) + 1;
   const latest = {};
   for (const p of posts) {
     const t = new Date(p.updated_at).getTime();
@@ -27,6 +29,12 @@ export function sitemapXml(site, built, posts, pics) {
     if (!latest[cat]) continue;
     const loc = `<loc>${site}${base}</loc>`;
     xml = xml.replace(loc, `${loc}\n<lastmod>${iso(latest[cat])}</lastmod>`);
+  }
+  // a board with nothing published yet (유튜브·전문칼럼 before the old columns are moved) is an empty page: leave it out
+  // until it has posts, instead of pointing search engines at "등록된 글이 없습니다"
+  for (const [cat, base] of Object.entries(R.BASE)) {
+    if (counts[cat]) continue;
+    xml = xml.replace(new RegExp(`<url>\\s*<loc>${site.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&")}${base.replace(/\//g, "\\/")}</loc>[\\s\\S]*?</url>\\s*`), "");
   }
   const urls = posts.filter((p) => p.cat !== "video").map((p) => {
     const imgs = (pics.get(p.id) || []).slice(0, 10)

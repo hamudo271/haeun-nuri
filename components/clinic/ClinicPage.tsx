@@ -1,11 +1,10 @@
-import { Noto_Serif_KR } from 'next/font/google';
 import Rich from '../Rich';
 import ClinicTabs from './ClinicTabs';
 import type { ClinicPage as Page, ClinicSection, ClinicItem } from '@/lib/clinic';
 import './clinic.css';
 
 /* 소개 제목(원본: 굵은 명조) — 빌드 때 받아 같은 서버에서 내보냄 */
-const serifKr = Noto_Serif_KR({ weight: ['700'], subsets: ['latin'], display: 'swap', preload: false, variable: '--font-serif-kr' });
+// 명조(Noto Serif KR)는 자체 부분 글꼴('HN KSerif', app/globals.css · scripts/fonts/subset.py) — 구글 폰트 CSS(렌더링 차단) 없이 같은 글꼴
 
 /**
  * 진료과목 상세 — 원본 통이미지 디자인을 HTML/CSS 로 다시 그린 것.
@@ -384,7 +383,7 @@ export default function ClinicPage({ page }: { page: Page }) {
   const p1 = page.slug === 'sub_clinic_page01';
 
   return (
-    <div className={`cx cx-clinic ${serifKr.variable}${p1 ? ' cx--p1' : ''}`}>
+    <div className={`cx cx-clinic${p1 ? ' cx--p1' : ''}`}>
       <Intro s={intro} />
       {p1 &&
         others.map((s) => {

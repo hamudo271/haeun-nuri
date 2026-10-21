@@ -31,7 +31,7 @@ const ADDR = '부산 해운대구 세실로 48 해운대삼정코아주상복합
 
 export const SEO: Record<string, PageSeo> = {
   '/': {
-    title: '해운대 한의원 해운누리한의원 | 장산역 1번 출구 앞 365일 진료',
+    title: '해운누리한의원 | 해운대 장산역 1번 출구 · 365일 진료',
     images: ['/img/facility/01.jpg', '/img/facility/04.jpg', '/img/main/img-02.jpg'],
     description:
       '부산 해운대구 좌동 장산역 1번 출구 앞 해운누리한의원. 한의사 3인 협진, 1년 365일 진료(평일 오전 9시~오후 9시, 주말·공휴일 오전 9시~오후 5시)와 전 병실 1인실 입원실을 운영합니다.',
@@ -53,7 +53,7 @@ export const SEO: Record<string, PageSeo> = {
     ],
   },
   '/sub/about/page02/': {
-    title: '장산역 한의원·좌동 한의원 오시는 길',
+    title: '장산역·좌동 한의원 오시는 길',
     hero: '장산역 1번 출구 앞 · 해운대구 좌동',
     related: ['/sub/about/page01/', '/sub/about/page04/'],
     images: ['/img/facility/06.jpg'],
@@ -66,7 +66,7 @@ export const SEO: Record<string, PageSeo> = {
     ],
   },
   '/sub/about/page03/': {
-    title: '해운대 한의원 의료진 소개 | 한의사 3인 협진',
+    title: '의료진 소개 | 한의사 3인 협진',
     hero: '해운대 한의원 한의사 3인 협진',
     related: ['/sub/clinic/page01/', '/sub/treatment/page02/'],
     images: ['/img/doctors/img-13.jpg', '/img/doctors/img-16.jpg', '/img/doctors/img-15.png'],
@@ -229,7 +229,7 @@ export const SEO: Record<string, PageSeo> = {
     about: { type: 'MedicalCondition', names: ['비만'] },
   },
   '/sub/media/page01/': {
-    title: '원장님이 설명하는 건강 영상 | 해운누리 유튜브',
+    title: '유튜브 | 원장님이 설명하는 건강 영상',
     hero: '해운누리한의원 건강 영상',
     related: ['/sub/media/page02/'],
     images: ['/img/facility/07.jpg'],
@@ -237,7 +237,7 @@ export const SEO: Record<string, PageSeo> = {
     og: '/og/media-video.jpg',
   },
   '/sub/media/page02/': {
-    title: '해운대 한의원 건강 칼럼 | 해운누리 전문칼럼',
+    title: '전문칼럼 | 원장님이 직접 쓰는 건강 이야기',
     hero: '해운대 한의원 건강 칼럼',
     related: ['/sub/media/page01/'],
     images: ['/img/main/img-04.jpg'],
@@ -245,7 +245,7 @@ export const SEO: Record<string, PageSeo> = {
     og: '/og/media-column.jpg',
   },
   '/sub/board/page01/': {
-    title: '해운누리 소식 | 공지사항',
+    title: '소식·공지사항',
     hero: '해운누리한의원 공지사항',
     images: ['/img/facility/06.jpg'],
     description: '해운누리한의원의 공지사항과 소식. 진료 일정과 병원 안내를 전합니다.',
@@ -275,6 +275,7 @@ export function pageMeta(path: string): Metadata {
   const s = SEO[path];
   if (!s) return { alternates: { canonical: path } };
   const full = path === '/' ? s.title : `${s.title} | ${SITE.name}`;
+  // 제목은 2026-10-22 에 한 번 정리한 뒤 고정 — 네이버는 노출 목적으로 제목을 자주 바꾸는 사이트에 불이익을 준다
   const image = { url: s.og, width: 1200, height: 630, alt: full };
   return {
     title: path === '/' ? { absolute: s.title } : s.title,
@@ -354,7 +355,7 @@ export function pageGraph(path: string) {
       '@type': s.about ? 'MedicalWebPage' : 'WebPage',
       '@id': `${url}#webpage`,
       url,
-      name: `${s.title} | ${SITE.name}`,
+      name: path === '/' ? s.title : `${s.title} | ${SITE.name}`,
       description: s.description,
       inLanguage: 'ko-KR',
       isPartOf: { '@id': `${ORIGIN}/#website` },

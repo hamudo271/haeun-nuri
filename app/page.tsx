@@ -8,6 +8,7 @@ import { HERO, PHILOSOPHY, SIGNATURE, DIFFERENT, DOCTORS, STAY } from '@/lib/hom
 import { NAV, SITE } from '@/lib/site';
 import { pageMeta, pageGraph } from '@/lib/seo';
 import JsonLd from '@/components/JsonLd';
+import './hero-v2.css'; // 메인 첫 화면 전용 — 레이아웃에 두면 모든 페이지가 받는다
 import { preload } from 'react-dom';
 
 /* canonical·og 는 레이아웃에 두지 않는다(하위 페이지가 홈 주소를 물려받지 않게) — 페이지마다 자기 주소(lib/seo.ts) */

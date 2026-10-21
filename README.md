@@ -96,4 +96,11 @@ DATABASE_URL=postgres://… ADMIN_PASSWORD=… PORT=8090 npm start   # http://lo
 - **제목 계층**: 페이지 h1 = 메뉴 이름 + 검색어 한 줄(`lib/seo.ts hero`, `.sub-hero-tag`) → h2 본문 소제목 → h3/h4. 마무리(예약 안내)·푸터 제목은 p. 글 한 편은 글 제목이 h1(틀의 상단 제목은 p). 약관·개인정보는 h2/h3.
 - **내부 링크**: 진료과목의 치료 카드 제목(한약·추나·약침/봉침·매선) → 치료 페이지, 본문 아래 '함께 보기'(`lib/seo.ts related`, 링크 글자 = 그 페이지 검색어), 홈·푸터의 진료시간·주소 → 해당 페이지. 게시판 목록 2페이지부터 canonical 은 `?page=N` 자기 주소.
 - **AI 검색용 `/llms.txt`**: `app/llms.txt/route.ts` 가 lib/seo.ts·lib/site.ts 로 빌드 때 생성(병원 핵심 사실·페이지 목록·FAQ).
-- **첫 화면 속도**: 명조체는 쓰는 글자만 담은 32KB 글꼴(`public/fonts/kserif/kserif.woff2`, `scripts/fonts/kserif-subset.py` — 메인 제목·의료진 문구를 바꾸면 다시 실행). 메인 슬라이드 사진은 첫 장만 먼저, 나머지는 페이지를 다 읽은 뒤. 404 배경 미리받기 제거.
+- **첫 화면 속도**
+  - 글꼴: 구글 폰트(next/font/google)는 영문 Cormorant 만 남기고, Noto Serif KR·Song Myung·Montserrat 는 사이트에서 그 글꼴로 그려지는 글자만 담은 자체 파일(`public/fonts/{kserif,song,mont}/`, 52·8·7KB)로. 구글 폰트는 @font-face 100~250개짜리 CSS(77~154KB)가 렌더링을 막았다. 글자 목록 `scripts/fonts/chars/*.txt`(`collect-chars.cjs` 가 실제 화면에서 수집) → `scripts/fonts/subset.py`. **그 글꼴로 그려지는 문구를 바꾸면 다시 실행**(빠진 글자는 시스템 명조로 보인다).
+  - CSS: 코딩 화면 8쪽은 제 경로(`app/sub/<group>/<page>/page.tsx`)라 자기 CSS 만 받는다(공통 경로에 모두 묶였을 때 서브 페이지마다 CSS 7개 626KB → 2~4개 136~178KB). 메인 전용 `hero-v2.css` 는 `app/page.tsx` 에서만.
+  - 사진: 서브 상단 사진은 모바일용 가운데 잘라 둔 파일(`subtitle-N-m.webp`, `scripts/hero-mobile.mjs`)을 `--hero-m` 으로. 메인 슬라이드는 첫 장만 먼저. 404 배경 미리받기 제거.
+  - 남은 것: 메인 LCP 는 첫 화면 글이 모이는 연출(1.2초 지연 + 2초) 뒤에 잡힌다 — 연출을 바꾸지 않는 한 실험실 LCP 2.5초는 안 나온다.
+- **파비콘**: `public/icons/` (32·192·512, apple-touch-icon 180, mark.svg). 원본은 추나 페이지 마스크와 같은 로고 무늬 SVG, `scripts/icons.mjs` 로 생성.
+- **검색엔진이 서버까지 오는지**: `/healthz` 의 `crawlers` — 네이버(Yeti)·구글·빙·다음(카카오)·AI 봇이 사이트맵·RSS·robots·페이지를 마지막으로 가져간 시각과 횟수(DB `settings.crawlers` 에 보관). Cloudflare 가 앞에서 막으면 여기 기록이 안 남는다. Cloudflare 의 Browser Integrity Check(오류 1010)가 비표준 UA 를 막고 있으니 검색엔진 수집이 안 되면 그것부터 끈다.
+- **글 없는 게시판**(유튜브·전문칼럼)은 글이 생길 때까지 사이트맵에서 자동 제외(`server/feeds.js`).

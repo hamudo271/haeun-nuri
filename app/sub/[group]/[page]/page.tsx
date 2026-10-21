@@ -8,23 +8,26 @@ import { contentSlugs, loadPage } from '@/lib/content';
 import { detailFor } from '@/lib/details';
 import ClinicPage from '@/components/clinic/ClinicPage';
 import { isClinic, loadClinic } from '@/lib/clinic';
-import { CODED } from '@/components/sub/registry';
 import { findNav } from '@/lib/site';
 import { SEO, pageMeta } from '@/lib/seo';
 
 /**
- * 서브페이지 — 원본 상세 이미지가 있으면 그 디자인을 그대로 쓰고(조각별 스크롤 연출),
+ * 서브페이지 — 진료과목 7쪽(코딩 화면)과, 원본 상세 이미지가 있으면 그 디자인을 그대로 쓰고(조각별 스크롤 연출),
  * 없으면 원고(content/*.json)로 그린다.
+ * 코딩으로 다시 그린 소개·입원·치료 8쪽은 제 경로(app/sub/<group>/<page>/page.tsx)에 있다 — 그 페이지의 CSS 만 받게.
  */
+const OWN_ROUTE = new Set(['about/page01', 'about/page03', 'hospital/page01', 'hospital/page02', 'treatment/page01', 'treatment/page02', 'treatment/page03', 'treatment/page04']);
 
 type Params = { group: string; page: string };
 export const dynamicParams = false;
 
 export function generateStaticParams(): Params[] {
-  return contentSlugs().map((s) => {
-    const [, group, page] = s.split('_');
-    return { group, page };
-  });
+  return contentSlugs()
+    .map((s) => {
+      const [, group, page] = s.split('_');
+      return { group, page };
+    })
+    .filter((p) => !OWN_ROUTE.has(`${p.group}/${p.page}`));
 }
 
 /** 검색 결과용 설명: 원고의 첫 머리글·요약에서 150자 안팎으로 */
@@ -62,16 +65,6 @@ export default async function SubPage({ params }: { params: Promise<Params> }) {
     return (
       <SubLayout href={href} detail>
         <ClinicPage page={loadClinic(page)} />
-        <SubOutro href={href} />
-      </SubLayout>
-    );
-  }
-  // 그 밖의 서브페이지: 원본 디자인을 코딩으로 다시 그린 화면(통이미지 없음)
-  const Coded = CODED[`${group}/${page}`];
-  if (Coded) {
-    return (
-      <SubLayout href={href} detail>
-        <Coded />
         <SubOutro href={href} />
       </SubLayout>
     );

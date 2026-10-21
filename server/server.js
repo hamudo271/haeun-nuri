@@ -191,9 +191,34 @@ app.use((req, res, next) => {
   next();
 });
 
+// Which search engines actually reach this server (Cloudflare sits in front and can turn a crawler away before here):
+// the last visit per crawler for the sitemap, the feed, robots.txt and pages, shown at /healthz and kept in the database
+// so a deploy does not wipe it. Lets us tell "네이버가 사이트맵을 안 가져간다" from "가져갔는데 처리 중이다".
+const CRAWLERS = [
+  ["naver", /Yeti|NaverBot|Naver Blog|naver\.me/i],
+  ["google", /Googlebot|Google-InspectionTool|GoogleOther|APIs-Google|AdsBot-Google/i],
+  ["bing", /bingbot|BingPreview/i],
+  ["daum", /Daum|kakaotalk-scrap|Kakao/i],
+  ["ai", /GPTBot|OAI-SearchBot|ChatGPT-User|ClaudeBot|anthropic-ai|PerplexityBot|Google-Extended|Applebot/i],
+];
+const crawl = { seen: {}, dirty: false };
+app.use((req, res, next) => {
+  const ua = req.get("user-agent") || "";
+  const hit = CRAWLERS.find(([, re]) => re.test(ua));
+  if (hit) {
+    const kind = req.path === "/sitemap.xml" ? "sitemap" : req.path === "/rss.xml" ? "rss" : req.path === "/robots.txt" ? "robots" : "page";
+    const c = (crawl.seen[hit[0]] ||= {});
+    c[kind] = { at: new Date().toISOString(), path: req.path, n: (c[kind]?.n || 0) + 1 };
+    crawl.dirty = true;
+    if (kind !== "page") console.log(`crawler ${hit[0]} ${req.path} (${ua.slice(0, 60)})`);
+  }
+  next();
+});
+
 // what is running: for a quick look after a deploy (no names, no numbers from the database)
 app.get("/healthz", (req, res) => res.set("Cache-Control", "no-store").json({
   ok: true, db: !!(db && state.ready), owner_password: hasOwnerPassword(), commit: (process.env.RAILWAY_GIT_COMMIT_SHA || "").slice(0, 7) || null, site: SITE,
+  crawlers: crawl.seen,
 }));
 
 // what the public pages send: consultation forms and the visit counter's beacons
@@ -496,8 +521,11 @@ app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
 process.on("unhandledRejection", (e) => console.error("unhandled rejection:", e)); // logged, not fatal
 
 app.listen(PORT, () => console.log(`haeun-nuri site on :${PORT} (database ${db ? "configured" : "not configured"}, owner password ${hasOwnerPassword() ? "set" : "not set"})`));
-init(onReady).then(() => {
+init(onReady).then(async () => {
   if (!state.ready) return;
+  try { Object.assign(crawl.seen, JSON.parse((await getSetting("crawlers", "")) || "{}")); } catch { /* fresh */ }
+  const save = () => { if (!crawl.dirty) return; crawl.dirty = false; setSetting("crawlers", JSON.stringify(crawl.seen)).catch((e) => console.error("crawlers:", e.message)); };
+  setInterval(save, 60 * 1000).unref();
   const run = () => consult.purge().catch((e) => console.error("purge:", e.message));
   setTimeout(run, 60 * 1000).unref();
   setInterval(run, 6 * 3600 * 1000).unref();

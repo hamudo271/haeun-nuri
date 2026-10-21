@@ -8,7 +8,6 @@ import { SITE, ORIGIN } from '@/lib/site';
 import { clinicGraph, ld } from '@/lib/seo';
 import './fonts.css';
 import './globals.css';
-import './hero-v2.css';
 
 /* 영문 세리프: 빌드 때 받아 같은 서버에서 내보낸다(외부 CSS 요청·차단 없음) */
 const serif = Cormorant_Garamond({
@@ -40,7 +39,16 @@ export const metadata: Metadata = {
     google: 'yjrIv8R9LRfh11fnDxrmy1S8Ptzk8ETiUssNnAWWntw',
     other: { 'naver-site-verification': 'c3793888820e37cbfb27b4527826ec1c042dc72d' },
   },
-  icons: { icon: '/img/brand/favicon-16.png' },
+  // 파비콘: 구글 검색 결과는 48px 이상(여기선 192)만 쓴다. 원본은 public/icons/mark.svg(로고 무늬), scripts/icons.mjs 로 PNG 생성
+  icons: {
+    icon: [
+      { url: '/icons/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+      { url: '/icons/mark.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/icons/apple-touch-icon.png', sizes: '180x180' }],
+  },
   // 기본값(페이지가 자기 값을 주지 않을 때). og:url 은 두지 않는다 — 하위 페이지가 홈 주소를 물려받지 않게. 페이지별 값은 lib/seo.ts pageMeta
   openGraph: { type: 'website', locale: 'ko_KR', title: SITE.name, description: DESCRIPTION, siteName: SITE.name, images: [{ url: '/og/home.jpg', width: 1200, height: 630, alt: SITE.name }] },
   twitter: { card: 'summary_large_image', images: ['/og/home.jpg'] },

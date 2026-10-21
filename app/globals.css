@@ -13,15 +13,34 @@
   src: url(/fonts/pretendard/PretendardVariable.subset.91.woff2) format('woff2-variations');
   unicode-range: U+25, U+2B-2F, U+30-3A;
 }
-/* 한글 세리프: 메인 첫 화면 제목·의료진 문구에 쓰는 글자만(scripts/fonts/kserif-subset.py, Noto Serif KR · OFL) */
+/* 자체 부분 글꼴(scripts/fonts/subset.py, 모두 OFL): 사이트에서 그 글꼴로 그려지는 글자만 담았다.
+   구글 폰트(next/font/google)로 넣으면 @font-face 100~250개짜리 CSS 가 렌더링을 막고 조각 파일을 여럿 받는다.
+   HN KSerif = Noto Serif KR 400~700 (메인 제목·의료진 문구·진료과목 도입 제목·약침 띠 제목·의료진 페이지),
+   HN Song = Song Myung (진료시간 페이지), HN Mont = Montserrat 800 (진료시간 페이지 숫자) */
 @font-face {
   font-family: 'HN KSerif';
-  font-weight: 400 600;
+  font-weight: 400 700;
   font-display: swap;
   src: url(/fonts/kserif/kserif.woff2) format('woff2');
 }
+@font-face {
+  font-family: 'HN Song';
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/song/song-myung.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'HN Mont';
+  font-weight: 800;
+  font-display: swap;
+  src: url(/fonts/mont/montserrat-800.woff2) format('woff2');
+}
 :root {
   --font-kserif: 'HN KSerif';
+  --font-serif-kr: 'HN KSerif';
+  --font-acu-serif: 'HN KSerif';
+  --font-song: 'HN Song';
+  --font-mont: 'HN Mont';
   --ivory: #f7f4ef;
   --sand: #eeece7;
   --stone: #e4ddd2;
@@ -2268,6 +2287,7 @@ em {
   inset: -10% 0;
   background-size: cover;
   background-position: center;
+  background-image: var(--hero);
   transform: translateY(var(--py, 0)) scale(1.05);
   animation: heroZoom 2.4s var(--ease-out) both;
 }
@@ -5362,5 +5382,12 @@ picture {
   }
   .rel-arr {
     right: 12px;
+  }
+}
+
+/* 서브 상단 사진: 모바일은 가운데를 잘라 둔 작은 파일(SubLayout --hero-m) */
+@media (max-width: 767px) {
+  .sub-hero-bg {
+    background-image: var(--hero-m, var(--hero));
   }
 }

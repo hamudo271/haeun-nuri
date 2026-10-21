@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react';
-import { Noto_Serif_KR } from 'next/font/google';
 import Rich from '../Rich';
 import Img from './Img';
 import { loadPage, type Section } from '@/lib/content';
@@ -13,7 +12,7 @@ import './acu.css';
  */
 
 /* 띠 제목 "01. 경근약침" — 원본은 가는 명조 */
-const serif = Noto_Serif_KR({ weight: ['500'], subsets: ['latin'], display: 'swap', preload: false, variable: '--font-acu-serif' });
+// 명조(Noto Serif KR)는 자체 부분 글꼴('HN KSerif', app/globals.css · scripts/fonts/subset.py) — 구글 폰트 CSS(렌더링 차단) 없이 같은 글꼴
 
 const P = '/img/sub/treatment-page01/';
 const plain = (t?: string) => (t ?? '').replace(/\*\*/g, '').replace(/\n/g, ' ');
@@ -101,7 +100,7 @@ function Band({ s, n, img, brk, children }: { s: Section; n: 1 | 2 | 3; img: str
       <div className="cx-in">
         <div className="s-acu-band-tx">
           <div className="s-acu-band-l" data-rv="up">
-            <h2 className={`s-acu-band-t ${serif.className}`} id={`${s.id}-t`}>
+            <h2 className="s-acu-band-t" id={`${s.id}-t`}>
               {s.title}
             </h2>
             {!!s.tags?.length && (
@@ -346,7 +345,7 @@ export default function AcuPage() {
   const plaFx = by['placenta-effects'];
 
   return (
-    <div className={`cx s-acu ${serif.variable}`}>
+    <div className="cx s-acu">
       <Intro s={intro} />
 
       <Band s={gg} n={1} img="band-1" brk={{ body: ["'경근약침'", '강력한'] }}>
