@@ -40,6 +40,11 @@ export const metadata: Metadata = {
   keywords:
     '해운누리한의원,해운대한의원,해운대야간진료,좌동야간진료,장산역야간진료,해운대주말진료,해운대365진료,좌동주말진료,해운대공휴일진료,좌동공휴일진료,장산역공휴일진료,장산역한의원,해운대주말한의원,해운대물리치료,좌동물리치료,장산역물리치료,부산야간진료',
   formatDetection: { telephone: false },
+  // 소유 확인: 구글 서치콘솔 · 네이버 서치어드바이저 (지우면 두 곳에서 사이트 확인이 풀린다)
+  verification: {
+    google: 'yjrIv8R9LRfh11fnDxrmy1S8Ptzk8ETiUssNnAWWntw',
+    other: { 'naver-site-verification': 'c3793888820e37cbfb27b4527826ec1c042dc72d' },
+  },
   icons: { icon: '/img/brand/favicon-16.png' },
   openGraph: { type: 'website', title: SITE.name, description: DESCRIPTION, siteName: SITE.name, url: 'https://www.haeun-nuri.com' },
   // 스테이징은 수집 차단. 운영은 robots 메타를 아예 넣지 않는다(기본값이 index·follow 이고,
