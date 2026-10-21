@@ -1,7 +1,7 @@
-// The site's own address (SITE_URL), read once and forgivingly: "haeun-nuri.com", "https://www.haeun-nuri.com/" and a
-// Railway address all work; anything that is not an address falls back to https://www.haeun-nuri.com with a warning,
+// The site's own address (SITE_URL), read once and forgivingly: "haeun-nuri.com", "https://haeun-nuri.com/" and a
+// Railway address all work; anything that is not an address falls back to https://haeun-nuri.com with a warning,
 // so a typo in Railway's variables never stops the site from starting.
-const FALLBACK = "https://www.haeun-nuri.com";
+const FALLBACK = "https://haeun-nuri.com"; // lib/site.ts ORIGIN
 function parse(v) {
   let s = String(v || "").trim();
   if (!s) return FALLBACK;

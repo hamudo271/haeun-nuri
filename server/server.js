@@ -74,9 +74,9 @@ function built(rel) {
 const fill = (html, inner) => html.replace(/<div id="cms-root"([^>]*)><\/div>/, (m, attrs) => `<div id="cms-root"${attrs}>${inner}</div>`);
 stats.loadTitles(OUT);
 
-// The built pages name https://www.haeun-nuri.com as their home. A page shares its picture and link from the address
+// The built pages name https://haeun-nuri.com as their home. A page shares its picture and link from the address
 // it was actually opened on, so a KakaoTalk preview leads back to the same site whatever domain points here.
-const BUILT = "https://www.haeun-nuri.com"; // app/layout.tsx metadataBase
+const BUILT = "https://haeun-nuri.com"; // lib/site.ts ORIGIN (app/layout.tsx metadataBase)
 const reEsc = (t) => t.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
 const SHARE_RE = new RegExp(`(<meta (?:property="og:(?:image|url)"|name="twitter:image") content=")(?:${reEsc(BUILT)}|${reEsc(SITE)})`, "g");
 const shareFrom = (req, html) => html.replace(SHARE_RE, `$1${req.protocol}://${req.get("host")}`);
@@ -149,7 +149,7 @@ app.use((req, res, next) => {
 });
 
 // the old site's addresses (/default/...php, indexed by 네이버·구글 for years) → the same page on this site, so their
-// place in search moves over: straight to the www address in one hop, even when asked on the bare domain.
+// place in search moves over: straight to the site's address in one hop, even when asked on the www spelling.
 // The builder's sample and shop pages had no counterpart: 410 tells crawlers to drop them.
 app.get(/^\/default(\/.*)?$/i, (req, res, next) => {
   const p = req.path.replace(/\/+$/, "").toLowerCase();
@@ -162,11 +162,12 @@ app.get(/^\/default(\/.*)?$/i, (req, res, next) => {
   next();
 });
 
-// one address for search engines: haeun-nuri.com → www.haeun-nuri.com (SITE_URL), path and query kept.
-// Only page requests move; a form posted to the bare domain is still taken (a 301 would turn it into a GET).
-const BARE_HOST = SITE_HOST.replace(/^www\./, "");
+// one address for search engines: the other spelling (www.haeun-nuri.com) → the site's address (SITE_URL,
+// https://haeun-nuri.com), path and query kept. Only page requests move; a form posted to the other spelling is still
+// taken (a 301 would turn it into a GET).
+const OTHER_HOST = SITE_HOST.startsWith("www.") ? SITE_HOST.slice(4) : `www.${SITE_HOST}`;
 app.use((req, res, next) => {
-  if (BARE_HOST !== SITE_HOST && req.hostname === BARE_HOST && (req.method === "GET" || req.method === "HEAD")) {
+  if (req.hostname === OTHER_HOST && (req.method === "GET" || req.method === "HEAD")) {
     return res.redirect(301, `${SITE}${req.originalUrl}`);
   }
   next();

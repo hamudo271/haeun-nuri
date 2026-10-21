@@ -1,4 +1,5 @@
 import type { MetadataRoute } from 'next';
+import { ORIGIN } from '@/lib/site';
 
 /**
  * /robots.txt — 스테이징·운영 같은 규칙.
@@ -10,6 +11,6 @@ export const dynamic = 'force-static';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: '*', allow: '/', disallow: ['/admin/', '/api/'] },
-    sitemap: 'https://www.haeun-nuri.com/sitemap.xml',
+    sitemap: `${ORIGIN}/sitemap.xml`,
   };
 }

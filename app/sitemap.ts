@@ -1,10 +1,10 @@
 import type { MetadataRoute } from 'next';
-import { NAV } from '@/lib/site';
+import { NAV, ORIGIN } from '@/lib/site';
 
 /** /sitemap.xml — 정적 내보내기라 빌드 때 한 번 만든다. 주소는 항상 운영 도메인 기준 */
 export const dynamic = 'force-static';
 
-const BASE = 'https://www.haeun-nuri.com';
+const BASE = ORIGIN;
 
 // 게시판 글 주소(+사진)와 게시판 목록의 최근 수정일은 서버(server/feeds.js)가 /sitemap.xml 을 내보낼 때 덧붙인다
 const SKIP_GROUPS: string[] = [];

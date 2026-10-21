@@ -56,7 +56,7 @@ public/img/               원본 사이트 사진(서브 본문 사진은 통이
 |---|---|
 | `DATABASE_URL` | 같은 프로젝트의 Postgres 주소 (`${{Postgres.DATABASE_URL}}`) |
 | `ADMIN_PASSWORD` | 대표 관리자(아이디 `admin`) 비밀번호 |
-| `SITE_URL` | (선택) 대표 주소. 기본값 `https://www.haeun-nuri.com` |
+| `SITE_URL` | (선택) 대표 주소. 기본값 `https://haeun-nuri.com` — 넣는다면 `lib/site.ts` 의 `ORIGIN` 과 같아야 한다 |
 | `NOTIFY_WEBHOOK_URL` / `NOTIFY_EMAIL` + `SMTP_URL` | (선택) 새 상담 알림 |
 
 변수가 없어도 페이지는 모두 열린다(게시판 쪽은 빈 틀). `/healthz` 로 데이터베이스·비밀번호 상태를 확인한다. `*.up.railway.app` 주소는 검색 차단(X-Robots-Tag).
@@ -69,8 +69,8 @@ DATABASE_URL=postgres://… ADMIN_PASSWORD=… PORT=8090 npm start   # http://lo
 `npm run dev` 는 화면만(관리자·게시판 글 없음).
 
 - Railway 빌드 명령은 `railway.json` 의 `npm run build:prod`(운영 빌드, robots noindex 메타 없음). `*.up.railway.app` 주소는 서버가 X-Robots-Tag 로 따로 막는다.
-- 주소 하나로: `haeun-nuri.com/…` → `https://www.haeun-nuri.com/…` 301(GET 만). 예전 주소 `/default/sub/{그룹}/pageNN.php`·`/default/index.php`·`personal.php`·`service_rull.php` → 같은 새 페이지로 301, 빌더 샘플(`/default/sample|mall|member/…`)은 410 (`server/server.js` 앞부분).
-- 검색엔진 제출 주소: 사이트맵 `https://www.haeun-nuri.com/sitemap.xml`(고정 페이지 + 글·사진, `server/feeds.js`), RSS `https://www.haeun-nuri.com/rss.xml`(소식·전문칼럼 최근 50건, 본문 전체 포함. 유튜브는 외부 링크라 제외).
+- 대표 주소는 `https://haeun-nuri.com`(2026-10-21 www 에서 변경, 네이버 서치어드바이저 등록 주소에 맞춤). `www.haeun-nuri.com/…` → `https://haeun-nuri.com/…` 301(GET 만). 예전 주소 `/default/sub/{그룹}/pageNN.php`·`/default/index.php`·`personal.php`·`service_rull.php` → 같은 새 페이지로 301, 빌더 샘플(`/default/sample|mall|member/…`)은 410 (`server/server.js` 앞부분).
+- 검색엔진 제출 주소: 사이트맵 `https://haeun-nuri.com/sitemap.xml`(고정 페이지 + 글·사진, `server/feeds.js`), RSS `https://haeun-nuri.com/rss.xml`(소식·전문칼럼 최근 50건, 본문 전체 포함. 유튜브는 외부 링크라 제외).
 - 남은 일(다음 단계): 기존 Cloudflare D1 의 칼럼·영상 옮기기, 칼럼 작성 원장 표시, 직원에게만 보이는 '수정' 버튼, 공지 상단 고정.
 - 알아 둘 점: 글 한 편 페이지의 `<title>` 은 서버가 바꿔 보내지만, 브라우저에서 Next.js 가 틀의 제목('전문칼럼 | 해운누리한의원')으로 다시 바꾼다(검색엔진이 받는 HTML 은 글 제목).
 

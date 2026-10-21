@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 import QuickDock from '@/components/QuickDock';
 import Motion from '@/components/Motion';
 import { Cormorant_Garamond, Noto_Serif_KR } from 'next/font/google';
-import { SITE } from '@/lib/site';
+import { SITE, ORIGIN } from '@/lib/site';
 import './fonts.css';
 import './globals.css';
 import './hero-v2.css';
@@ -34,7 +34,7 @@ const DESCRIPTION = '부산 장산역 1번 출구, 해운대 일대를 아우르
 const IS_PROD = process.env.NEXT_PUBLIC_SITE_ENV === 'production';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.haeun-nuri.com'),
+  metadataBase: new URL(ORIGIN),
   title: { default: SITE.name, template: `%s | ${SITE.name}` },
   description: DESCRIPTION,
   keywords:
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     other: { 'naver-site-verification': 'c3793888820e37cbfb27b4527826ec1c042dc72d' },
   },
   icons: { icon: '/img/brand/favicon-16.png' },
-  openGraph: { type: 'website', title: SITE.name, description: DESCRIPTION, siteName: SITE.name, url: 'https://www.haeun-nuri.com' },
+  openGraph: { type: 'website', title: SITE.name, description: DESCRIPTION, siteName: SITE.name, url: ORIGIN },
   // 스테이징은 수집 차단. 운영은 robots 메타를 아예 넣지 않는다(기본값이 index·follow 이고,
   // 404 에는 Next 가 noindex 를 자동으로 한 번 넣으므로 레이아웃 값과 겹치지 않게)
   ...(IS_PROD ? {} : { robots: { index: false, follow: false } }),
@@ -58,7 +58,7 @@ const JSON_LD = {
   '@context': 'https://schema.org',
   '@type': ['Physician', 'LocalBusiness', 'MedicalBusiness'],
   name: SITE.name,
-  url: 'https://www.haeun-nuri.com',
+  url: ORIGIN,
   telephone: SITE.tel,
   address: {
     '@type': 'PostalAddress',
@@ -79,7 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="ko" className={`${serif.variable} ${kserif.variable}`}>
       <head>
         {/* RSS 자동 발견: 네이버·구글·피드 리더가 /rss.xml 을 찾는다. 페이지마다 alternates.canonical 을 쓰므로 metadata 대신 여기에 둔다 */}
-        <link rel="alternate" type="application/rss+xml" title="해운누리한의원 소식·전문칼럼" href="https://www.haeun-nuri.com/rss.xml" />
+        <link rel="alternate" type="application/rss+xml" title="해운누리한의원 소식·전문칼럼" href={`${ORIGIN}/rss.xml`} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       </head>
       <body id="top">

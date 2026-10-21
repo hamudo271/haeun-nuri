@@ -1,5 +1,8 @@
 /** 해운누리한의원 기본 정보 — 원본 사이트(haeun-nuri.com)에 적힌 값 그대로 */
 
+/** 대표 주소(검색엔진·공유·사이트맵 기준). www.haeun-nuri.com 은 서버가 여기로 301 보낸다(server/site.js FALLBACK 과 같게) */
+export const ORIGIN = 'https://haeun-nuri.com';
+
 export const SITE = {
   name: '해운누리한의원',
   nameEn: 'Haeun-Nuri Oriental Clinic',
