@@ -19,7 +19,7 @@ import * as consult from "./consult.js";
 import * as stats from "./stats.js";
 import * as notify from "./notify.js";
 import * as site from "./sitecontent.js";
-import { SITE } from "./site.js";
+import { SITE, SITE_HOST } from "./site.js";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.resolve(process.env.OUT_DIR || path.join(HERE, "../out"));
@@ -145,6 +145,30 @@ app.use(compression());
 app.use((req, res, next) => {
   res.set({ "X-Content-Type-Options": "nosniff", "Referrer-Policy": "strict-origin-when-cross-origin" });
   if (/\.up\.railway\.app$/i.test(req.hostname || "")) res.set("X-Robots-Tag", "noindex, nofollow"); // the preview address, not the clinic's
+  next();
+});
+
+// the old site's addresses (/default/...php, indexed by 네이버·구글 for years) → the same page on this site, so their
+// place in search moves over: straight to the www address in one hop, even when asked on the bare domain.
+// The builder's sample and shop pages had no counterpart: 410 tells crawlers to drop them.
+app.get(/^\/default(\/.*)?$/i, (req, res, next) => {
+  const p = req.path.replace(/\/+$/, "").toLowerCase();
+  if (p === "/default" || p === "/default/index.php" || p === "/default/index.html") return res.redirect(301, `${SITE}/`);
+  if (/^\/default\/(sample|mall|member)\//.test(p)) return res.status(410).set("Cache-Control", "no-cache").type("html").send(NOT_FOUND || "Gone");
+  const legal = p.match(/^\/default\/(personal|service_rull)\.php$/);
+  if (legal) return res.redirect(301, `${SITE}/${legal[1]}/`);
+  const sub = p.match(/^\/default\/sub\/([a-z]+)\/(page\d+)\.php$/);
+  if (sub && built(`/sub/${sub[1]}/${sub[2]}/`)) return res.redirect(301, `${SITE}/sub/${sub[1]}/${sub[2]}/`);
+  next();
+});
+
+// one address for search engines: haeun-nuri.com → www.haeun-nuri.com (SITE_URL), path and query kept.
+// Only page requests move; a form posted to the bare domain is still taken (a 301 would turn it into a GET).
+const BARE_HOST = SITE_HOST.replace(/^www\./, "");
+app.use((req, res, next) => {
+  if (BARE_HOST !== SITE_HOST && req.hostname === BARE_HOST && (req.method === "GET" || req.method === "HEAD")) {
+    return res.redirect(301, `${SITE}${req.originalUrl}`);
+  }
   next();
 });
 
