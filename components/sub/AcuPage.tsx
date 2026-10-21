@@ -202,8 +202,7 @@ function Process({ s }: { s: Section }) {
               </figure>
               <div className="s-acu-step-tx" data-rv="up">
                 <h4>
-                  <b>{it.num}</b>
-                  <span>{it.title}</span>
+                  <b aria-hidden="true">{it.num}</b> <span>{it.title}</span>
                 </h4>
                 <p>
                   <Br text={it.text ?? ''} marks={STEP_BR[i] ?? []} />

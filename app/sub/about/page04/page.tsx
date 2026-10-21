@@ -14,7 +14,7 @@ export default function Tour() {
       <div className="wrap">
         <div className="blk-head center" data-rv="up">
           <p className="label">( Our Space )</p>
-          <h2 className="blk-title">둘러보기</h2>
+          <h2 className="blk-title">접수처부터 1인실 입원실까지</h2>
         </div>
       </div>
       <div className="light-bg tour-cf" data-rv="up">

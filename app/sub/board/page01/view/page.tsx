@@ -8,7 +8,7 @@ export const metadata: Metadata = pageMeta('/sub/board/page01/');
 
 export default function PostView() {
   return (
-    <SubLayout href="/sub/board/page01/" ld={false}>
+    <SubLayout href="/sub/board/page01/" ld={false} h1={false}>
       <div className="wrap narrow">
         <div id="cms-root" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: '' }} />
       </div>

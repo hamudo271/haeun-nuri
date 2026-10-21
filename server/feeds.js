@@ -20,10 +20,9 @@ export function sitemapXml(site, built, posts, pics) {
     const t = new Date(p.updated_at).getTime();
     if (!latest[p.cat] || t > latest[p.cat]) latest[p.cat] = t;
   }
-  let xml = built.replace(
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">',
-  );
+  let xml = built.includes('xmlns:image=')
+    ? built
+    : built.replace('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">');
   for (const [cat, base] of Object.entries(R.BASE)) {
     if (!latest[cat]) continue;
     const loc = `<loc>${site}${base}</loc>`;

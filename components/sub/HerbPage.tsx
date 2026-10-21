@@ -175,7 +175,7 @@ export default function HerbPage() {
                     <h3>
                       <b className="s-hrb-badge" aria-hidden="true">
                         {it.num}
-                      </b>
+                      </b>{' '}
                       <span>{it.title}</span>
                     </h3>
                     <p>

@@ -107,8 +107,7 @@ export default function DoctorsPage() {
               </figure>
               <div className="s-doc-tx" data-rv="up">
                 <h2 className="s-doc-nm" id={`${s.id}-t`}>
-                  <strong>{s.title}</strong>
-                  <span>{s.eyebrow}</span>
+                  <strong>{s.title}</strong> <span>{s.eyebrow}</span>
                 </h2>
                 {s.lead && <p className="s-doc-lead">{s.lead}</p>}
                 <div className="s-doc-list">

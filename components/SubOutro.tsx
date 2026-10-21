@@ -2,6 +2,7 @@ import { NAV, SITE, findNav } from '@/lib/site';
 import { loadPage, photoSrc, contentSlugs } from '@/lib/content';
 import { webpOf } from './Pic';
 import Faq from './Faq';
+import { SEO } from '@/lib/seo';
 
 /**
  * 상세페이지 끝맺음 — 형통 리뉴얼·더가든 연출
@@ -35,6 +36,35 @@ function cardPhoto(href: string, fallback: string) {
   return fallback;
 }
 
+/** 함께 보기: lib/seo.ts related — 링크 글자는 그 페이지의 검색어(hero 첫 토막), 작은 글자는 메뉴 이름 */
+function Related({ href }: { href: string }) {
+  const list = (SEO[href]?.related ?? []).map((p) => ({ href: p, nav: findNav(p)?.item.label, kw: SEO[p]?.hero?.split(' · ')[0] })).filter((r) => r.nav);
+  if (!list.length) return null;
+  return (
+    <section className="rel" aria-labelledby="rel-title">
+      <div className="wrap">
+        <div className="rel-head" data-rv="up">
+          <p className="label">( Related )</p>
+          <h2 className="blk-title" id="rel-title">
+            함께 보기
+          </h2>
+        </div>
+        <ul className="rel-list" data-rv="up">
+          {list.map((r) => (
+            <li key={r.href}>
+              <a href={r.href}>
+                <small>{r.nav}</small>
+                <span>{r.kw ?? r.nav}</span>
+                <i className="rel-arr" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}
+
 export default function SubOutro({ href }: { href: string }) {
   const found = findNav(href);
   const group = found?.group ?? NAV[0];
@@ -45,6 +75,7 @@ export default function SubOutro({ href }: { href: string }) {
   return (
     <>
       <Faq path={href} />
+      <Related href={href} />
       <div className="flow" data-flow aria-hidden="true">
         <p>
           Haeun-Nuri Oriental Clinic <i>·</i> Haeun-Nuri Oriental Clinic <i>·</i> Haeun-Nuri Oriental Clinic <i>·</i>
@@ -54,11 +85,11 @@ export default function SubOutro({ href }: { href: string }) {
         <div className="outro-arch" aria-hidden="true" />
         <div className="wrap outro-in">
           <p className="label light">( Reservation )</p>
-          <h2 className="outro-title">
+          <p className="outro-title">
             해운누리한의원에서
             <br />
             <em>편안한 진료</em> 받으시길 바랍니다.
-          </h2>
+          </p>
           <ul className="outro-hours">
             {SITE.hours.map((h) => (
               <li key={h.label}>

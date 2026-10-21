@@ -10,12 +10,14 @@ export default function Footer() {
         <div className="wrap ft-grid">
           <div className="ft-info" data-rv="up">
             <p className="label">( Contact Us )</p>
-            <h2 className="ft-title">진료상담 및 진료예약안내</h2>
+            <p className="ft-title">진료상담 및 진료예약안내</p>
             <a className="ft-tel" href={`tel:${SITE.tel}`}>
               {SITE.tel}
             </a>
             <dl className="ft-hours">
-              <dt>진료시간</dt>
+              <dt>
+                <a href="/sub/about/page01/">진료시간</a>
+              </dt>
               {SITE.hours.map((h) => (
                 <dd key={h.label}>
                   <span>- {h.label}</span>
@@ -34,7 +36,9 @@ export default function Footer() {
           </div>
           <div className="ft-map" data-rv="up" style={{ ['--d' as string]: '120ms' }}>
             <p className="ft-addr-label">주소</p>
-            <p className="ft-addr">{SITE.address}</p>
+            <p className="ft-addr">
+              <a href="/sub/about/page02/">{SITE.address}</a>
+            </p>
             <KakaoMap height={320} />
           </div>
         </div>

@@ -33,8 +33,7 @@ export default function DoctorTabs({ doctors }: { doctors: Doctor[] }) {
               Doctor <em>{two(k + 1)}</em>
             </p>
             <h3 className="dc-name">
-              {d.name}
-              <span>{d.role}</span>
+              {d.name} <span>{d.role}</span>
             </h3>
             <p className="dc-motto">“{d.motto}”</p>
             <a className="btn btn-line light dc-more" href="/sub/about/page03/">

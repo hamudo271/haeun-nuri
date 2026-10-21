@@ -11,7 +11,7 @@ export const metadata: Metadata = pageMeta('/sub/media/page02/');
 export default function Page() {
   const href = '/sub/media/page02/';
   return (
-    <SubLayout href={href} ld={false}>
+    <SubLayout href={href} ld={false} h1={false}>
       <div className="wrap md-wrap">
         <div id="cms-root" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: '' }} />
       </div>

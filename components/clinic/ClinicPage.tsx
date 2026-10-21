@@ -69,6 +69,15 @@ function Intro({ s }: { s: ClinicSection }) {
 }
 
 /* ---------------------------------------------------------------- 치료 카드 */
+// 카드 제목이 가리키는 치료 페이지 — 질환 설명에서 치료 상세로 이어지는 내부 링크(검색엔진이 주제 연결을 따라간다)
+const TREAT_HREF: [RegExp, string][] = [
+  [/약침|봉침/, '/sub/treatment/page01/'],
+  [/추나/, '/sub/treatment/page02/'],
+  [/매선/, '/sub/treatment/page03/'],
+  [/한약/, '/sub/treatment/page04/'],
+];
+const treatHref = (title?: string) => title && TREAT_HREF.find(([re]) => re.test(title))?.[1];
+
 function Cards({ items, layout, h = 'h4' }: { items: ClinicItem[]; layout: 'v' | 'h'; h?: 'h3' | 'h4' }) {
   const H = h;
   return (
@@ -90,7 +99,13 @@ function Cards({ items, layout, h = 'h4' }: { items: ClinicItem[]; layout: 'v' |
           <div className="cx-ct">
             {it.title && (
               <H className="cx-ct-t">
-                <Rich text={it.title} />
+                {treatHref(it.title) ? (
+                  <a href={treatHref(it.title)} className="cx-ct-link">
+                    <Rich text={it.title} />
+                  </a>
+                ) : (
+                  <Rich text={it.title} />
+                )}
               </H>
             )}
             {it.text && (

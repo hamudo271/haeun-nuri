@@ -388,7 +388,15 @@ for (const b of BOARDS) {
     const frame = built(b.base);
     if (!db || !state.ready || !frame) return next();
     const data = await listOf(b.cat, Math.max(1, parseInt(req.query.page, 10) || 1), b.per);
-    await sendPage(req, res, fill(frame, b.list(data)), b.base);
+    let html = fill(frame, b.list(data));
+    if (data.page > 1) { // the 2nd page on is its own address, not a copy of the 1st
+      const url = `${SITE}${b.base}?page=${data.page}`;
+      html = html
+        .replace(/<link rel="canonical" href="[^"]*"\/?>/, `<link rel="canonical" href="${url}"/>`)
+        .replace(/(<meta property="og:url" content=")[^"]*"/, `$1${url}"`)
+        .replace(/<title>([^<]*)<\/title>/, `<title>$1 (${data.page}페이지)</title>`);
+    }
+    await sendPage(req, res, html, b.base);
   }));
   if (!b.view) continue;
   app.get(`${b.base}:id`, (req, res, next) => (!req.path.endsWith("/") && /^\d+$/.test(req.params.id) ? res.redirect(301, `${b.base}${req.params.id}/`) : next()));

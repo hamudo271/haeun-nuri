@@ -11,7 +11,7 @@ export default function Page() {
       <div className="wrap narrow">
         <div className="blk-head center" data-rv="up">
           <p className="label">( Price )</p>
-          <h2 className="blk-title">비급여 진료비용</h2>
+          <h2 className="blk-title">비급여 진료비용 안내</h2>
         </div>
         <div id="cms-root" className="nonpay" suppressHydrationWarning dangerouslySetInnerHTML={{ __html: '' }} />
       </div>

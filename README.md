@@ -92,5 +92,8 @@ DATABASE_URL=postgres://… ADMIN_PASSWORD=… PORT=8090 npm start   # http://lo
   - 구조화 데이터: 레이아웃 = MedicalClinic + WebSite(`clinicGraph`), 페이지 = WebPage/MedicalWebPage·BreadcrumbList·FAQPage·의료진 Person(`pageGraph`, SubLayout·메인이 넣음). 글 한 편은 서버(`postHead`)가 BlogPosting/Article.
   - 문구 원칙: 원고·병원 안내에 있는 사실만. '최고·완치·100%' 같은 의료광고 금지 표현 금지. '한방병원' 명칭 사용 금지(한의원).
 - **공유 이미지**: `public/og/*.jpg` — 만드는 법 `scripts/og/README.md`.
+- **사이트맵**(`app/sitemap.ts`): lastmod = 페이지 내용 파일의 마지막 git 커밋 시각(`lib/lastmod.json`, `scripts/lastmod.mjs` 가 `build:prod` 앞에 갱신 — git 이 없는 Railway 빌드에서는 커밋된 값 사용). 페이지 실제 사진(`lib/seo.ts images`)을 이미지 사이트맵으로. 우선순위: 진료·치료·입원 0.9 > 소개 0.7 > 미디어 0.6 > 공지 0.5 > 비급여 0.4 > 약관 0.2.
+- **제목 계층**: 페이지 h1 = 메뉴 이름 + 검색어 한 줄(`lib/seo.ts hero`, `.sub-hero-tag`) → h2 본문 소제목 → h3/h4. 마무리(예약 안내)·푸터 제목은 p. 글 한 편은 글 제목이 h1(틀의 상단 제목은 p). 약관·개인정보는 h2/h3.
+- **내부 링크**: 진료과목의 치료 카드 제목(한약·추나·약침/봉침·매선) → 치료 페이지, 본문 아래 '함께 보기'(`lib/seo.ts related`, 링크 글자 = 그 페이지 검색어), 홈·푸터의 진료시간·주소 → 해당 페이지. 게시판 목록 2페이지부터 canonical 은 `?page=N` 자기 주소.
 - **AI 검색용 `/llms.txt`**: `app/llms.txt/route.ts` 가 lib/seo.ts·lib/site.ts 로 빌드 때 생성(병원 핵심 사실·페이지 목록·FAQ).
 - **첫 화면 속도**: 명조체는 쓰는 글자만 담은 32KB 글꼴(`public/fonts/kserif/kserif.woff2`, `scripts/fonts/kserif-subset.py` — 메인 제목·의료진 문구를 바꾸면 다시 실행). 메인 슬라이드 사진은 첫 장만 먼저, 나머지는 페이지를 다 읽은 뒤. 404 배경 미리받기 제거.

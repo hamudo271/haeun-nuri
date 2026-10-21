@@ -16,6 +16,12 @@ export type PageSeo = {
   title: string;
   description: string;
   og: string;
+  /** 상단 큰 제목 아래 검색어 한 줄(h1 안에 들어간다). 첫 ' · ' 앞부분이 다른 페이지에서 이 페이지로 거는 링크 글자 */
+  hero?: string;
+  /** 함께 보기(본문 아래 관련 페이지 링크): 검색엔진이 주제 연결을 따라가고, 환자는 다음 페이지를 찾는다 */
+  related?: string[];
+  /** 이미지 사이트맵에 넣을 이 페이지의 실제 사진(병원·시술 사진. 글자 들어간 공유 이미지는 넣지 않는다) */
+  images?: string[];
   faq?: Faq[];
   about?: { type: 'MedicalCondition' | 'MedicalTherapy'; names: string[] };
 };
@@ -26,12 +32,16 @@ const ADDR = '부산 해운대구 세실로 48 해운대삼정코아주상복합
 export const SEO: Record<string, PageSeo> = {
   '/': {
     title: '해운대 한의원 해운누리한의원 | 장산역 1번 출구 앞 365일 진료',
+    images: ['/img/facility/01.jpg', '/img/facility/04.jpg', '/img/main/img-02.jpg'],
     description:
       '부산 해운대구 좌동 장산역 1번 출구 앞 해운누리한의원. 한의사 3인 협진, 1년 365일 진료(평일 오전 9시~오후 9시, 주말·공휴일 오전 9시~오후 5시)와 전 병실 1인실 입원실을 운영합니다.',
     og: '/og/home.jpg',
   },
   '/sub/about/page01/': {
-    title: '해운대 일요일·공휴일 한의원 | 365일 진료·평일 밤 9시까지',
+    title: '해운대 일요일·공휴일 한의원 | 365일 야간진료',
+    hero: '해운대 일요일·공휴일 진료 한의원',
+    related: ['/sub/about/page02/', '/sub/hospital/page01/'],
+    images: ['/img/facility/01.jpg'],
     description:
       '해운누리한의원은 일요일·공휴일을 포함해 1년 365일 진료합니다. 평일 오전 9시~오후 9시, 토·일요일·공휴일 오전 9시~오후 5시, 점심시간 오후 1시~2시. 장산역 1번 출구 앞.',
     og: '/og/about-hours.jpg',
@@ -43,7 +53,10 @@ export const SEO: Record<string, PageSeo> = {
     ],
   },
   '/sub/about/page02/': {
-    title: '장산역 한의원·좌동 한의원 오시는 길 | 장산역 1번 출구 앞',
+    title: '장산역 한의원·좌동 한의원 오시는 길',
+    hero: '장산역 1번 출구 앞 · 해운대구 좌동',
+    related: ['/sub/about/page01/', '/sub/about/page04/'],
+    images: ['/img/facility/06.jpg'],
     description: `장산역 1번 출구 앞, ${ADDR}. 해운대구 좌동 해운누리한의원 위치와 찾아오는 길, 진료시간 안내. 전화 ${TEL}.`,
     og: '/og/about-location.jpg',
     faq: [
@@ -54,16 +67,25 @@ export const SEO: Record<string, PageSeo> = {
   },
   '/sub/about/page03/': {
     title: '해운대 한의원 의료진 소개 | 한의사 3인 협진',
+    hero: '해운대 한의원 한의사 3인 협진',
+    related: ['/sub/clinic/page01/', '/sub/treatment/page02/'],
+    images: ['/img/doctors/img-13.jpg', '/img/doctors/img-16.jpg', '/img/doctors/img-15.png'],
     description: `해운누리한의원 의료진 — ${DOCTORS.map((d) => `${d.name} ${d.role}`).join(', ')}. 한의사 3인이 협진하며 처음 진단부터 치료까지 환자 중심으로 진료합니다.`,
     og: '/og/about-doctors.jpg',
   },
   '/sub/about/page04/': {
-    title: '해운대 좌동 한의원 둘러보기 | 진료실·치료실·1인실 입원실',
+    title: '해운대 좌동 한의원 둘러보기 | 진료실·1인실 입원실',
+    hero: '해운대 좌동 한의원 진료실·입원실',
+    related: ['/sub/hospital/page01/'],
+    images: ['/img/facility/01.jpg', '/img/facility/02.jpg', '/img/facility/03.jpg', '/img/facility/04.jpg', '/img/facility/05.jpg', '/img/facility/06.jpg', '/img/facility/07.jpg'],
     description: '해운누리한의원 접수처, 진료실, 치료실, 1인실 입원실의 실제 모습. 장산역 1번 출구 앞 해운대 좌동 한의원의 공간을 사진으로 둘러보세요.',
     og: '/og/about-tour.jpg',
   },
   '/sub/hospital/page01/': {
     title: '해운대 한의원 입원 | 전 병실 1인실 입원실',
+    hero: '해운대 한의원 입원 · 전 병실 1인실',
+    related: ['/sub/hospital/page02/', '/sub/clinic/page01/', '/sub/about/page01/'],
+    images: ['/img/facility/04.jpg', '/img/space/02.jpg', '/img/space/03.jpg'],
     description:
       '해운누리한의원 입원실은 전 병실 1인실입니다. 모션 베드, 개별 공기청정·환기, 개별 냉난방을 갖췄고 365일 당일 입원이 가능합니다. 자동차보험·건강보험 적용.',
     og: '/og/hospital-ward.jpg',
@@ -75,13 +97,19 @@ export const SEO: Record<string, PageSeo> = {
     ],
   },
   '/sub/hospital/page02/': {
-    title: '한의원 입원 절차 | 365일 당일 입원·보험 서류 대행',
+    title: '한의원 입원 절차 | 당일 입원·보험 서류 대행',
+    hero: '365일 당일 입원 · 보험 서류 대행',
+    related: ['/sub/hospital/page01/', '/sub/clinic/page01/'],
+    images: ['/img/facility/03.jpg'],
     description:
       '준비물 없이 당일 입원. 교통사고라면 보험사 담당자 연락처와 사고접수번호만 알려주세요. 나머지 서류는 해운누리한의원이 처리합니다. 접수부터 입원 생활까지 절차 안내.',
     og: '/og/hospital-admission.jpg',
   },
   '/sub/treatment/page01/': {
     title: '해운대 약침 치료 | 경근약침',
+    hero: '해운대 약침 치료',
+    related: ['/sub/clinic/page02/', '/sub/clinic/page01/', '/sub/clinic/page03/'],
+    images: ['/img/main/img-07.jpg'],
     description:
       '한약재로 만든 약액을 통증 부위와 경혈에 주입하는 약침 치료. 해운누리한의원은 통증의 증상과 원인에 맞춰 약침을 처방합니다. 목·허리 통증, 디스크, 척추관협착증.',
     og: '/og/treatment-acu.jpg',
@@ -89,6 +117,9 @@ export const SEO: Record<string, PageSeo> = {
   },
   '/sub/treatment/page02/': {
     title: '해운대 추나요법 | 건강보험 적용 추나',
+    hero: '해운대 추나요법 · 건강보험 적용',
+    related: ['/sub/clinic/page02/', '/sub/clinic/page01/', '/sub/hospital/page01/'],
+    images: ['/img/main/img-02.jpg'],
     description:
       '한의사가 손으로 뼈·관절·근육·인대를 바로잡는 수기 치료, 추나요법. 2019년 4월부터 건강보험이 적용되어 본인부담률 50~80%. 거북목, 허리디스크, 골반 통증.',
     og: '/og/treatment-chuna.jpg',
@@ -102,6 +133,9 @@ export const SEO: Record<string, PageSeo> = {
   },
   '/sub/treatment/page03/': {
     title: '해운대 매선 치료 | 통증매선',
+    hero: '해운대 매선 치료',
+    related: ['/sub/clinic/page02/', '/sub/clinic/page01/'],
+    images: ['/img/main/img-03.jpg'],
     description:
       '녹는 의료용 실(PDO)을 피부 아래 경혈에 넣어 3~6개월 동안 서서히 녹으며 자극하는 통증매선. 마취나 절개 없이 시술하고 시술 후 바로 일상생활이 가능합니다.',
     og: '/og/treatment-thread.jpg',
@@ -109,13 +143,19 @@ export const SEO: Record<string, PageSeo> = {
   },
   '/sub/treatment/page04/': {
     title: '해운대 한약 치료 | 체질 맞춤 한약',
+    hero: '해운대 체질 맞춤 한약',
+    related: ['/sub/clinic/page03/', '/sub/clinic/page04/', '/sub/clinic/page07/', '/sub/clinic/page05/'],
+    images: ['/img/sub/treatment-page04/decoction-m.jpg'],
     description:
       '나이·체질·체형에 따라 1:1 상담 후 처방하는 해운누리한의원 맞춤 한약. 만성피로, 수술·산후 회복, 갱년기, 척추관절 건강이 필요한 어르신까지.',
     og: '/og/treatment-herb.jpg',
     about: { type: 'MedicalTherapy', names: ['한약'] },
   },
   '/sub/clinic/page01/': {
-    title: '해운대 교통사고 한의원 | 자동차사고 후유증 치료·1인실 입원',
+    title: '해운대 교통사고 한의원 | 후유증 치료·1인실 입원',
+    hero: '해운대 교통사고 한의원',
+    related: ['/sub/hospital/page01/', '/sub/hospital/page02/', '/sub/treatment/page02/', '/sub/treatment/page01/', '/sub/about/page01/'],
+    images: ['/img/clinic/p1/intro.jpg'],
     description:
       '접수 시 ‘자동차보험 진료’라고 말씀해 주시면 본인부담금 없이 치료받을 수 있습니다. 한약·추나·약침·침·물리치료와 1인실 입원 집중치료, 365일 진료. 장산역 1번 출구 앞.',
     og: '/og/clinic-accident.jpg',
@@ -129,7 +169,10 @@ export const SEO: Record<string, PageSeo> = {
     ],
   },
   '/sub/clinic/page02/': {
-    title: '해운대 척추관절 한의원 | 목·허리 디스크, 어깨·무릎 통증',
+    title: '해운대 척추관절 한의원 | 목·허리 디스크·관절 통증',
+    hero: '해운대 척추관절 한의원 · 목·허리 디스크',
+    related: ['/sub/treatment/page02/', '/sub/treatment/page01/', '/sub/treatment/page03/', '/sub/hospital/page01/'],
+    images: ['/img/clinic/p2/intro.jpg'],
     description:
       '목디스크, 허리디스크, 척추관협착증, 오십견, 회전근개파열, 무릎·발목·손목 통증까지. 해운누리한의원은 한약·추나·약침·침 치료로 몸의 기초를 바로잡는 치료를 합니다.',
     og: '/og/clinic-spine.jpg',
@@ -140,6 +183,9 @@ export const SEO: Record<string, PageSeo> = {
   },
   '/sub/clinic/page03/': {
     title: '해운대 소화불량 한의원 | 담적·위염·역류성식도염',
+    hero: '해운대 소화불량 한의원 · 담적·위염',
+    related: ['/sub/treatment/page04/', '/sub/treatment/page01/'],
+    images: ['/img/clinic/p3/intro.jpg'],
     description:
       '담적, 위염, 역류성식도염, 신경성·만성 소화불량, 과민성 대장증후군, 만성장염, 변비·설사. 생활·식습관 교정과 한방 치료를 함께하는 해운누리한의원 내과 진료.',
     og: '/og/clinic-digestive.jpg',
@@ -147,46 +193,68 @@ export const SEO: Record<string, PageSeo> = {
   },
   '/sub/clinic/page04/': {
     title: '해운대 여성질환 한의원 | 생리통·난임·갱년기',
+    hero: '해운대 여성질환 한의원',
+    related: ['/sub/treatment/page04/', '/sub/treatment/page01/'],
+    images: ['/img/clinic/p4/intro.jpg'],
     description:
       '생리통, 다낭성난소증후군, 자궁내막증, 질염, 갱년기장애, 산후·유산 후 조리, 난임. 몸 전체의 균형과 생활 패턴까지 살피는 해운누리한의원 여성질환 진료.',
     og: '/og/clinic-women.jpg',
     about: { type: 'MedicalCondition', names: ['생리통', '다낭성난소증후군', '자궁내막증', '질염', '갱년기장애', '난임'] },
   },
   '/sub/clinic/page05/': {
-    title: '해운대 피부질환 한의원 | 여드름·습진·건선·두드러기',
+    title: '해운대 피부질환 한의원 | 여드름·습진·건선',
+    hero: '해운대 피부질환 한의원',
+    related: ['/sub/treatment/page04/', '/sub/treatment/page01/'],
+    images: ['/img/clinic/p5/intro.jpg'],
     description: '두드러기, 여드름, 건선, 습진, 지루성피부염. 원인과 유형을 진단해 체질에 맞춰 치료하는 해운누리한의원 피부질환 진료.',
     og: '/og/clinic-skin.jpg',
     about: { type: 'MedicalCondition', names: ['두드러기', '여드름', '건선', '습진', '지루성피부염'] },
   },
   '/sub/clinic/page06/': {
     title: '해운대 불면증·공황장애 한의원 | 정신건강 진료',
+    hero: '해운대 불면증·공황장애 한의원',
+    related: ['/sub/treatment/page04/', '/sub/treatment/page01/'],
+    images: ['/img/clinic/p6/intro.jpg'],
     description: '공황장애, 불면증, 화병, 스트레스증후군. 몸과 마음을 함께 살피는 해운누리한의원 정신건강 한방 진료.',
     og: '/og/clinic-mind.jpg',
     about: { type: 'MedicalCondition', names: ['공황장애', '불면증', '화병', '스트레스증후군'] },
   },
   '/sub/clinic/page07/': {
-    title: '해운대 한방 다이어트 | 여성·남성·체질별 다이어트',
+    title: '해운대 한방 다이어트 | 체질별 맞춤',
+    hero: '해운대 한방 다이어트',
+    related: ['/sub/treatment/page04/', '/sub/treatment/page01/'],
+    images: ['/img/clinic/p7/intro.jpg'],
     description: '여성·남성·체질별 한방 다이어트. 체중 감량과 함께 몸의 균형을 회복하고 건강한 체질로 바꾸는 것을 목표로 하는 해운누리한의원 다이어트 진료.',
     og: '/og/clinic-diet.jpg',
     about: { type: 'MedicalCondition', names: ['비만'] },
   },
   '/sub/media/page01/': {
     title: '원장님이 설명하는 건강 영상 | 해운누리 유튜브',
+    hero: '해운누리한의원 건강 영상',
+    related: ['/sub/media/page02/'],
+    images: ['/img/facility/07.jpg'],
     description: '해운누리한의원 원장님이 직접 설명하는 질환·치료 이야기를 영상으로 만나 보세요.',
     og: '/og/media-video.jpg',
   },
   '/sub/media/page02/': {
     title: '해운대 한의원 건강 칼럼 | 해운누리 전문칼럼',
+    hero: '해운대 한의원 건강 칼럼',
+    related: ['/sub/media/page01/'],
+    images: ['/img/main/img-04.jpg'],
     description: '해운누리한의원 원장님이 직접 쓰는 건강 칼럼입니다. 질환과 한방 치료, 생활 관리 이야기를 전합니다.',
     og: '/og/media-column.jpg',
   },
   '/sub/board/page01/': {
     title: '해운누리 소식 | 공지사항',
+    hero: '해운누리한의원 공지사항',
+    images: ['/img/facility/06.jpg'],
     description: '해운누리한의원의 공지사항과 소식. 진료 일정과 병원 안내를 전합니다.',
     og: '/og/board-news.jpg',
   },
   '/nonpay/': {
     title: '비급여 진료비용',
+    hero: '의료법에 따른 비급여 항목·금액 고지',
+    images: ['/img/facility/01.jpg'],
     description: '해운누리한의원 비급여 진료비용 안내. 의료법에 따라 비급여 항목과 금액을 알려 드립니다.',
     og: '/og/nonpay.jpg',
   },

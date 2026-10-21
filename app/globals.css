@@ -2298,7 +2298,8 @@ em {
   font-style: normal;
   opacity: 0.5;
 }
-.sub-hero h1 {
+.sub-hero .sub-hero-title {
+  margin: 0;
   font-size: clamp(36px, 4.6vw, 60px);
   font-weight: 600;
   letter-spacing: -0.04em;
@@ -2979,7 +2980,7 @@ em {
   border-bottom: 1px solid var(--line);
   padding: 28px 10px;
 }
-.post-head h2 {
+.post-head h1 {
   font-size: clamp(22px, 2.2vw, 28px);
   color: var(--ink);
   font-weight: 600;
@@ -3719,13 +3720,13 @@ em {
   translate: var(--mx, 0px) var(--my, 0px);
   transition: translate 1.2s var(--ease-out);
 }
-.sub-hero h1.split {
+.sub-hero .split {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
   padding-bottom: 0.06em;
 }
-.sub-hero h1.split span {
+.sub-hero .split span {
   display: inline-block;
   transform: translateY(110%);
   animation: charUp 1s var(--ease-out) forwards;
@@ -4090,7 +4091,7 @@ em {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .sub-hero h1.split span {
+  .sub-hero .split span {
     animation: none;
     transform: none;
   }
@@ -4759,7 +4760,7 @@ em {
   width: fit-content;
   margin: 0 auto 18px;
 }
-.md-art-head h2 {
+.md-art-head h1 {
   font-size: clamp(28px, 3.6vw, 44px);
   line-height: 1.35;
   font-weight: 700;
@@ -5232,5 +5233,134 @@ picture {
   .faq-a p {
     padding-top: 3px;
     font-size: 0.96rem;
+  }
+}
+
+/* 서브 상단 제목 아래 검색어 한 줄(SubLayout .sub-hero-tag) */
+.sub-hero-tag {
+  display: block;
+  margin-top: 14px;
+  font-size: clamp(15px, 1.3vw, 18px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
+  animation: fadeUp 1s var(--ease-out) both 0.9s;
+}
+
+/* 진료과목 치료 카드 제목 링크 */
+.cx-ct-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition: text-decoration-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.cx-ct-link:hover {
+  color: var(--gold-d);
+  text-decoration-color: var(--gold-d);
+}
+
+/* 홈 첫 화면·푸터의 진료시간·주소 링크: 글자색 그대로, 밑줄만 옅게 */
+.hero-info-head a,
+.ft-hours dt a,
+.ft-addr a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+.hero-info-head a:hover,
+.ft-hours dt a:hover,
+.ft-addr a:hover {
+  text-decoration-color: currentColor;
+}
+
+/* 함께 보기 (SubOutro Related) */
+.rel {
+  padding: clamp(64px, 8vw, 112px) 0;
+  background: var(--sand);
+}
+.rel-head {
+  text-align: center;
+}
+.rel-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  max-width: 1040px;
+  margin: clamp(28px, 4vw, 40px) auto 0;
+  padding: 0;
+  list-style: none;
+}
+.rel-list a {
+  position: relative;
+  display: block;
+  padding: 22px 56px 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--white);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+.rel-list a:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 14px 30px rgba(43, 32, 25, 0.08);
+}
+.rel-list small {
+  display: block;
+  margin-bottom: 6px;
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--gold-d);
+}
+.rel-list span {
+  display: block;
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.4;
+  word-break: keep-all;
+}
+.rel-arr {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  margin-top: -11px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+}
+.rel-arr::after {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-top: 1.5px solid var(--gold-d);
+  border-right: 1.5px solid var(--gold-d);
+  transform: rotate(45deg);
+}
+@media (max-width: 767px) {
+  .rel-list {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .rel-list a {
+    padding: 16px 40px 16px 16px;
+    border-radius: 12px;
+  }
+  .rel-list span {
+    font-size: 0.96rem;
+  }
+  .rel-arr {
+    right: 12px;
   }
 }

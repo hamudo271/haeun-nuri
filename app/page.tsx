@@ -36,7 +36,9 @@ export default function Home() {
       <section className="hero hv">
         <HeroSlides slides={HERO.slides}>
           <p className="hero-info-head">
-            <b>진료시간</b>
+            <b>
+              <a href="/sub/about/page01/">진료시간</a>
+            </b>
             <span>연중무휴</span>
           </p>
           <ul className="hero-hours">
@@ -65,6 +67,7 @@ export default function Home() {
           <h1 className="hv-title">
             {HERO.title.map((line, k) => (
               <span key={k} className={`hv-w ${k === 0 ? 'hv-w2' : 'hv-w3'}`}>
+                {k > 0 && ' '}
                 <Rich text={line} />
               </span>
             ))}

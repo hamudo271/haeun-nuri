@@ -13,7 +13,7 @@ export default function Location() {
       <div className="wrap">
         <div className="blk-head center" data-rv="up">
           <p className="label">( Location )</p>
-          <h2 className="blk-title">오시는 길</h2>
+          <h2 className="blk-title">장산역 1번 출구 앞, 해운누리한의원 위치</h2>
         </div>
         <div className="loc">
           <div className="loc-map" data-rv="up">

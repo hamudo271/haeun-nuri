@@ -83,7 +83,7 @@ const tools = () => ""; // 얼굴본처럼 직원에게만 보이는 수정 버�
 
 // 해운누리 소식: the numbered list the static page had
 export function newsList({ items, total, page, pages, per }) {
-  const head = `<div class="blk-head center" data-rv="up"><p class="label">( Notice )</p><h2 class="blk-title">해운누리 소식</h2></div>`;
+  const head = `<div class="blk-head center" data-rv="up"><p class="label">( Notice )</p><h2 class="blk-title">해운누리한의원 소식과 공지</h2></div>`;
   if (!total) return `${head}${empty("아직 등록된 소식이 없습니다.", "해운누리한의원의 새 소식을 이곳에서 알려 드리겠습니다.")}`;
   const rows = items.map((p, i) => `<li><a href="${postUrl(p)}"><span class="no">${String(total - (page - 1) * per - i).padStart(2, "0")}</span><span class="tt">${esc(p.title)}</span><span class="dt">${ymd(p.created_at)} · 관리자</span></a></li>`).join("");
   return `${head}<ul class="board" data-rv="up">${rows}</ul>${pager(BASE.news, page, pages)}`;
@@ -146,7 +146,7 @@ export function newsView(p, pics, nav) {
   const { body, rest } = bodyWithPics(p, pics);
   const more = rest.map((m, i) => figure(m, `${p.title} 사진 ${i + 1}`)).join("");
   const link = (q, label) => (q ? `<a class="btn btn-line" href="${postUrl({ ...q, cat: "news" })}">${label}</a>` : "");
-  return `${hiddenNote(p)}<div class="post-head" data-rv="up"><p class="label">( Notice )</p><h2>${esc(p.title)}</h2><p class="post-meta">${ymd(p.created_at)} · 관리자 ${tools(p.id)}</p></div>
+  return `${hiddenNote(p)}<div class="post-head" data-rv="up"><p class="label">( Notice )</p><h1>${esc(p.title)}</h1><p class="post-meta">${ymd(p.created_at)} · 관리자 ${tools(p.id)}</p></div>
         <div class="post-body md-prose">${more}${body}</div>
         <div class="post-nav">${link(nav.prev, "이전글")}<a class="btn btn-gold" href="${BASE.news}">목록</a>${link(nav.next, "다음글")}</div>`;
 }
@@ -159,7 +159,7 @@ export function columnView(p, pics, nav) {
   return `<article class="md-art">${hiddenNote(p)}
     <header class="md-art-head" data-rv="up">
       <a class="md-back" href="${BASE.column}">전문칼럼 목록</a>
-      <h2>${esc(p.title)}</h2>
+      <h1>${esc(p.title)}</h1>
       <p class="md-meta"><span>${dot(p.created_at)}</span>${tools(p.id)}</p>
     </header>
     ${cover ? `<figure class="md-art-cover" data-rv="up"><img src="/media/${cover.id}" alt="" width="${cover.width}" height="${cover.height}"></figure>` : ""}
