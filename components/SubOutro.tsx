@@ -37,7 +37,7 @@ function cardPhoto(href: string, fallback: string) {
 }
 
 /** 함께 보기: lib/seo.ts related — 링크 글자는 그 페이지의 검색어(hero 첫 토막), 작은 글자는 메뉴 이름 */
-function Related({ href }: { href: string }) {
+export function Related({ href }: { href: string }) {
   const list = (SEO[href]?.related ?? []).map((p) => ({ href: p, nav: findNav(p)?.item.label, kw: SEO[p]?.hero?.split(' · ')[0] })).filter((r) => r.nav);
   if (!list.length) return null;
   return (

@@ -3,6 +3,7 @@ import { pageMeta } from '@/lib/seo';
 import SubLayout from '@/components/SubLayout';
 import KakaoMap from '@/components/KakaoMap';
 import Faq from '@/components/Faq';
+import { Related } from '@/components/SubOutro';
 import { SITE } from '@/lib/site';
 
 export const metadata: Metadata = pageMeta('/sub/about/page02/');
@@ -54,6 +55,7 @@ export default function Location() {
         </div>
       </div>
       <Faq path="/sub/about/page02/" />
+      <Related href="/sub/about/page02/" />
     </SubLayout>
   );
 }

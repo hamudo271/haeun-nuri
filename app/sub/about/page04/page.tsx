@@ -3,6 +3,7 @@ import { pageMeta } from '@/lib/seo';
 import SubLayout from '@/components/SubLayout';
 import Coverflow from '@/components/Coverflow';
 import Pic from '@/components/Pic';
+import { Related } from '@/components/SubOutro';
 
 export const metadata: Metadata = pageMeta('/sub/about/page04/');
 
@@ -30,6 +31,7 @@ export default function Tour() {
           ))}
         </div>
       </div>
+      <Related href="/sub/about/page04/" />
     </SubLayout>
   );
 }
