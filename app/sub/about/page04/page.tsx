@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import SubLayout from '@/components/SubLayout';
 import Coverflow from '@/components/Coverflow';
 import Pic from '@/components/Pic';
 
-export const metadata: Metadata = { title: '둘러보기', alternates: { canonical: '/sub/about/page04/' } };
+export const metadata: Metadata = pageMeta('/sub/about/page04/');
 
 const PHOTOS = ['01', '02', '03', '04', '05', '06', '07'].map((n) => `/img/facility/${n}.jpg`);
 

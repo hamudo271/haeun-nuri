@@ -6,9 +6,12 @@ import Rich, { Lines } from '@/components/Rich';
 import Pic, { webpOf } from '@/components/Pic';
 import { HERO, PHILOSOPHY, SIGNATURE, DIFFERENT, DOCTORS, STAY } from '@/lib/home';
 import { NAV, SITE } from '@/lib/site';
+import { pageMeta, pageGraph } from '@/lib/seo';
+import JsonLd from '@/components/JsonLd';
+import { preload } from 'react-dom';
 
-/* canonical 은 레이아웃에 두지 않는다(하위 페이지가 홈 주소를 물려받지 않게) — 페이지마다 자기 주소 */
-export const metadata: Metadata = { alternates: { canonical: '/' } };
+/* canonical·og 는 레이아웃에 두지 않는다(하위 페이지가 홈 주소를 물려받지 않게) — 페이지마다 자기 주소(lib/seo.ts) */
+export const metadata: Metadata = pageMeta('/');
 
 const CLINIC_PHOTOS: Record<string, { en: string; img: string }> = {
   '/sub/clinic/page01/': { en: 'Traffic Accident', img: '/img/content/sub04-01-00__00.jpg' },
@@ -21,9 +24,14 @@ const CLINIC_PHOTOS: Record<string, { en: string; img: string }> = {
 };
 
 export default function Home() {
+  // 첫 화면 제목 글꼴(32KB)을 CSS 보다 먼저 받기 시작
+  preload('/fonts/kserif/kserif.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
+  // 첫 장면 사진은 높은 우선순위로(나머지 장면은 HeroSlides 가 페이지를 다 읽은 뒤 받는다)
+  preload(HERO.slides[0].src.replace(/\.(jpe?g|png)$/i, '.webp'), { as: 'image', fetchPriority: 'high' });
   const clinic = NAV.find((g) => g.key === 'clinic')!;
   return (
     <>
+      <JsonLd data={pageGraph('/')} />
       {/* 01. 첫 화면 — 레퍼런스: 파시아의원(메디컬디자인) 메인 비주얼. 가운데서 사진이 열리고 글이 좌·아래·우에서 모인다 */}
       <section className="hero hv">
         <HeroSlides slides={HERO.slides}>

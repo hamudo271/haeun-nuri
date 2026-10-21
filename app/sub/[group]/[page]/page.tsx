@@ -10,6 +10,7 @@ import ClinicPage from '@/components/clinic/ClinicPage';
 import { isClinic, loadClinic } from '@/lib/clinic';
 import { CODED } from '@/components/sub/registry';
 import { findNav } from '@/lib/site';
+import { SEO, pageMeta } from '@/lib/seo';
 
 /**
  * 서브페이지 — 원본 상세 이미지가 있으면 그 디자인을 그대로 쓰고(조각별 스크롤 연출),
@@ -42,6 +43,7 @@ function describe(slug: string) {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { group, page } = await params;
+  if (SEO[`/sub/${group}/${page}/`]) return pageMeta(`/sub/${group}/${page}/`);
   const nav = findNav(`/sub/${group}/${page}/`);
   const label = nav?.item.label;
   const description = describe(`sub_${group}_${page}`);

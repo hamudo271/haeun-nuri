@@ -1,6 +1,8 @@
 import { preload } from 'react-dom';
 import { NAV, findNav } from '@/lib/site';
 import { webpOf } from './Pic';
+import JsonLd from './JsonLd';
+import { pageGraph } from '@/lib/seo';
 
 /**
  * 서브페이지 상단: 큰 사진 제목 + 같은 메뉴 그룹의 페이지 이동 탭
@@ -13,6 +15,7 @@ export default function SubLayout({
   title,
   detail,
   crumb,
+  ld = true,
   children,
 }: {
   href: string;
@@ -20,15 +23,20 @@ export default function SubLayout({
   detail?: boolean;
   /** 메뉴에 없는 페이지의 상단 경로·영문 표기(기본: 이용안내 / Policy) */
   crumb?: { label: string; en: string };
+  /** 이 페이지의 구조화 데이터(경로·FAQ 등)를 넣을지 — 글 보기 틀은 서버가 글 정보를 따로 넣으므로 false */
+  ld?: boolean;
   children: React.ReactNode;
 }) {
   const found = findNav(href);
   const group = found?.group ?? { ...NAV[0], label: crumb?.label ?? '이용안내', en: crumb?.en ?? 'Policy', items: [] };
   const label = title ?? found?.item.label ?? '';
   const hero = webpOf(group.hero);
-  preload(hero, { as: 'image' }); // 첫 화면 큰 사진을 먼저 받게(LCP)
+  // 첫 화면 큰 사진을 먼저 받게(LCP). 404 틀은 Next 가 모든 페이지에 함께 그려 두므로 미리받기를 걸지 않는다
+  // (걸면 메인·서브 어디서나 404 배경 사진을 먼저 받는다)
+  if (href !== '/404/') preload(hero, { as: 'image' });
   return (
     <>
+      {ld && <JsonLd data={pageGraph(href)} />}
       <section className="sub-hero" data-mouse>
         <div className="sub-hero-bg" style={{ backgroundImage: `url(${hero})` }} data-parallax="0.15" data-depth="-26" />
         <div className="wrap sub-hero-in" data-depth="14">

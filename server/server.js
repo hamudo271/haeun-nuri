@@ -101,19 +101,37 @@ async function dress(req, html, rel) {
   return html.replace("</head>", `${siteVars}${tags}<script src="/js/track.js" defer></script>\n</head>`);
 }
 
-// a post's own page: its title, description, address and picture in the head of the built frame
+// a post's own page: its title, description, address and picture in the head of the built frame. The frame carries its
+// list page's share tags (app/sub/*/view → lib/seo.ts pageMeta); the post's own address, type and — when it has one —
+// first picture replace them, so a shared post never previews as the list (or the home page).
 function postHead(html, p, pics) {
   const url = `${SITE}${R.postUrl(p)}`;
   const title = `${R.esc(p.title)} | ${R.CATS[p.cat]} | 해운누리한의원`;
   const desc = R.esc(R.excerpt(p.body, 150) || `해운누리한의원 ${R.CATS[p.cat]}`);
   const img = pics[0] ? `${SITE}/media/${pics[0].id}` : "";
-  const ld = { "@context": "https://schema.org", "@type": "Article", headline: p.title, datePublished: new Date(p.created_at).toISOString(), dateModified: new Date(p.updated_at).toISOString(), image: img || undefined, url, publisher: { "@type": "MedicalClinic", name: "해운누리한의원", url: `${SITE}/` } };
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": p.cat === "column" ? "BlogPosting" : "Article",
+    headline: p.title,
+    description: R.excerpt(p.body, 150) || undefined,
+    datePublished: new Date(p.created_at).toISOString(),
+    dateModified: new Date(p.updated_at).toISOString(),
+    inLanguage: "ko-KR",
+    image: img || `${SITE}${p.cat === "column" ? "/og/media-column.jpg" : "/og/board-news.jpg"}`,
+    url,
+    mainEntityOfPage: url,
+    author: { "@type": "Organization", "@id": `${SITE}/#clinic`, name: "해운누리한의원", url: `${SITE}/` },
+    publisher: { "@type": "MedicalClinic", "@id": `${SITE}/#clinic`, name: "해운누리한의원", url: `${SITE}/`, logo: `${SITE}/img/brand/logo-brown.png` },
+  };
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`);
   html = html.replace(/(<meta (?:name|property)="(?:description|og:description|twitter:description)" content=")[^"]*"/g, `$1${desc}"`);
   html = html.replace(/(<meta (?:property|name)="(?:og:title|twitter:title)" content=")[^"]*"/g, `$1${title}"`);
   html = html.replace(/<link rel="canonical" href="[^"]*"\/?>/, "");
+  html = html.replace(/<meta property="og:(?:url|type)" content="[^"]*"\/?>/g, "");
+  if (img) html = html.replace(/<meta (?:property="og:image(?::[a-z]+)?"|name="twitter:image(?::[a-z]+)?") content="[^"]*"\/?>/g, "");
   let extra = `<link rel="canonical" href="${url}"/><meta property="og:url" content="${url}"/><meta property="og:type" content="article"/>`;
-  if (img) extra += `<meta property="og:image" content="${img}"/>`;
+  if (img) extra += `<meta property="og:image" content="${img}"/><meta name="twitter:image" content="${img}"/>`;
+  extra += `<meta property="article:published_time" content="${new Date(p.created_at).toISOString()}"/><meta property="article:modified_time" content="${new Date(p.updated_at).toISOString()}"/>`;
   extra += `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, "\\u003c")}</script>`;
   if (!p.published && !/<meta name="robots"/.test(html)) extra += '<meta name="robots" content="noindex"/>';
   return html.replace("</head>", `${extra}</head>`);

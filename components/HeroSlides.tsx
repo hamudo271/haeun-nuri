@@ -3,6 +3,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 
 const DELAY = 6000;
+export const webp = (src: string) => src.replace(/\.(jpe?g|png)$/i, '.webp');
 
 /** m: 세로 화면(모바일)에서 보여줄 사진의 가로 위치(background-position) */
 export type HeroSlide = { src: string; m?: string };
@@ -16,6 +17,18 @@ export default function HeroSlides({ slides, children }: { slides: HeroSlide[]; 
   const [i, setI] = useState(0);
   const [tick, setTick] = useState(0); // 넘길 때마다 진행 막대·타이머를 처음부터
   const [still, setStill] = useState(false);
+  // 사진은 지금 장면과 바로 다음 장면만 받는다. 처음에는 1장만(첫 화면 속도) — 나머지는 페이지를 다 읽은 뒤
+  const [loaded, setLoaded] = useState(1);
+  useEffect(() => {
+    const more = () => setLoaded((l) => Math.max(l, 2));
+    if (document.readyState === 'complete') {
+      const t = setTimeout(more, 300);
+      return () => clearTimeout(t);
+    }
+    window.addEventListener('load', more, { once: true });
+    return () => window.removeEventListener('load', more);
+  }, []);
+  useEffect(() => setLoaded((l) => Math.max(l, Math.min(slides.length, i + 2))), [i, slides.length]);
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setStill(true);
@@ -36,7 +49,7 @@ export default function HeroSlides({ slides, children }: { slides: HeroSlide[]; 
           <div
             key={s.src}
             className={`hero-slide ${k === i ? 'is-on' : ''}`}
-            style={{ backgroundImage: `url(${s.src.replace(/\.(jpe?g|png)$/i, '.webp')})`, ['--mpos' as string]: s.m ?? 'center' }}
+            style={{ backgroundImage: k < loaded ? `url(${webp(s.src)})` : undefined, ['--mpos' as string]: s.m ?? 'center' }}
           />
         ))}
       </div>

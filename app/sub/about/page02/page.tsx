@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import SubLayout from '@/components/SubLayout';
 import KakaoMap from '@/components/KakaoMap';
+import Faq from '@/components/Faq';
 import { SITE } from '@/lib/site';
 
-export const metadata: Metadata = { title: '오시는 길', alternates: { canonical: '/sub/about/page02/' } };
+export const metadata: Metadata = pageMeta('/sub/about/page02/');
 
 export default function Location() {
   return (
@@ -51,6 +53,7 @@ export default function Location() {
           </dl>
         </div>
       </div>
+      <Faq path="/sub/about/page02/" />
     </SubLayout>
   );
 }

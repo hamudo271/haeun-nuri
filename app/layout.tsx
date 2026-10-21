@@ -3,8 +3,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import QuickDock from '@/components/QuickDock';
 import Motion from '@/components/Motion';
-import { Cormorant_Garamond, Noto_Serif_KR } from 'next/font/google';
+import { Cormorant_Garamond } from 'next/font/google';
 import { SITE, ORIGIN } from '@/lib/site';
+import { clinicGraph, ld } from '@/lib/seo';
 import './fonts.css';
 import './globals.css';
 import './hero-v2.css';
@@ -19,14 +20,8 @@ const serif = Cormorant_Garamond({
   variable: '--font-serif',
 });
 
-/* 한글 세리프: 메인 첫 화면 제목에만 쓴다(레퍼런스 파시아의원 NotoSerifKR). 쓰는 글자 조각만 받는다 */
-const kserif = Noto_Serif_KR({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  display: 'swap',
-  preload: false,
-  variable: '--font-kserif',
-});
+/* 한글 세리프(메인 첫 화면 제목·의료진 문구): 쓰는 글자만 담은 32KB 글꼴을 직접 내보낸다(app/globals.css 'HN KSerif',
+   scripts/fonts/kserif-subset.py). Google 의 Noto Serif KR 은 조각 12개(약 470KB)를 받아 모바일 첫 화면을 늦췄다 */
 
 const DESCRIPTION = '부산 장산역 1번 출구, 해운대 일대를 아우르는 해운누리한의원 | 원인을 치료하는 환자 중심 서비스';
 
@@ -46,7 +41,9 @@ export const metadata: Metadata = {
     other: { 'naver-site-verification': 'c3793888820e37cbfb27b4527826ec1c042dc72d' },
   },
   icons: { icon: '/img/brand/favicon-16.png' },
-  openGraph: { type: 'website', title: SITE.name, description: DESCRIPTION, siteName: SITE.name, url: ORIGIN },
+  // 기본값(페이지가 자기 값을 주지 않을 때). og:url 은 두지 않는다 — 하위 페이지가 홈 주소를 물려받지 않게. 페이지별 값은 lib/seo.ts pageMeta
+  openGraph: { type: 'website', locale: 'ko_KR', title: SITE.name, description: DESCRIPTION, siteName: SITE.name, images: [{ url: '/og/home.jpg', width: 1200, height: 630, alt: SITE.name }] },
+  twitter: { card: 'summary_large_image', images: ['/og/home.jpg'] },
   // 스테이징은 수집 차단. 운영은 robots 메타를 아예 넣지 않는다(기본값이 index·follow 이고,
   // 404 에는 Next 가 noindex 를 자동으로 한 번 넣으므로 레이아웃 값과 겹치지 않게)
   ...(IS_PROD ? {} : { robots: { index: false, follow: false } }),
@@ -54,33 +51,16 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#2b2019' };
 
-const JSON_LD = {
-  '@context': 'https://schema.org',
-  '@type': ['Physician', 'LocalBusiness', 'MedicalBusiness'],
-  name: SITE.name,
-  url: ORIGIN,
-  telephone: SITE.tel,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: '부산광역시 해운대구 좌동',
-    streetAddress: '세실로 48 해운대삼정코아주상복합 2층',
-    addressRegion: '부산광역시',
-    addressCountry: 'KR',
-  },
-  geo: { '@type': 'GeoCoordinates', latitude: '35.1705593', longitude: '129.1783854' },
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '21:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday', 'Sunday', 'PublicHolidays'], opens: '09:00', closes: '17:00' },
-  ],
-};
+// 병원 정보(MedicalClinic)·사이트(WebSite) 구조화 데이터 — 페이지별 것은 각 페이지(lib/seo.ts pageGraph)
+const JSON_LD = clinicGraph();
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="ko" className={`${serif.variable} ${kserif.variable}`}>
+    <html lang="ko" className={serif.variable}>
       <head>
         {/* RSS 자동 발견: 네이버·구글·피드 리더가 /rss.xml 을 찾는다. 페이지마다 alternates.canonical 을 쓰므로 metadata 대신 여기에 둔다 */}
         <link rel="alternate" type="application/rss+xml" title="해운누리한의원 소식·전문칼럼" href={`${ORIGIN}/rss.xml`} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ld(JSON_LD) }} />
       </head>
       <body id="top">
         <div className="progress" aria-hidden="true">

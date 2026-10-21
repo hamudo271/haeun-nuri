@@ -84,3 +84,13 @@ DATABASE_URL=postgres://… ADMIN_PASSWORD=… PORT=8090 npm start   # http://lo
   - 자동차사고 배경 띠 3개(어혈·치료시기·집중치료)는 원본에서 글자를 지우고 바탕만 복원한 것.
 - 그 밖의 서브페이지(진료시간·의료진·입원실·입원절차·치료 4쪽)도 통이미지 없이 코딩: `components/sub/*.tsx`(+ 페이지별 css), 등록은 `components/sub/registry.ts`, 사진 추출 도구는 `../tools/sub/*.py`, 사진은 `public/img/sub/<group>-<page>/`.
 - "글로 읽기"(원본 이미지 아래 글 구간)는 2026-10-06 현도 요청으로 되돌렸다(모든 상세가 코딩이라 불필요).
+
+## 검색·공유·AI 답변 최적화 (SEO·AEO·GEO, 2026-10-21)
+- **한 곳에서 관리: `lib/seo.ts`** — 페이지마다 목표 검색어 1개를 제목 맨 앞에(예: '해운대 교통사고 한의원 | …'), 고유 설명, 공유 이미지, 자주 묻는 질문(FAQ), 다루는 질환·치료.
+  - `pageMeta(경로)` → title·description·canonical·og(url·이미지·크기)·트위터 카드. og:url 은 페이지마다 자기 주소.
+  - FAQ 는 화면(`components/Faq.tsx`, 상세페이지 끝맺음 위)과 FAQPage 구조화 데이터에 같은 글로 나간다. 현재: 진료시간·오시는 길·입원실·교통사고·추나.
+  - 구조화 데이터: 레이아웃 = MedicalClinic + WebSite(`clinicGraph`), 페이지 = WebPage/MedicalWebPage·BreadcrumbList·FAQPage·의료진 Person(`pageGraph`, SubLayout·메인이 넣음). 글 한 편은 서버(`postHead`)가 BlogPosting/Article.
+  - 문구 원칙: 원고·병원 안내에 있는 사실만. '최고·완치·100%' 같은 의료광고 금지 표현 금지. '한방병원' 명칭 사용 금지(한의원).
+- **공유 이미지**: `public/og/*.jpg` — 만드는 법 `scripts/og/README.md`.
+- **AI 검색용 `/llms.txt`**: `app/llms.txt/route.ts` 가 lib/seo.ts·lib/site.ts 로 빌드 때 생성(병원 핵심 사실·페이지 목록·FAQ).
+- **첫 화면 속도**: 명조체는 쓰는 글자만 담은 32KB 글꼴(`public/fonts/kserif/kserif.woff2`, `scripts/fonts/kserif-subset.py` — 메인 제목·의료진 문구를 바꾸면 다시 실행). 메인 슬라이드 사진은 첫 장만 먼저, 나머지는 페이지를 다 읽은 뒤. 404 배경 미리받기 제거.

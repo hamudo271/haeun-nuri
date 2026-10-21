@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import SubLayout from '@/components/SubLayout';
 import Policy from '@/components/Policy';
 
-export const metadata: Metadata = { title: '이용안내', alternates: { canonical: '/service_rull/' } };
+export const metadata: Metadata = pageMeta('/service_rull/');
 
 export default function Page() {
   return (

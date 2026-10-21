@@ -1,6 +1,7 @@
 import { NAV, SITE, findNav } from '@/lib/site';
 import { loadPage, photoSrc, contentSlugs } from '@/lib/content';
 import { webpOf } from './Pic';
+import Faq from './Faq';
 
 /**
  * 상세페이지 끝맺음 — 형통 리뉴얼·더가든 연출
@@ -43,6 +44,7 @@ export default function SubOutro({ href }: { href: string }) {
   const next = items.length > 1 ? items[(i + 1) % items.length] : null;
   return (
     <>
+      <Faq path={href} />
       <div className="flow" data-flow aria-hidden="true">
         <p>
           Haeun-Nuri Oriental Clinic <i>·</i> Haeun-Nuri Oriental Clinic <i>·</i> Haeun-Nuri Oriental Clinic <i>·</i>
