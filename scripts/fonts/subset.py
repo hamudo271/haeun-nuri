@@ -54,6 +54,6 @@ def make(src_file, chars, out, wght=None):
     print(f'{out.relative_to(ROOT)}  {len(set(chars))} chars  {out.stat().st_size // 1024}KB')
 
 
-make('NotoSerifKR-VF.ttf', home_chars() + (CHARS / 'noto-serif-kr.txt').read_text(encoding='utf-8'), 'kserif/kserif.woff2', wght=(400, 700))
+make('NotoSerifKR-VF.ttf', home_chars() + (CHARS / 'noto-serif-kr.txt').read_text(encoding='utf-8'), 'kserif/kserif-v2.woff2', wght=(400, 700))
 make('SongMyung-Regular.ttf', (CHARS / 'song-myung.txt').read_text(encoding='utf-8'), 'song/song-myung.woff2')
 make('Montserrat-VF.ttf', (CHARS / 'montserrat.txt').read_text(encoding='utf-8'), 'mont/montserrat-800.woff2', wght=800)
