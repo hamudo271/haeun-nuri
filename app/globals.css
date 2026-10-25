@@ -21,7 +21,7 @@
   font-family: 'HN KSerif';
   font-weight: 400 700;
   font-display: swap;
-  src: url(/fonts/kserif/kserif.woff2) format('woff2');
+  src: url(/fonts/kserif/kserif-v2.woff2) format('woff2');
 }
 @font-face {
   font-family: 'HN Song';

@@ -26,7 +26,7 @@ const CLINIC_PHOTOS: Record<string, { en: string; img: string }> = {
 
 export default function Home() {
   // 첫 화면 제목 글꼴(32KB)을 CSS 보다 먼저 받기 시작
-  preload('/fonts/kserif/kserif.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
+  preload('/fonts/kserif/kserif-v2.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
   // 첫 장면 사진은 높은 우선순위로(나머지 장면은 HeroSlides 가 페이지를 다 읽은 뒤 받는다)
   preload(HERO.slides[0].src.replace(/\.(jpe?g|png)$/i, '.webp'), { as: 'image', fetchPriority: 'high' });
   const clinic = NAV.find((g) => g.key === 'clinic')!;
