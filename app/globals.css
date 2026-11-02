@@ -4267,36 +4267,17 @@ em {
   color: var(--muted);
   letter-spacing: 0.02em;
 }
-/* 재생 원 */
+/* 재생 버튼: 유튜브식 둥근 사각형, 얼굴을 가리지 않도록 왼쪽 아래 모서리에 */
 .md-play {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 72px;
-  height: 72px;
-  margin: -36px 0 0 -36px;
-  border-radius: 50%;
-  background: rgba(188, 156, 112, 0.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M8.5 6.2v11.6L18 12z'/%3E%3C/svg%3E") 54% 50% / 30px no-repeat;
-  box-shadow: 0 10px 30px rgba(43, 32, 25, 0.35);
+  left: 20px;
+  bottom: 20px;
+  width: 68px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(255, 0, 0, 0.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M9 6.5v11l9.5-5.5z'/%3E%3C/svg%3E") 55% 50% / 28px no-repeat;
+  box-shadow: 0 8px 24px rgba(43, 32, 25, 0.35);
   transition: transform 0.5s var(--ease-out), background-color 0.3s;
-}
-.md-play::before {
-  content: '';
-  position: absolute;
-  inset: -10px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  animation: mdPulse 2.4s var(--ease) infinite;
-}
-@keyframes mdPulse {
-  from {
-    transform: scale(0.85);
-    opacity: 1;
-  }
-  to {
-    transform: scale(1.35);
-    opacity: 0;
-  }
 }
 
 /* 대표 영상 */
@@ -4331,14 +4312,16 @@ em {
   filter: brightness(0.72);
 }
 .md-feat-media .md-play {
-  width: 104px;
-  height: 104px;
-  margin: -52px 0 0 -52px;
-  background-size: 40px;
+  left: 28px;
+  bottom: 28px;
+  width: 84px;
+  height: 60px;
+  border-radius: 14px;
+  background-size: 34px;
 }
 .md-feat-media:hover .md-play {
-  transform: scale(1.1);
-  background-color: var(--brown);
+  transform: scale(1.08);
+  background-color: #ff0000;
 }
 .md-tag {
   font-family: var(--serif);
@@ -4495,24 +4478,22 @@ em {
   transition: transform 1s var(--ease-out), filter 0.5s;
 }
 .md-thumb .md-play {
-  width: 58px;
-  height: 58px;
-  margin: -29px 0 0 -29px;
-  background-size: 24px;
-  transform: scale(0.85);
+  left: 14px;
+  bottom: 14px;
+  width: 54px;
+  height: 38px;
+  border-radius: 10px;
+  background-size: 22px;
   opacity: 0.92;
-}
-.md-thumb .md-play::before {
-  display: none;
 }
 .md-card:hover .md-thumb img {
   transform: scale(1.06);
   filter: brightness(0.8);
 }
 .md-card:hover .md-play {
-  transform: scale(1.05);
+  transform: scale(1.06);
   opacity: 1;
-  background-color: var(--brown);
+  background-color: #ff0000;
 }
 .md-card strong,
 .md-ccard strong {
@@ -5010,9 +4991,11 @@ em {
     flex: none;
   }
   .md-feat-media .md-play {
-    width: 76px;
-    height: 76px;
-    margin: -38px 0 0 -38px;
+    left: 18px;
+    bottom: 18px;
+    width: 64px;
+    height: 46px;
+    background-size: 26px;
   }
   .md-author {
     grid-template-columns: 80px 1fr;
