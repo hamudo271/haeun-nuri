@@ -43,7 +43,7 @@ export const DIFFERENT = {
   ],
 };
 
-/** cut = 배경을 지운 누끼(PNG, macOS Vision) — 메인 의료진 아치 위에 얹는다 */
+/** cut = 배경을 지운 누끼(PNG·WebP, 2026-11-04: Real-ESRGAN 2배 + BiRefNet, 경계 흰 번짐 제거) — 메인 의료진 아치 위에 얹는다 */
 export type Doctor = { name: string; role: string; motto: string; img: string; cut: string; career: string[]; edu: string[] };
 
 /** 원본 메인 의료진 탭 내용 그대로 (경력 = 첫 줄 묶음, 학력·학회 = 둘째 묶음) */
@@ -53,7 +53,7 @@ export const DOCTORS: Doctor[] = [
     role: '대표원장',
     motto: '공감과 소통이 있는 마음 편한 진료',
     img: '/img/doctors/img-13.jpg',
-    cut: '/img/doctors/cut-13.png',
+    cut: '/img/doctors/cut-13-v2.png',
     // 원본 메인에는 '현) 해운누리한의원 대표원장'이 두 번 들어 있어 한 줄로 줄임.
     career: [
       '현) 해운누리한의원 대표원장',
@@ -72,7 +72,7 @@ export const DOCTORS: Doctor[] = [
     role: '진료원장',
     motto: '믿고 찾아와 주시는 분들께 정성껏 보답하는 진료',
     img: '/img/doctors/img-16.jpg',
-    cut: '/img/doctors/cut-16.png',
+    cut: '/img/doctors/cut-16-v2.png',
     career: ['현) 해운누리한의원 진료원장'],
     edu: ['동의대학교 한의과대학 졸업', '제33기 동의대학교 한의과대학 졸업준비위원장', '대한한의학회선정 미래우수예비한의사 선발', '대한침구의학회 회원', '척추신경추나학회 회원', '사단법인 약침학회 회원'],
   },
@@ -81,7 +81,7 @@ export const DOCTORS: Doctor[] = [
     role: '진료원장',
     motto: '한 분 한 분 소중히 생각하며 진실되고 거짓없는 진료',
     img: '/img/doctors/img-15.png',
-    cut: '/img/doctors/cut-15.png',
+    cut: '/img/doctors/cut-15-v2.png',
     career: ['현) 해운누리한의원 진료원장', '전) 다이트한의원 진료원장', '전) 마디움한의원 진료원장', '전) 광덕안정한의원 진료원장'],
     edu: ['동의대학교 한의과대학 졸업', '한방비만전문가 과정 수료', '대한한의학회 회원', '대한스포츠한의학회 회원', '한방재활의학과학회 회원'],
   },
