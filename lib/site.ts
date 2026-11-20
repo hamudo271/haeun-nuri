@@ -14,6 +14,14 @@ export const SITE = {
   kakao: 'http://pf.kakao.com/_xgeTlG',
   naverMap:
     'https://map.naver.com/p/entry/place/1413333643?placePath=%252Fhome%253Fentry%253Dplt&searchType=place&lng=129.1781289&lat=35.1701529&c=15.00,0,0,0,dh',
+  /** 병원이 직접 운영하는 공식 계정·등록 페이지(2026-11-20 병원 전달). 구조화 데이터 sameAs 에 쓴다 */
+  profiles: [
+    'https://www.instagram.com/haeun_nuri_hanisa',
+    'https://www.threads.com/@haeun_nuri_hanisa',
+    'https://www.youtube.com/@haeun-nuri',
+    'https://map.naver.com/p/entry/place/1413333643', // 네이버 플레이스
+    'https://map.naver.com/p/entry/place/2092471844', // 네이버 플레이스(입원실)
+  ],
   hours: [
     { label: '평일', time: '오전 9:00 ~ 오후 9:00' },
     { label: '주말(토·일), 공휴일', time: '오전 9:00 ~ 오후 5:00' },

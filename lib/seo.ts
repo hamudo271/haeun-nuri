@@ -329,7 +329,7 @@ export function clinicGraph() {
           url: `${ORIGIN}${p}`,
         })),
         employee: DOCTORS.map((d) => ({ '@id': `${ORIGIN}/sub/about/page03/#${d.name}` })),
-        sameAs: [SITE.booking.replace(/#$/, ''), SITE.kakao],
+        sameAs: [...SITE.profiles, SITE.booking.replace(/#$/, ''), SITE.kakao],
       },
       {
         '@type': 'WebSite',
