@@ -210,6 +210,8 @@ const TAG_ROWS = [
   ["meta", "메타(인스타·페북) 픽셀", "숫자로 된 픽셀 ID"],
   ["kakao", "카카오 픽셀 (방문)", "숫자로 된 픽셀 ID"],
   ["kakaoConv", "카카오 픽셀 (전환)", "상담 신청을 셀 픽셀 ID (방문과 같으면 비워 두세요)"],
+  ["smlog", "스마트로그 계정", "UHPT-로 시작하는 값 (설치 코드의 _account)"],
+  ["smlogServer", "스마트로그 서버", "a로 시작하는 값 (설치 코드의 _server, 예: a300)"],
 ];
 async function tags(body, me) {
   const { tags: t, defaults, smsTo, smsDefault } = await api("/tags");

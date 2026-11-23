@@ -1,4 +1,4 @@
-/* 해운누리한의원 — 광고·분석 코드 (네이버, 구글, 메타, 카카오).
+/* 해운누리한의원 — 광고·분석 코드 (네이버, 구글, 메타, 카카오, 스마트로그).
    The server writes window.FB_TAGS into a page (관리자 → 홈페이지 → 광고·분석 코드) and adds this script. The codes load
    once the page is idle, so they never hold up what a visitor sees. window.fbConvert(kind) is called by js/sub.js only
    after the server has saved a consultation, and sends no name or number, only the kind of request. */
@@ -8,6 +8,7 @@
   const load = (src, onload) => {
     const s = document.createElement("script");
     s.async = true;
+    s.charset = "utf-8";
     s.src = src;
     if (onload) s.onload = onload;
     document.head.append(s);
@@ -39,6 +40,11 @@
   later(() => {
     if (T.ga4 || T.gads) load(`https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(T.ga4 || T.gads)}`);
     if (T.meta) load("https://connect.facebook.net/en_US/fbevents.js");
+    // 스마트로그: 설치 코드의 hpt_info 를 먼저 두고 스크립트를 부른다 (그 스크립트는 body 가 있으면 document.write 를 쓰지 않는다)
+    if (T.smlog) {
+      window.hpt_info = { _account: T.smlog, _server: T.smlogServer || "a300" };
+      load("https://cdn.smlog.co.kr/core/smart_renew.js");
+    }
     if (T.naver) {
       load("https://wcs.naver.net/wcslog.js", () => {
         if (!window.wcs) return;

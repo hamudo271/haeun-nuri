@@ -21,9 +21,13 @@ export const TAG_FIELDS = {
   metaEvent: /^(CompleteRegistration|Lead|Contact|SubmitApplication|Schedule)$/,
   kakao: /^\d{10,25}$/, // 카카오 픽셀 (방문)
   kakaoConv: /^\d{10,25}$/, // 카카오 픽셀 (전환)
+  smlog: /^UHPT-\d{3,12}$/, // 스마트로그 계정 (hpt_info._account)
+  smlogServer: /^a\d{1,5}$/, // 스마트로그 수집 서버 (hpt_info._server, 예: a300)
 };
-// 해운누리 예전 사이트의 코드는 아직 받지 않았다: 병원에서 받으면 관리자에서 넣는다
-const TAG_DEFAULTS = {};
+// 스마트로그는 병원이 2026-11-23 보낸 설치 코드 값. 다른 코드는 아직 받지 않았다: 병원에서 받으면 관리자에서 넣는다
+const TAG_DEFAULTS = { smlog: "UHPT-301754", smlogServer: "a300" };
+// codes added after a site's tags were first saved: put in once, so a value the owner later clears stays cleared
+const TAG_LATE = [["tags_smlog_seeded", ["smlog", "smlogServer"]]];
 // the phone that receives 문자 상담: the public page opens the visitor's SMS app on it with the request filled in
 export const SMS_DEFAULT = "051-715-4723";
 const SMS_RE = /^0\d{1,2}-?\d{3,4}-?\d{4}$/;
@@ -42,15 +46,27 @@ export async function tagSnippet(req) {
   if (!db || !state.ready) return "";
   if (await whoIs(req)) return "";
   const on = cleanTags(await readTags());
-  if (!on.naver && !on.ga4 && !on.gads && !on.meta && !on.kakao) return "";
-  return `<script>window.FB_TAGS=${JSON.stringify(on).replace(/</g, "\\u003c")}</script>\n<script src="/js/tags.js" defer></script>\n`;
+  if (!on.naver && !on.ga4 && !on.gads && !on.meta && !on.kakao && !on.smlog) return "";
+  // 스마트로그 설치 코드의 <noscript> 부분: 스크립트를 끈 방문도 센다
+  const noscript = on.smlog ? `<noscript><img src="https://${on.smlogServer || "a300"}.smlog.co.kr/smart_bda?_account=${on.smlog.replace(/^UHPT-/, "")}" alt="" width="0" height="0" style="display:none"></noscript>\n` : "";
+  return `<script>window.FB_TAGS=${JSON.stringify(on).replace(/</g, "\\u003c")}</script>\n<script src="/js/tags.js" defer></script>\n${noscript}`;
 }
 
 /* ---------- popups ---------- */
 const SEED_POPUPS = []; // 해운누리 메인에는 아직 팝업이 없다
 export async function seed() {
   const tagsSet = await db.query("select 1 from settings where key = 'tags'");
-  if (!tagsSet.rows[0]) await setSetting("tags", JSON.stringify(TAG_DEFAULTS));
+  if (!tagsSet.rows[0]) {
+    await setSetting("tags", JSON.stringify(TAG_DEFAULTS));
+    for (const [flag] of TAG_LATE) await setSetting(flag, "1");
+  }
+  for (const [flag, keys] of TAG_LATE) {
+    if ((await db.query("select 1 from settings where key = $1", [flag])).rows[0]) continue;
+    const t = await readTags();
+    for (const k of keys) if (!t[k] && TAG_DEFAULTS[k]) t[k] = TAG_DEFAULTS[k];
+    await setSetting("tags", JSON.stringify(t));
+    await setSetting(flag, "1");
+  }
   const seeded = await db.query("select 1 from settings where key = 'popups_seeded'");
   if (!seeded.rows[0]) {
     for (const [i, p] of SEED_POPUPS.entries()) await db.query("insert into popups (title, link, image_path, width, height, ord) values ($1,$2,$3,$4,$5,$6)", [p.title, p.link, p.image_path, p.width, p.height, i]);
